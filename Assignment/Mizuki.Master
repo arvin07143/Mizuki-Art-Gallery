@@ -47,8 +47,8 @@
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
     <footer class="bg-dark" style="height:200px; width:100%">
-        <div class="container p-md">
-            <p class="text-white">&#169; Mizuki 2021</p>
+        <div class="container pt-1 pb-1">
+            <p class="text-white">&#169; Mizuki, 2021. All Rights Reserved</p>
         </div>
         
     </footer>
