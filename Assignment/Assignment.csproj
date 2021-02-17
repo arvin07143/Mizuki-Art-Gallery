@@ -78,6 +78,8 @@
     <Content Include="App_Pages\Profile.aspx" />
     <Content Include="App_Pages\Login.aspx" />
     <Content Include="App_Pages\Register.aspx" />
+    <Content Include="css\profile.css" />
+    <Content Include="img\beauty_20210117164458.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
