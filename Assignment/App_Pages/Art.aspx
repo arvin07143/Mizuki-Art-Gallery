@@ -1,11 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Art.aspx.cs" Inherits="Assignment.App_Pages.Art" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
 	<style>
-		:root {
-			/* Base font size */
-			font-size: 10px;
-		}
-		
 		*,
 		*::before,
 		*::after {
