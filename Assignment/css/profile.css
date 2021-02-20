@@ -37,6 +37,10 @@
     height: auto;
 }
 
+.table img{
+    max-width:200px;
+}
+
 /*buttons*/
 
 .nav-pills .nav-item i {

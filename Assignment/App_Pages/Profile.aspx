@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="../css/profile.css" />
+    <title>Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
@@ -23,7 +24,6 @@
                                         <asp:Label ID="lblName" runat="server" Text="testname"></asp:Label></h3>
                                     <h6>
                                         <asp:Label ID="lblProf" runat="server" Text="Artist / User"></asp:Label>
-
                                     </h6>
                                 </div>
                             </div>
@@ -84,19 +84,54 @@
                         </div>
 
                         <div class="tab-pane" id="history">
-                            <p>test2</p>
+                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT [PurchaseID], [Price], [Content 1] AS Content_1, [Content 2] AS Content_2, [Name 1] AS Name_1, [Name 2] AS Name_2, [Date] FROM [Table]"></asp:SqlDataSource>
+                            <asp:Repeater ID="Repeater2" DataSourceID="SqlDataSource2" runat="server">
+                                <HeaderTemplate>
+                                    <table class="table bordered ms-auto me-auto w-75 p-3">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%" scope="col">No.</th>
+                                                <th style="width:10%" scope="col">Order ID</th>
+                                                <th style="width:15%" scope="col">Date</th>
+                                                <th scope="col">Contents</th>
+                                                <th style="width:15%" scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <table class="table borderless ms-auto me-auto w-75 p-3">
+                                        <tr>
+                                            <td style="width:10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                            <td style="width:10%" class="align-middle"><%# Eval("PurchaseID") %></td>
+                                            <td style="width:15%" class="align-middle"><%# Eval("Date","{0:dd/MM/yyyy}") %></td>
+                                            <td style="margin-left:-10px">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td><%# Eval("Name_1") %></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><%# Eval("Name_2") %></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td style="width:15%"class="align-middle"><%# Eval("Price","{0:C2}")%></td>
+                                        </tr>
+                                    </table>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </div>
 
                         <div class="tab-pane" id="wishlist">
-                            <p>test</p>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [ArtworkID], [ArtworkName] FROM [Artwork]"></asp:SqlDataSource>
-                            <asp:Repeater ID="Repeater1" runat="server">
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT [artID], [artImgLink], [artName] FROM [Wish]"></asp:SqlDataSource>
+                            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
                                 <HeaderTemplate>
-                                    <table class="table">
+                                    <table class="table w-75 p3 ms-auto me-auto">
                                         <thead>
                                             <tr>
-                                                <th scope="col">No.</th>
-                                                <th scope="col">Art</th>
+                                                <th style="width:10%" scope="col">No.</th>
+                                                <th style="width:10%" scope="col">Art ID</th>
+                                                <th scope="col"></th>
                                                 <th scope="col"></th>
                                                 <th scope="col"></th>
                                             </tr>
@@ -104,12 +139,21 @@
                                     </table>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td><i class="material-icons">shopping_cart</i></td>
-                                        <td><i class="material-icons">clear</i></td>
-                                    </tr>
+                                    <table class="table w-75 p3 ms-auto me-auto">
+                                        <tr>
+                                            <td style="width:10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                            <td style="width:10%" class="align-middle"><%# Eval("artID") %></td>
+                                            <td>
+                                                <img class="img-thumbnail img-fluid" src='<%#Eval("artImgLink") %>'>
+                                            </td>
+                                            <td class="align-middle"><%# Eval("artName")%></td>
+                                            <td class="align-middle">
+                                                <asp:LinkButton ID="btnBuy" runat="server"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
+                                            <td class="align-middle">
+                                                <asp:LinkButton ID="btnDeleteFav" runat="server"><i class="material-icons">clear</i></asp:LinkButton>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
@@ -119,7 +163,6 @@
         </div>
 
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="../js/profile.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>

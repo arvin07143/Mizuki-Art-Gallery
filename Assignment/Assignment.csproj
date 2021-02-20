@@ -69,6 +69,10 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\test.mdf" />
+    <Content Include="App_Data\test_log.ldf">
+      <DependentUpon>test.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Pages\Art.aspx" />
     <Content Include="App_Pages\Cart.aspx" />
     <Content Include="App_Pages\MainPage.aspx" />
