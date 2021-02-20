@@ -1,11 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Art.aspx.cs" Inherits="Assignment.App_Pages.Art" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
+	<form id="form1" runat="server">
 	<style>
-		:root {
-			/* Base font size */
-			font-size: 10px;
-		}
-		
 		*,
 		*::before,
 		*::after {
@@ -70,6 +66,7 @@
 		}
 		
 	</style>
+
     <div class="container">
 
 	<h1 class="heading" style="color:black"><b><span>Mizuki Gallery</span></b></h1>
@@ -77,31 +74,32 @@
 	<div class="gallery">
 
 		<div class="gallery-item">
-			<img class="gallery-image" src="https://i.pinimg.com/564x/78/56/1e/78561ebe81f88c3d193cb5eb6c3a68e9.jpg" alt="person writing">
+            <asp:ImageButton class="gallery-image" ID="ImageButton1" runat="server" ImageUrl="https://i.pinimg.com/564x/78/56/1e/78561ebe81f88c3d193cb5eb6c3a68e9.jpg"/>
 		</div>
 
 		<div class="gallery-item">
-			<img class="gallery-image" src="https://i.pinimg.com/564x/1a/46/11/1a4611b27348f6eecaab0620710d1a83.jpg" alt="sunset">
+			<asp:ImageButton class="gallery-image" ID="ImageButton2" runat="server" ImageUrl="https://i.pinimg.com/564x/1a/46/11/1a4611b27348f6eecaab0620710d1a83.jpg"/>
 		</div>
 
 		<div class="gallery-item">
-			<img class="gallery-image" src="https://i.pinimg.com/564x/1e/7f/65/1e7f65f57330ff7b7ed35f2ab5fd598f.jpg" alt="street">
+			<asp:ImageButton class="gallery-image" ID="ImageButton3" runat="server" ImageUrl="https://i.pinimg.com/564x/1e/7f/65/1e7f65f57330ff7b7ed35f2ab5fd598f.jpg"/>
 		</div>
 
 		<div class="gallery-item">
-			<img class="gallery-image" src="https://i.pinimg.com/564x/7c/06/10/7c0610191f89e573a30426b7305deb41.jpg" alt="car">
+			<asp:ImageButton class="gallery-image" ID="ImageButton4" runat="server" ImageUrl="https://i.pinimg.com/564x/7c/06/10/7c0610191f89e573a30426b7305deb41.jpg"/>
 		</div>
 
 		<div class="gallery-item">
-			<img class="gallery-image" src="https://i.pinimg.com/236x/51/d3/98/51d3981f42047bf45016d0f590bcfb8e.jpg" alt="women at the street">
+			<asp:ImageButton class="gallery-image" ID="ImageButton5" runat="server" ImageUrl="https://i.pinimg.com/236x/51/d3/98/51d3981f42047bf45016d0f590bcfb8e.jpg"/>
 		</div>
 
 		<div class="gallery-item">
-			<img class="gallery-image" src="https://i.pinimg.com/564x/b4/10/8f/b4108f58455673fd070dcd6ddb6b5674.jpg" alt="man playing guitar">
+			<asp:ImageButton class="gallery-image" ID="ImageButton6" runat="server" ImageUrl="https://i.pinimg.com/564x/b4/10/8f/b4108f58455673fd070dcd6ddb6b5674.jpg"/>
 		</div>
 
 	</div>
 
 </div>
+    </form>
 </asp:Content>
 
