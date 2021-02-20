@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Assignment.Login" %>
+﻿<%@ Page Title="Mizuki Login" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Assignment.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <title>Mizuki</title>
+  
     <style>
         * {
             margin: 0px;
@@ -142,7 +142,7 @@
             font-size: 13px;
             color: #555555;
             line-height: 1.4;
-            padding-left: 70px;
+            padding-left: 60px;
         }
 
         /*------------------------------------------------------------------
@@ -238,7 +238,7 @@
 						
 
 						<div>
-                            <asp:HyperLink id="signUpText" NavigateUrl="#" Text="Create an account? Sign up" runat="server" class="signUpText"/> 
+                            <asp:HyperLink id="signUpText" NavigateUrl="~/App_Pages/Register.aspx" Text="Create an account? Register" runat="server" class="signUpText"/> 
 
 						</div>
 					
@@ -254,4 +254,3 @@
 </html>
 
 </asp:Content>
-
