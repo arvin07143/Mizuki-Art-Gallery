@@ -20,12 +20,12 @@
 		.container {
 			max-width: 1250px;
 			margin: 0 auto;
-			padding: 0 2rem 2rem;
+			padding: 0 80px 80px;
 		}
 		
 		.heading {
 			font-family: "Montserrat", Arial, sans-serif;
-			font-size: 4rem;
+			font-size: 2rem;
 			font-weight: 500;
 			line-height: 1.5;
 			text-align: center;
@@ -41,12 +41,12 @@
 			display: flex;
 			flex-wrap: wrap;
 			/* Compensate for excess margin on outer gallery flex items */
-			margin: 0 0;
+			margin: 0 10 0 10;
 		}
 		
 		.gallery-item {
 			/* Minimum width of 24rem and grow to fit available space */
-			flex: 1 0 24rem;
+			flex: 1 0 10rem;
 			/* Margin value should be half of grid-gap value as margins on flex items don't collapse */
 			margin: 5px;
 			box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
@@ -73,9 +73,9 @@
              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork]"></asp:SqlDataSource>
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
             <ItemTemplate> 
-                    <div class="gallery-item">
-                        <asp:ImageButton CssClass="gallery-image" ID="Image1"  runat="server" ImageUrl='<%# Eval("URL") %>' PostBackUrl="~/App_Pages/Order.aspx"/>
-                    </div>                 
+				<table>
+					<tr><div class="gallery-item"><asp:ImageButton CssClass="gallery-image" ID="Image1"  runat="server" ImageUrl='<%# Eval("URL") %>' PostBackUrl="~/App_Pages/Order.aspx"/><%# Eval("ArtworkName") %></div></tr>
+				</table>
             </ItemTemplate>
         </asp:Repeater>
                 </div>
