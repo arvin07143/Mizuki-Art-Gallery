@@ -6,12 +6,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-    <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
+    <link rel="stylesheet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
         <div class="main main-raised">
-            <div class="profile-content">
+            <div class="profile-content" style="margin-top:100px">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 ms-auto me-auto">
@@ -84,7 +84,7 @@
                         </div>
 
                         <div class="tab-pane" id="history">
-                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT [PurchaseID], [Price], [Content 1] AS Content_1, [Content 2] AS Content_2, [Name 1] AS Name_1, [Name 2] AS Name_2, [Date] FROM [Table]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" SelectCommand="SELECT [PurchaseID], [Price], [Content 1] AS Content_1, [Content 2] AS Content_2, [Name 1] AS Name_1, [Name 2] AS Name_2, [Date] FROM [Table]"></asp:SqlDataSource>
                             <asp:Repeater ID="Repeater2" DataSourceID="SqlDataSource2" runat="server">
                                 <HeaderTemplate>
                                     <table class="table bordered ms-auto me-auto w-75 p-3">
@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="tab-pane" id="wishlist">
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT [artID], [artImgLink], [artName] FROM [Wish]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" SelectCommand="SELECT [artID], [artImgLink], [artName] FROM [Wish]"></asp:SqlDataSource>
                             <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
                                 <HeaderTemplate>
                                     <table class="table w-75 p3 ms-auto me-auto">
