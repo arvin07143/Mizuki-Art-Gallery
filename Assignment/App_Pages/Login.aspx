@@ -10,7 +10,7 @@
 					<span class="text1 ">
 						Login
 					</span>
-					<asp:Label ID="lblLoginFail" class="text" style="color: red;" runat="server"></asp:Label>
+					<asp:Label ID="lblLoginFail" class="text2" style="color: red;" runat="server"></asp:Label>
 					<span class="text2">
 						Username
 					</span>
