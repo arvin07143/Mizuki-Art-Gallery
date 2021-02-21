@@ -8,7 +8,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <style>
+        .dropdown:hover .dropdown-menu{
+            display: block;
+        }
+    </style>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
@@ -31,12 +35,22 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav justify-content-end">
-                    <li class="nav-link">
+                    <li class="nav-item">
                         <a class="nav-link" href="Cart.aspx">Cart</a>
                     </li>
-                    <li class="nav-link">
-                        <a class="nav-link" href="Login.aspx">Login</a>
+                    <li class="nav-item">
+                        <!--when no login-->
+                        <a id="loginNavLink"  class="nav-link" href="~/App_Pages/Login.aspx" runat="server">Login</a>
                     </li>
+                        <!--when user login-->
+                    <li class="nav-item dropdown">
+                        <a id="userProfileLink" class="nav-link dropdown-toggle" style="display:none" href="~/App_Pages/Profile.aspx" runat="server">Profile</a>
+                        <div class="dropdown-menu" id="dropDownMenu" runat="server">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a id="logoutLink" runat="server" class="dropdown-item" href="~/App_Pages/Logout.aspx">Logout</a>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
         </div>

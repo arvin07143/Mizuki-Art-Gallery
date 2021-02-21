@@ -76,6 +76,7 @@
     </Content>
     <Content Include="App_Pages\Art.aspx" />
     <Content Include="App_Pages\Cart.aspx" />
+    <Content Include="App_Pages\Logout.aspx" />
     <Content Include="App_Pages\MainPage.aspx" />
     <Content Include="App_Pages\Order.aspx" />
     <Content Include="App_Pages\Profile.aspx" />
@@ -100,6 +101,13 @@
     </Compile>
     <Compile Include="App_Pages\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Pages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Pages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>

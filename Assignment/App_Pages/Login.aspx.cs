@@ -13,7 +13,10 @@ namespace Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (Session["username"] != null)
+            {
+                Response.Redirect("~/App_Pages/MainPage.aspx");
+            }
         }
 
         protected void loginFormBtn_Click(object sender, EventArgs e)
@@ -31,6 +34,11 @@ namespace Assignment
 
             if (dtrUser.HasRows)
             {
+                String strSelectName = "Select Name from [dbo].[User] where Username=@username";
+                SqlCommand cmdSelectName = new SqlCommand(strSelectName, loginCon);
+                cmdSelectName.Parameters.AddWithValue("@username", TxtLUsername.Text);
+
+                Session["username"] = cmdSelectName.ExecuteScalar().ToString();
                 Response.Redirect("MainPage.aspx");
             }
             else
