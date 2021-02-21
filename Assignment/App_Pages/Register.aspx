@@ -15,14 +15,35 @@
 					</span>
 
 					<span class="text2">
-						Username
+						Name
 					</span>
-					<div class="wrapInput1">
-                        <asp:TextBox ID="TxtRName" runat="server" class="input"></asp:TextBox>
+
+					<div class="wrapInput1"style="margin-bottom:5px;">
+                        <asp:TextBox ID="TxtRName" runat="server" class="input" ></asp:TextBox>
                      </div>
 
+					<span class="text2" >
+						Gender
+                    </span>
+					<div class="text2">
+					<asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal"  RepeatLayout="Flow" CssClass="radiobtn">
+                            <asp:ListItem>Male</asp:ListItem>
+                            <asp:ListItem>Female</asp:ListItem>
+                    </asp:RadioButtonList>
+
+					<div class="text2">
+                        <label>Date of Birth</label>
+                        <div class="text2">
+                           <asp:TextBox CssClass="form-control" ID="TxtRDOB" runat="server"  TextMode="Date"></asp:TextBox>
+                        </div>
+                     </div>
+
+					
+                   
+                    </div>
+
                     <span class="text2">
-						Name
+						Username
 					</span>
 					<div class="wrapInput1">
                         <asp:TextBox ID="TxtRUsername" runat="server" class="input"></asp:TextBox>
@@ -43,23 +64,7 @@
 						
 					</div>
 					
-					<div class="text2">
-                        <label>Date of Birth</label>
-                        <div class="text2">
-                           <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server"  TextMode="Date"></asp:TextBox>
-                        </div>
-                     </div>
-
-					<span class="text2">
-						Gender
-                    </span>
-					<div class="text2">
-					<asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal"  RepeatLayout="Flow" CssClass="radiobtn">
-                            <asp:ListItem>Male</asp:ListItem>
-                            <asp:ListItem>Female</asp:ListItem>
-                    </asp:RadioButtonList>
-                   
-                    </div>
+					
 						
 					
 

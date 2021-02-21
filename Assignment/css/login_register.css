@@ -205,12 +205,13 @@ button {
 
 
 .radiobtn input[type="radio"] {
-    margin: 8px 20px 15px 40px;
+    margin: 3px 20px 20px 40px;
     font-family: Raleway-SemiBold;
     font-size: 13px;
     color: #555555;
     line-height: 1.4;
     text-transform: uppercase;
+   
 }
 
 
