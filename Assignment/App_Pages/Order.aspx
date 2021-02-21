@@ -18,50 +18,74 @@
 
 
                 <div class="col-md-6">
-                    <div class="row">
+                    <!--         <div class="row">
                         <div class="col-md-12">
                             <h4>Add to Wishlist <i class="far fa-star" style="size" id="btnWishlist"></i></h4>
                         </div>
-                    </div>
+                    </div>   -->
 
                     <div class="row">
                         <div class="col-md-12">
                             <asp:DetailsView ID="DetailsView1" runat="server" DataSourceID="SqlDataSource1" Height="50px" Width="388px" AutoGenerateRows="False" Font-Size="X-Large" GridLines="None" OnPageIndexChanging="DetailsView1_PageIndexChanging">
                                 <Fields>
-                                    <asp:BoundField DataField="ArtworkName" HeaderText="Artwork Name : " SortExpression="ArtworkName" />
-                                    <asp:BoundField DataField="Name" HeaderText="Artist Name : " SortExpression="Name" />
-                                    <asp:BoundField DataField="StockQuantity" HeaderText="Stock Quantity : " SortExpression="StockQuantity" />
-                                    <asp:BoundField DataField="Price" HeaderText="Price :" SortExpression="Price" DataFormatString="{0:C2}" />
+                                    <asp:BoundField DataField="ArtworkName" SortExpression="ArtworkName" />
+                                </Fields>
+                            </asp:DetailsView>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <asp:DetailsView ID="DetailsView4" runat="server" Height="50px" Width="220px" AutoGenerateRows="False" DataSourceID="SqlDataSource1" Font-Size="Medium" GridLines="None">
+                                <Fields>
+                                    <asp:BoundField DataField="Name" HeaderText="Artist Name :" SortExpression="Name" />
+                                    <asp:BoundField DataField="StockQuantity" HeaderText="Quantity :" SortExpression="StockQuantity" />
+                                    <asp:BoundField DataField="Price" DataFormatString="{0:C2}" HeaderText="Price :" SortExpression="Price" />
                                 </Fields>
                             </asp:DetailsView>
                         </div>
                     </div>
 
-                    <br />
+                    <div class="row add-to-cart">
+                        <div class="col-md-5 product-qty">
+                            <br />
+                            <br />
+                            <br />
+                            <span id="btnMinus" class="btn btn-default btn-lg btn-qty" style="width: 52px; height: 46px; border-radius: 0">
+                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </span>
+                            <asp:TextBox class="btn btn-default btn-lg btn-qty" ID="txtQuantity" runat="server" style="width: 100px; height: 46px; border-radius: 0"></asp:TextBox> 
+                            <span id="btnAdd" class="btn btn-default btn-lg btn-qty" style="width: 52px; height: 46px; border-radius: 0">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </span>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <div class="row buttons">
+                        <div class="col-md-6">
+                            <asp:Button class="btn btn-warning btn-lg btn-brand btn-full-width" id="btnAddToCart" style="height: 50px" runat="server" Text="ADD TO CART" />
+                        </div>
+                        <div class="col-md-6">
+                            <asp:Button class="btn btn-primary btn-lg btn-brand btn-full-width" id="btnBuyNow" style="height: 50px" runat="server" Text="BUY NOW" PostBackUrl="~/App_Pages/BuyNow.aspx" />
+                        </div>
+                    </div>
 
+
+                    <br />
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkName, [User].Name, Artwork.Price, Artwork.StockQuantity FROM Artwork INNER JOIN [User] ON Artwork.Username = [User].Username WHERE (Artwork.ArtworkID = 1)"></asp:SqlDataSource>
-
                     <br />
-
-                    Quantity :
-                    <asp:TextBox ID="textQuantity" runat="server"></asp:TextBox>
                     <br />
-
                     <br />
-
-
-
-
-                </div>
-                <div class="row buttons">
-                    <button class="btn btn-warning" id="btnAddToCart" style="height: 50px">ADD TO CART</button>
-                    <button class="btn btn-primary" id="btnBuyNow" style="height: 50px">BUY NOW</button>
                 </div>
             </div>
-
         </div>
 
-        </div>
+
          <script
              src="https://code.jquery.com/jquery-2.2.2.min.js"
              integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="

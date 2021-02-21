@@ -32,5 +32,12 @@ namespace Assignment.App_Pages
 
         }
 
+        protected void btnMinus_Click(object sender, EventArgs e)
+        {
+            int a = Convert.ToInt32(txtQuantity.Text);
+            a++;
+            txtQuantity.Text = a.ToString();
+        }
+
     }
 }
