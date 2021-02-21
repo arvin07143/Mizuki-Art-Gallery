@@ -11,7 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
         <div class="main main-raised">
-            <div class="profile-content">
+            <div class="profile-content" style="margin-top:100px">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 ms-auto me-auto">
