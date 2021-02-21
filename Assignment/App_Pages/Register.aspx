@@ -13,7 +13,7 @@
 					<span class="text1">
 						Register
 					</span>
-
+					<asp:Label ID="lblRegisterOk" class="text2" style="color: red;" runat="server"></asp:Label><br />
 					<span class="text2">
 						Name
 					</span>
@@ -68,7 +68,7 @@
 						
 					
 
-				       <asp:Button ID="loginFormBtn" runat="server" Text="Register" class="formBtn" />  
+				       <asp:Button ID="loginFormBtn" runat="server" Text="Register" class="formBtn" OnClick="loginFormBtn_Click" />  
 						
 
 						
