@@ -24,22 +24,31 @@ namespace Assignment
         protected global::System.Web.UI.HtmlControls.HtmlForm loginform;
 
         /// <summary>
-        /// TextBox1 control.
+        /// lblLoginFail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.Label lblLoginFail;
 
         /// <summary>
-        /// pass control.
+        /// TxtLUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pass;
+        protected global::System.Web.UI.WebControls.TextBox TxtLUsername;
+
+        /// <summary>
+        /// TxtLPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtLPass;
 
         /// <summary>
         /// forgetPassword control.
@@ -49,15 +58,6 @@ namespace Assignment
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink forgetPassword;
-
-        /// <summary>
-        /// lblLoginFail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLoginFail;
 
         /// <summary>
         /// loginFormBtn control.

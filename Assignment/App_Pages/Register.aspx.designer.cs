@@ -24,58 +24,49 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.HtmlControls.HtmlForm signInForm;
 
         /// <summary>
-        /// TextBox1 control.
+        /// TxtRUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox TxtRUsername;
 
         /// <summary>
-        /// email control.
+        /// TxtREmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.TextBox TxtREmail;
 
         /// <summary>
-        /// pass control.
+        /// TxtRPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pass;
+        protected global::System.Web.UI.WebControls.TextBox TxtRPass;
 
         /// <summary>
-        /// confirmPass control.
+        /// TxtRConfirmPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmPass;
+        protected global::System.Web.UI.WebControls.TextBox TxtRConfirmPass;
 
         /// <summary>
-        /// RadioButtonList1 control.
+        /// registerBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
-
-        /// <summary>
-        /// loginFormBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button loginFormBtn;
+        protected global::System.Web.UI.WebControls.Button registerBtn;
 
         /// <summary>
         /// signUpText control.

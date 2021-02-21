@@ -25,8 +25,8 @@ namespace Assignment
             String strSelectUser = "Select * from [dbo].[User] where Username=@username and UserPassword=@password";
 
             SqlCommand cmdSelectUser = new SqlCommand(strSelectUser, loginCon);
-            cmdSelectUser.Parameters.AddWithValue("@username", TextBox1.Text);
-            cmdSelectUser.Parameters.AddWithValue("@password", pass.Text);
+            cmdSelectUser.Parameters.AddWithValue("@username", TxtLUsername.Text);
+            cmdSelectUser.Parameters.AddWithValue("@password", TxtLPass.Text);
             SqlDataReader dtrUser = cmdSelectUser.ExecuteReader();
 
             if (dtrUser.HasRows)
@@ -38,6 +38,7 @@ namespace Assignment
                 lblLoginFail.Text = "Invalid Usernamd or Password";
             }
             //Response.Redirect("MainPage.aspx");
+            loginCon.Close();
         }
     }
 }
