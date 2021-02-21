@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Art.aspx.cs" Inherits="Assignment.App_Pages.Art" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
-	<form id="form1" runat="server">
+    <form id="form1" runat="server">
 	<style>
 		*,
 		*::before,
@@ -74,7 +74,7 @@
 	<div class="gallery">
 
 		<div class="gallery-item">
-            <asp:ImageButton class="gallery-image" ID="ImageButton1" runat="server" ImageUrl="https://i.pinimg.com/564x/78/56/1e/78561ebe81f88c3d193cb5eb6c3a68e9.jpg"/>
+            <asp:ImageButton class="gallery-image" ID="ImageButton1" runat="server" ImageUrl="https://i.pinimg.com/564x/78/56/1e/78561ebe81f88c3d193cb5eb6c3a68e9.jpg" PostBackUrl="~/App_Pages/Order.aspx"/>
 		</div>
 
 		<div class="gallery-item">
