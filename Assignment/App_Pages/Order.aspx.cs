@@ -11,7 +11,10 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (PreviousPage != null && PreviousPage.IsCrossPagePostBack)
+            {
+                
+            }
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
