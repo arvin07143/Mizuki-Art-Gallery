@@ -11,7 +11,7 @@
 		body {
 			min-height: 100vh;
 			background-color: #fafafa;
-			background-image: url('https://previews.123rf.com/images/teresaterra/teresaterra1802/teresaterra180200040/96114472-romantic-bunch-of-pink-roses-with-blank-greeting-card-lying-on-the-bed.jpg');
+			/*background-image: url('https://previews.123rf.com/images/teresaterra/teresaterra1802/teresaterra180200040/96114472-romantic-bunch-of-pink-roses-with-blank-greeting-card-lying-on-the-bed.jpg');*/
 			background-repeat: no-repeat;
 			background-attachment: fixed;
 			background-size: 100% 100%;
@@ -67,39 +67,20 @@
 		
 	</style>
 
-    <div class="container">
+    <h1 class="heading" style="color:black"><b><span>Mizuki Gallery</span></b></h1>
+        <div class="container">
+        <div class="gallery">
+             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork]"></asp:SqlDataSource>
+        <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+            <ItemTemplate> 
+                    <div class="gallery-item">
+                        <asp:ImageButton CssClass="gallery-image" ID="Image1"  runat="server" ImageUrl='<%# Eval("URL") %>' PostBackUrl="~/App_Pages/Order.aspx"/>
+                    </div>                 
+            </ItemTemplate>
+        </asp:Repeater>
+                </div>
+        </div>
 
-	<h1 class="heading" style="color:black"><b><span>Mizuki Gallery</span></b></h1>
-
-	<div class="gallery">
-
-		<div class="gallery-item">
-            <asp:ImageButton class="gallery-image" ID="ImageButton1" runat="server" ImageUrl="https://i.pinimg.com/564x/78/56/1e/78561ebe81f88c3d193cb5eb6c3a68e9.jpg" PostBackUrl="~/App_Pages/Order.aspx"/>
-		</div>
-
-		<div class="gallery-item">
-			<asp:ImageButton class="gallery-image" ID="ImageButton2" runat="server" ImageUrl="https://i.pinimg.com/564x/1a/46/11/1a4611b27348f6eecaab0620710d1a83.jpg"/>
-		</div>
-
-		<div class="gallery-item">
-			<asp:ImageButton class="gallery-image" ID="ImageButton3" runat="server" ImageUrl="https://i.pinimg.com/564x/1e/7f/65/1e7f65f57330ff7b7ed35f2ab5fd598f.jpg"/>
-		</div>
-
-		<div class="gallery-item">
-			<asp:ImageButton class="gallery-image" ID="ImageButton4" runat="server" ImageUrl="https://i.pinimg.com/564x/7c/06/10/7c0610191f89e573a30426b7305deb41.jpg"/>
-		</div>
-
-		<div class="gallery-item">
-			<asp:ImageButton class="gallery-image" ID="ImageButton5" runat="server" ImageUrl="https://i.pinimg.com/236x/51/d3/98/51d3981f42047bf45016d0f590bcfb8e.jpg"/>
-		</div>
-
-		<div class="gallery-item">
-			<asp:ImageButton class="gallery-image" ID="ImageButton6" runat="server" ImageUrl="https://i.pinimg.com/564x/b4/10/8f/b4108f58455673fd070dcd6ddb6b5674.jpg"/>
-		</div>
-
-	</div>
-
-</div>
     </form>
 </asp:Content>
 
