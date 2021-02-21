@@ -23,14 +23,17 @@ namespace Assignment.App_Pages
             SqlConnection loginCon = new SqlConnection(con);        //connect
             loginCon.Open();        // Open connection to database
 
-            String strSelectUser = "Select * from [dbo].[User] where Username=@username and UserPassword=@password";
+            String strSelectUser = "Select * from [dbo].[User] where Username=@username ";
 
             SqlCommand cmdSelectUser = new SqlCommand(strSelectUser, loginCon);
             cmdSelectUser.Parameters.AddWithValue("@username", TxtRUsername.Text);
-            cmdSelectUser.Parameters.AddWithValue("@password", TxtRPass.Text);
+            
             SqlDataReader dtrUser = cmdSelectUser.ExecuteReader();
-
-            if (dtrUser.HasRows)
+            if (DateTime.Parse(TxtRDOB.Text) > DateTime.Now)
+            {
+                lblRegisterOk.Text = "Invalid date.";
+            }
+            else if (dtrUser.HasRows)
             {
                 lblRegisterOk.Text = "Username already exist.";
 
