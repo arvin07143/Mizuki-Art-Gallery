@@ -81,6 +81,7 @@
     <Content Include="App_Pages\Profile.aspx" />
     <Content Include="App_Pages\Login.aspx" />
     <Content Include="App_Pages\Register.aspx" />
+    <Content Include="App_Pages\BuyNow.aspx" />
     <Content Include="css\login_register.css" />
     <Content Include="css\profile.css" />
     <Content Include="img\beauty_20210117164458.jpg" />
@@ -135,6 +136,13 @@
     </Compile>
     <Compile Include="App_Pages\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Pages\BuyNow.aspx.cs">
+      <DependentUpon>BuyNow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Pages\BuyNow.aspx.designer.cs">
+      <DependentUpon>BuyNow.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mizuki.Master.cs">

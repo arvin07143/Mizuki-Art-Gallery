@@ -29,9 +29,14 @@
 
 
                     <br />
-                    <br />
 
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkName, [User].Name, Artwork.Price, Artwork.StockQuantity FROM Artwork INNER JOIN [User] ON Artwork.Username = [User].Username WHERE (Artwork.ArtworkID = 1)"></asp:SqlDataSource>
+
+                    <br />
+
+                    Quantity :
+                    <asp:TextBox ID="textQuantity" runat="server"></asp:TextBox>
+                    <br />
 
                     <br />
 
@@ -40,7 +45,7 @@
 
                 </div>
                 <div class="row buttons">
-                    <button class="btn btn-warning" id="btnAddToCart" style="height: 50px" >ADD TO CART</button>
+                    <button class="btn btn-warning" id="btnAddToCart" style="height: 50px">ADD TO CART</button>
                     <button class="btn btn-primary" id="btnBuyNow" style="height: 50px">BUY NOW</button>
                 </div>
             </div>
