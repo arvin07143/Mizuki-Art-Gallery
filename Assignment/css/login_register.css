@@ -1,0 +1,217 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Raleway-Regular, sans-serif;
+    background-image: url("https://i.pinimg.com/originals/9f/09/79/9f0979d83ab4537c9df1dc99336fbcbb.jpg");
+    z-index: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*---------------------------------------------*/
+a {
+    font-family: Raleway-Regular;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+}
+
+    a:focus {
+        outline: none !important;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #85929E;
+    }
+
+/*---------------------------------------------*/
+
+
+
+
+
+/*---------------------------------------------*/
+
+
+
+
+/*---------------------------------------------*/
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+    button:hover {
+        cursor: pointer;
+    }
+
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////
+        [ login ]*/
+
+
+.whiteboxPosition {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.loginWhiteboxSize {
+    width: 380px;
+    height: 420px;
+    background: #fff;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.registerWhiteboxSize {
+    width: 380px;
+    height: 700px;
+    background: #fff;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+/*==================================================================
+        [ Form ]*/
+
+
+.text1{
+    font-family: Raleway-Medium;
+    font-size: 30px;
+    color: #555555;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%;
+    display: block;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.text2 {
+    font-family: Raleway-SemiBold;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.text3 {
+    font-family: Raleway-Regular;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+    padding-left: 60px;
+}
+
+.signUpText {
+    font-family: Raleway-Regular;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+    padding-left: 55px;
+}
+
+.forgetPasswordText {
+    font-family: Raleway-Regular;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+}
+/*------------------------------------------------------------------
+        [ Input ]*/
+.wrapInput1 {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+
+.wrapInput2 {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+    margin-bottom: 12px;
+}
+
+/*---------------------------------------------*/
+.input {
+    outline: none;
+    border: none;
+    font-family: Raleway-Medium;
+    color: #555555;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    background: transparent;
+    height: 35px;
+    padding: 0 25px 0 25px;
+}
+
+
+.formBtn {
+    font-family: Raleway-Bold;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 280px;
+    height: 30px;
+    background-color: #333333;
+    border-radius: 27px;
+    margin-top: 5px;
+    margin-bottom: 45px;
+    transition: all 0.4s;
+}
+
+    .formBtn:hover {
+        background-color: #283747;
+    }
+
+
+.radiobtn input[type="radio"] {
+    margin: 3px 20px 20px 40px;
+    font-family: Raleway-SemiBold;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+    text-transform: uppercase;
+   
+}
+
+

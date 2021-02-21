@@ -13,5 +13,21 @@ namespace Assignment.App_Pages
         {
 
         }
+
+        protected void btnBuyNow_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void DetailsView1_PageIndexChanging(object sender, DetailsViewPageEventArgs e)
+        {
+
+        }
+
     }
 }
