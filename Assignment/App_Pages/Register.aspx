@@ -10,7 +10,7 @@
         <div class="whiteboxPosition">
 			<div class="registerWhiteboxSize">
 				<form id="signInForm" runat="server" class="form">
-					<span class="text1">
+					<span class="text1" style="margin-bottom:-20px;">
 						Register
 					</span>
 					<asp:Label ID="lblRegisterOk" class="text2" style="color: red;" runat="server"></asp:Label><br />

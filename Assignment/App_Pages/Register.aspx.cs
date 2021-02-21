@@ -19,7 +19,22 @@ namespace Assignment.App_Pages
 
         protected void loginFormBtn_Click(object sender, EventArgs e)
         {
-            if (TxtRPass.Text == TxtRConfirmPass.Text)
+            String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString; //get connection string
+            SqlConnection loginCon = new SqlConnection(con);        //connect
+            loginCon.Open();        // Open connection to database
+
+            String strSelectUser = "Select * from [dbo].[User] where Username=@username and UserPassword=@password";
+
+            SqlCommand cmdSelectUser = new SqlCommand(strSelectUser, loginCon);
+            cmdSelectUser.Parameters.AddWithValue("@username", TxtRUsername.Text);
+            cmdSelectUser.Parameters.AddWithValue("@password", TxtRPass.Text);
+            SqlDataReader dtrUser = cmdSelectUser.ExecuteReader();
+
+            if (dtrUser.HasRows)
+            {
+                lblRegisterOk.Text = "Username already exist.";
+
+            }else if (TxtRPass.Text == TxtRConfirmPass.Text)
             {
                 lblRegisterOk.Text = "";
                 char gender = ' ';
@@ -31,8 +46,8 @@ namespace Assignment.App_Pages
                 {
                     gender = 'F';
                 }
-                var cnnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                using (SqlConnection cnn = new SqlConnection(cnnString))
+                
+                using (SqlConnection cnn = new SqlConnection(con))
                 {
                     using (SqlCommand cmd = new SqlCommand("insert into [dbo].[User] values(@Username, @UserPassword, @Name, @DOB, @Gender)", cnn))
                     {
