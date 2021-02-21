@@ -38,10 +38,7 @@ a {
 
 
 /*---------------------------------------------*/
-input {
-    outline: none;
-    border: none;
-}
+
 
 
 
@@ -55,7 +52,6 @@ button {
     button:hover {
         cursor: pointer;
     }
-
 
 
 
@@ -80,38 +76,32 @@ button {
     align-items: center;
     padding: 15px;
 }
-
-
 .loginWhiteboxSize {
     width: 380px;
-    height: 380px;
+    height: 420px;
     background: #fff;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
-
 
 .registerWhiteboxSize {
     width: 380px;
-    height: 600px;
+    height: 700px;
     background: #fff;
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 
 /*==================================================================
         [ Form ]*/
 
-.form {
-    width: 100%;
-}
 
-.text1 {
+.text1{
     font-family: Raleway-Medium;
     font-size: 30px;
     color: #555555;
@@ -120,7 +110,7 @@ button {
     text-align: left;
     width: 100%;
     display: block;
-
+    padding-bottom: 20px;
     padding-top: 20px;
 }
 
@@ -141,7 +131,7 @@ button {
     padding-left: 60px;
 }
 
-.text4 {
+.signUpText {
     font-family: Raleway-Regular;
     font-size: 13px;
     color: #555555;
@@ -149,6 +139,12 @@ button {
     padding-left: 55px;
 }
 
+.forgetPasswordText {
+    font-family: Raleway-Regular;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+}
 /*------------------------------------------------------------------
         [ Input ]*/
 .wrapInput1 {
@@ -171,6 +167,8 @@ button {
 
 /*---------------------------------------------*/
 .input {
+    outline: none;
+    border: none;
     font-family: Raleway-Medium;
     color: #555555;
     line-height: 1.2;
@@ -205,5 +203,14 @@ button {
         background-color: #283747;
     }
 
+
+.radiobtn input[type="radio"] {
+    margin: 8px 20px 15px 40px;
+    font-family: Raleway-SemiBold;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
 
 
