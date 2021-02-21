@@ -231,10 +231,12 @@
 						<div>
                              <asp:HyperLink id="forgetPassword" NavigateUrl="#" Text="Forgot Password?" runat="server" class="forgetPasswordText"/> 
 							
+						     <asp:Label ID="lblLoginFail" class="text" style="color: red;" runat="server"></asp:Label>
+							
 						</div>
 					
 
-				       <asp:Button ID="loginFormBtn" runat="server" Text="Login" class="loginFormBtn" />  
+				       <asp:Button ID="loginFormBtn" runat="server" Text="Login" class="loginFormBtn" OnClick="loginFormBtn_Click" />  
 						
 
 						<div>
