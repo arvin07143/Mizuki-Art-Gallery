@@ -24,7 +24,7 @@
                 <!--card group-->
                 <asp:Repeater ID="cartItemRepeater" runat="server" OnItemCommand="cartItemRepeater_ItemCommand">
                     <ItemTemplate>
-                        <div class="card flex-row">
+                        <div class="card flex-row" style="margin: 15px 0px">
                             <img class="col-4" src="<%# Eval("URL")%>" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title"><%# Eval("ArtworkName")%></h5>
