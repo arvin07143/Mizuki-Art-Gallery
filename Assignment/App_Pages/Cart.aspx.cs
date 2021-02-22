@@ -33,6 +33,18 @@ namespace Assignment.App_Pages
 
                     cartItemRepeater.DataSource = cmdSelectCartItem.ExecuteReader();
                     cartItemRepeater.DataBind();
+
+                    String strCartTotal = "Select Cart.Quantity * Art.Price AS TotalPrice from Artwork Art, CartDetails Cart, [User] u Where Cart.Username = u.Username and Cart.Username = @username and Art.ArtworkID = Cart.ArtworkID; ";
+                    SqlCommand cmdCartTotal = new SqlCommand(strCartTotal, cartCon);
+                    cmdCartTotal.Parameters.AddWithValue("@username", Session["username"].ToString());
+                    SqlDataReader dr = cmdCartTotal.ExecuteReader();
+                    decimal Total = Convert.ToDecimal(0.0);
+                    while (dr.Read())
+                    {
+                        Total = Total + Convert.ToDecimal(dr["TotalPrice"].ToString());
+                    }
+                    lblTotalPrice.Text = Convert.ToString(Total);
+                    
                     cartCon.Close();
                 }
                 else
