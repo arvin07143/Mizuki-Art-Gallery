@@ -15,28 +15,53 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] != null)
+            if (!IsPostBack)
             {
-                String strCartCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                SqlConnection cartCon = new SqlConnection(strCartCon);
-                cartCon.Open();
-                //select data to be bound
-                String strSelectCartItem = "Select Art.ArtworkName AS ArtworkName, Art.Price AS PRICE, Cart.Quantity AS Quantity, Cart.Quantity * Art.Price AS TotalPrice, Art.URL AS URL from Artwork Art, CartDetails Cart, [User] u Where Cart.Username = u.Username and Cart.Username=@username and Art.ArtworkID = Cart.ArtworkID;";
-                SqlCommand cmdSelectCartItem = new SqlCommand(strSelectCartItem, cartCon);
-                cmdSelectCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
-                SqlDataAdapter da = new SqlDataAdapter();
-                da.SelectCommand = cmdSelectCartItem;
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                if (Session["username"] != null)
+                {
+                    String strCartCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                    SqlConnection cartCon = new SqlConnection(strCartCon);
+                    cartCon.Open();
+                    //select data to be bound
+                    String strSelectCartItem = "Select Cart.ArtworkID AS ArtworkID, Art.ArtworkName AS ArtworkName, Art.Price AS PRICE, Cart.Quantity AS Quantity, Cart.Quantity * Art.Price AS TotalPrice, Art.URL AS URL from Artwork Art, CartDetails Cart, [User] u Where Cart.Username = u.Username and Cart.Username=@username and Art.ArtworkID = Cart.ArtworkID;";
+                    SqlCommand cmdSelectCartItem = new SqlCommand(strSelectCartItem, cartCon);
+                    cmdSelectCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    da.SelectCommand = cmdSelectCartItem;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                cartItemRepeater.DataSource = cmdSelectCartItem.ExecuteReader();
-                cartItemRepeater.DataBind();
+                    cartItemRepeater.DataSource = cmdSelectCartItem.ExecuteReader();
+                    cartItemRepeater.DataBind();
+                    cartCon.Close();
+                }
+                else
+                {
+                    Response.Redirect("~/App_Pages/Login.aspx");
+                }
+
             }
-            else
+
+        }
+
+        protected void cartItemRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            String strCartItemCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection cartItemCon = new SqlConnection(strCartItemCon);
+            cartItemCon.Open();
+
+            if(e.CommandName == "delete")
             {
-                Response.Redirect("~/App_Pages/Login.aspx");
+                String artworkId = e.CommandArgument.ToString();
+                String strDelCartItem = "DELETE FROM CartDetails WHERE ArtworkID=@artworkId AND Username=@username";
+                SqlCommand cmdDelCartItem = new SqlCommand(strDelCartItem, cartItemCon);
+                cmdDelCartItem.Parameters.AddWithValue("artworkId", artworkId);
+                cmdDelCartItem.Parameters.AddWithValue("username", Session["username"].ToString());
+                cmdDelCartItem.ExecuteNonQuery();
+                cartItemCon.Close();
+                lbl.Text = "artwork " + artworkId + " deleted";
+                Response.Redirect("~/App_Pages/Cart.aspx");
             }
-
         }
 
         
