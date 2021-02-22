@@ -39,5 +39,12 @@ namespace Assignment.App_Pages
             txtQuantity.Text = a.ToString();
         }
 
+        private int a = 1;
+
+        protected void testButton_Click(object sender, EventArgs e)
+        {
+            a++;
+            txtQuantity.Text = a.ToString();
+        }
     }
 }
