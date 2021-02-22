@@ -19,7 +19,7 @@
     <title>Mizuki</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Mizuki</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,8 +45,8 @@
                         <!--when user login-->
                     <li class="nav-item dropdown">
                         <a id="userProfileLink" class="nav-link dropdown-toggle" style="display:none" href="~/App_Pages/Profile.aspx" runat="server">Profile</a>
-                        <div class="dropdown-menu" id="dropDownMenu" runat="server">
-                            <a class="dropdown-item" href="#">Profile</a>
+                        <div class="dropdown-menu" style="right:5px" id="dropDownMenu" runat="server">
+                            <a class="dropdown-item" href="Profile.aspx">Profile</a>
                             <a id="logoutLink" runat="server" class="dropdown-item" href="~/App_Pages/Logout.aspx">Logout</a>
                         </div>
                     </li>
@@ -61,11 +61,12 @@
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
     </div>
-    <footer class="bg-dark" style="height:200px; width:100%">
-        <div class="container pt-1 pb-1">
-            <p class="text-white">&#169; Mizuki, 2021. All Rights Reserved</p>
+    <footer class="bg-dark" style="min-height:150px">
+        <div class="container">
+            <div style="padding:20px 0px">
+                <p class="text-white">&#169; Mizuki, 2021. All Rights Reserved</p>
+            </div>
         </div>
-        
     </footer>
 
     <!-- Optional JavaScript; choose one of the two! -->
