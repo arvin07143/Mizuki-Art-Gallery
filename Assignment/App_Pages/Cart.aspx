@@ -7,6 +7,10 @@
             <h1 class="display-4">Cart</h1>
         </div>
     </div>
+        <span  >
+			Total Price
+         </span>
+        <asp:Label ID="lblTotalPrice" runat="server"></asp:Label>
     <!--datasource for cart item repeater-->
     <%--<asp:SqlDataSource ID="SqlCartItemDataSource" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
         SelectCommand="SELECT [ArtworkID], [Quantity] FROM [CartDetails] WHERE ([Username] = @Username)" runat="server" >
