@@ -48,7 +48,7 @@ namespace Assignment.App_Pages
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnMinus;
+        protected global::System.Web.UI.WebControls.Button btnMinus;
 
         /// <summary>
         /// txtQuantity control.
@@ -66,7 +66,7 @@ namespace Assignment.App_Pages
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnAdd;
+        protected global::System.Web.UI.WebControls.Button btnAdd;
 
         /// <summary>
         /// btnAddToCart control.

@@ -50,9 +50,9 @@
                             <br />
                             <br />
                             <br />
-                            <asp:ImageButton class="btn btn-default btn-lg btn-qty" ID="btnMinus" ImageUrl="~/img/beauty_20210117164458.jpg" style="width: 52px; height: 46px; border-radius: 0" runat="server" OnClick="btnMinus_Click" />
+                            <asp:Button class="btn btn-default btn-lg btn-qty" Text="-" runat="server" ID="btnMinus" OnClick="btnMinus_Click" style="width:52px; height:46px; border-radius: 0"/>
                             <asp:TextBox class="btn btn-default btn-lg btn-qty" ID="txtQuantity" runat="server" style="width: 80px; height: 46px; border-radius: 0" Text="1"></asp:TextBox> 
-                            <asp:ImageButton class="btn btn-default btn-lg btn-qty" ID="btnAdd" ImageUrl="~/img/beauty_20210117164458.jpg" style="width: 52px; height: 46px; border-radius: 0" runat="server" OnClick="btnAdd_Click" />
+                            <asp:Button class="btn btn-default btn-lg btn-qty" Text="+" runat="server" ID="btnAdd" OnClick="btnAdd_Click" style="width:52px; height:46px; border-radius: 0"/>
                             <br />
                             <br />
                             <br />
@@ -73,7 +73,7 @@
 
 
                     <br />
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkName, [User].Name, Artwork.Price, Artwork.StockQuantity FROM Artwork INNER JOIN [User] ON Artwork.Username = [User].Username WHERE (Artwork.ArtworkID = 1)"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkName, [User].Name, Artwork.Price, Artwork.StockQuantity FROM Artwork INNER JOIN [User] ON Artwork.Username = [User].Username WHERE (Artwork.ArtworkID = @artworkID)"></asp:SqlDataSource>
                     <br />
                     <br />
                     <br />
