@@ -13,5 +13,15 @@ namespace Assignment.App_Pages
         {
 
         }
+
+        protected void Image_Click(object sender, System.EventArgs e)
+        {
+            ImageButton lnkRowSelection = (ImageButton)sender;
+            //Get the Recipe id from command argumen tof linkbutton
+            string artworkID = lnkRowSelection.CommandArgument.ToString();
+
+            // pass Recipe idto another page via query string
+            Response.Redirect(string.Format("Order.aspx?ArtworkID=", artworkID), false);
+        }
     }
 }
