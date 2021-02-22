@@ -6,32 +6,39 @@
             <h1 class="display-4">Cart</h1>
         </div>
     </div>
-    <div class="container">
-        <div class="card-group flex-column m-auto" style="width:600px">
-            <div class="card flex-row mb-3">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
+    <!--datasource for cart item repeater-->
+    <%--<asp:SqlDataSource ID="SqlCartItemDataSource" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+        SelectCommand="SELECT [ArtworkID], [Quantity] FROM [CartDetails] WHERE ([Username] = @Username)" runat="server" >
+        <SelectParameters>
+            <asp:SessionParameter DefaultValue="admin" Name="Username" SessionField="username" Type="String" />
+        </SelectParameters>
+    </asp:SqlDataSource>--%>
+    <form id="cartForm" runat="server">
+        <!-- template for cart item repeater-->
+        <div class="container">
+            <div class="row flex-column m-auto" style="width: 800px">
+                <!--card group-->
+                <asp:Repeater ID="cartItemRepeater" runat="server">
+                    <ItemTemplate>
+                        <div class="card flex-row">
+                            <img class="col-2" src="<%# Eval("URL")%>" alt="Card image cap">
+                            <div class="card-body col-8">
+                                <h5 class="card-title"><%# Eval("ArtworkName")%></h5>
+                                <p class="card-text">Quantity: <%# Eval("Quantity")%></p>
+                                <p class="text-right">Unit Price:<%# Eval("Price")%></p>
+                                <p class="text-right">Total Price:<%# Eval("TotalPrice")%></p>
+                            </div>
+                            <%--<div class="card-body col-4">
+                            
+                        </div>--%>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
-            <div class="card flex-row mb-3">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card flex-row mb-3">
-                <img class="card-img-top" src="..." alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
+
         </div>
-    </div>
+
+    </form>
+
+
 </asp:Content>
