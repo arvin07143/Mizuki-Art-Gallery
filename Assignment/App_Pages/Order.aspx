@@ -50,17 +50,12 @@
                             <br />
                             <br />
                             <br />
-                            <span id="btnMinus" class="btn btn-default btn-lg btn-qty" style="width: 52px; height: 46px; border-radius: 0">
-                                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                            </span>
-                            <asp:TextBox class="btn btn-default btn-lg btn-qty" ID="txtQuantity" runat="server" style="width: 100px; height: 46px; border-radius: 0"></asp:TextBox> 
-                            <span id="btnAdd" class="btn btn-default btn-lg btn-qty" style="width: 52px; height: 46px; border-radius: 0">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            </span>
+                            <asp:ImageButton class="btn btn-default btn-lg btn-qty" ID="btnMinus" ImageUrl="~/img/beauty_20210117164458.jpg" style="width: 52px; height: 46px; border-radius: 0" runat="server" OnClick="btnMinus_Click" />
+                            <asp:TextBox class="btn btn-default btn-lg btn-qty" ID="txtQuantity" runat="server" style="width: 80px; height: 46px; border-radius: 0" Text="1"></asp:TextBox> 
+                            <asp:ImageButton class="btn btn-default btn-lg btn-qty" ID="btnAdd" ImageUrl="~/img/beauty_20210117164458.jpg" style="width: 52px; height: 46px; border-radius: 0" runat="server" OnClick="btnAdd_Click" />
                             <br />
                             <br />
                             <br />
-                            <asp:Button ID="testButton" runat="server" Text="Button" />
                             <br />
                             <br />
                             
@@ -69,10 +64,10 @@
                     <!-- end row -->
                     <div class="row buttons">
                         <div class="col-md-6">
-                            <asp:Button class="btn btn-warning btn-lg btn-brand btn-full-width" id="btnAddToCart" style="height: 50px" runat="server" Text="ADD TO CART" />
+                            <asp:Button class="btn btn-warning btn-lg btn-brand btn-full-width" id="btnAddToCart" style="height: 50px" runat="server" Text="ADD TO CART" OnClick="btnAddToCart_Click" />
                         </div>
                         <div class="col-md-6">
-                            <asp:Button class="btn btn-primary btn-lg btn-brand btn-full-width" id="btnBuyNow" style="height: 50px" runat="server" Text="BUY NOW" PostBackUrl="~/App_Pages/BuyNow.aspx" />
+                            <asp:Button class="btn btn-primary btn-lg btn-brand btn-full-width" id="btnBuyNow" style="height: 50px" runat="server" Text="BUY NOW" PostBackUrl="~/App_Pages/BuyNow.aspx" OnClick="btnBuyNow_Click" />
                         </div>
                     </div>
 

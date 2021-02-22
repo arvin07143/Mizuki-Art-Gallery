@@ -17,17 +17,17 @@ namespace Assignment.App_Pages
             }
         }
 
-        protected void btnBuyNow_Click(object sender, EventArgs e)
+        protected void DetailsView1_PageIndexChanging(object sender, DetailsViewPageEventArgs e)
         {
 
-        }
+        }  
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
 
         }
 
-        protected void DetailsView1_PageIndexChanging(object sender, DetailsViewPageEventArgs e)
+        protected void btnBuyNow_Click(object sender, EventArgs e)
         {
 
         }
@@ -35,16 +35,22 @@ namespace Assignment.App_Pages
         protected void btnMinus_Click(object sender, EventArgs e)
         {
             int a = Convert.ToInt32(txtQuantity.Text);
-            a++;
-            txtQuantity.Text = a.ToString();
+            if (a > 1)
+            {
+                a--;
+                txtQuantity.Text = Convert.ToString(a);
+            }
         }
 
-        private int a = 1;
-
-        protected void testButton_Click(object sender, EventArgs e)
+        protected void btnAdd_Click(object sender, ImageClickEventArgs e)
         {
-            a++;
-            txtQuantity.Text = a.ToString();
+            int a = Convert.ToInt32(txtQuantity.Text);
+            int maxQuantity = 5; //gonna replace with maxQuantity from database
+            if (a < maxQuantity)
+            {
+                a++;
+                txtQuantity.Text = Convert.ToString(a);
+            }
         }
     }
 }
