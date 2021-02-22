@@ -37,8 +37,8 @@ namespace Assignment
                 String strSelectName = "Select Name from [dbo].[User] where Username=@username";
                 SqlCommand cmdSelectName = new SqlCommand(strSelectName, loginCon);
                 cmdSelectName.Parameters.AddWithValue("@username", TxtLUsername.Text);
-
-                Session["username"] = cmdSelectName.ExecuteScalar().ToString();
+                Session["username"] = TxtLUsername.Text;
+                Session["name"] = cmdSelectName.ExecuteScalar().ToString();
                 Response.Redirect("MainPage.aspx");
             }
             else

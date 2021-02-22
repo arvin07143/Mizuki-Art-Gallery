@@ -13,7 +13,7 @@ namespace Assignment
         {
             if(Session["username"] != null)
             {
-                userProfileLink.InnerHtml = Session["username"].ToString();
+                userProfileLink.InnerHtml = Session["name"].ToString();
                 loginNavLink.Attributes.Add("style", "display:none");
                 userProfileLink.Attributes.Add("style", "display:block");
 
