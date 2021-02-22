@@ -59,7 +59,6 @@ namespace Assignment.App_Pages
                 cmdDelCartItem.Parameters.AddWithValue("username", Session["username"].ToString());
                 cmdDelCartItem.ExecuteNonQuery();
                 cartItemCon.Close();
-                lbl.Text = "artwork " + artworkId + " deleted";
                 Response.Redirect("~/App_Pages/Cart.aspx");
             }
         }

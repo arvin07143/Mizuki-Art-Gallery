@@ -26,8 +26,8 @@
                             <div class="card-body col-8">
                                 <h5 class="card-title"><%# Eval("ArtworkName")%></h5>
                                 <p class="card-text">Quantity: <%# Eval("Quantity")%></p>
-                                <p class="text-right">Unit Price:<%# Eval("Price")%></p>
-                                <p class="text-right">Total Price:<%# Eval("TotalPrice")%></p>
+                                <p class="card-text">Unit Price:<%# Eval("Price")%></p>
+                                <p class="card-text">Total Price:<%# Eval("TotalPrice")%></p>
                                 <asp:Button CommandName="delete" CommandArgument='<%# Eval("ArtworkID")%>' 
                                     Text="Delete" runat="server" ID="btnDelete"/>
                             </div>
@@ -38,7 +38,6 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
-            <asp:label runat="server" ID="lbl"></asp:label>
         </div>
 
     </form>
