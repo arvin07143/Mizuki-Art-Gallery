@@ -21,7 +21,8 @@ namespace Assignment.App_Pages
             string artworkID = lnkRowSelection.CommandArgument.ToString();
 
             // pass Recipe idto another page via query string
-            Response.Redirect(string.Format("Order.aspx?ArtworkID=", artworkID), false);
+            Context.Items.Add("ArtworkID", artworkID);
+            Server.Transfer("Order.aspx");
         }
     }
 }
