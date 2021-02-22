@@ -15,55 +15,96 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (PreviousPage != null && PreviousPage.IsCrossPagePostBack)
+            String temp = " ";
+            if (!IsPostBack)
             {
-                if (Session["username"] != null)
+                try
                 {
-                    String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                    SqlConnection orderCon = new SqlConnection(strOrderCon);
-                    orderCon.Open();
-
-                    //select data to be bound
-                    String strSelectItem = "Select ArtworkName, Art.Price AS PRICE, Cart.Quantity AS Quantity, Cart.Quantity * Art.Price AS TotalPrice, Art.URL AS URL from Artwork Art, [User] u Where Username = u.Username and Art.ArtworkID = @artworkID;";
-                    SqlCommand cmdSelectCartItem = new SqlCommand(strSelectItem, orderCon);
-                    cmdSelectCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
-                    //SqlDataAdapter da = new SqlDataAdapter();
-                    //da.SelectCommand = cmdSelectCartItem;
-                    //DataTable dt = new DataTable();
-                    //da.Fill(dt);
-
-                    //cartItemRepeater.DataSource = cmdSelectCartItem.ExecuteReader();
-                    //cartItemRepeater.DataBind();
-
-                    //String strCartTotal = "Select Cart.Quantity * Art.Price AS TotalPrice from Artwork Art, CartDetails Cart, [User] u Where Cart.Username = u.Username and Cart.Username = @username and Art.ArtworkID = Cart.ArtworkID; ";
-                    //SqlCommand cmdCartTotal = new SqlCommand(strCartTotal, cartCon);
-                    //cmdCartTotal.Parameters.AddWithValue("@username", Session["username"].ToString());
-                    //SqlDataReader dr = cmdCartTotal.ExecuteReader();
-                    //decimal Total = Convert.ToDecimal(0.0);
-                    //while (dr.Read())
-                    //{
-                    //    Total = Total + Convert.ToDecimal(dr["TotalPrice"].ToString());
-                    //}
-                    //lblTotalPrice.Text = Convert.ToString(Total);
-
-                    //cartCon.Close();
+                    temp = Context.Items["ArtworkID"].ToString();
+                    HiddenField1.Value = temp;
+                    Session["artworkID"] = temp;
+                    
                 }
-                else
+                catch (NullReferenceException ex)
                 {
-                    Response.Redirect("~/App_Pages/Login.aspx");
+                    Response.Write(ex.Message);
                 }
             }
+            else
+            {
+                temp = Session["artworkID"].ToString();
+                HiddenField1.Value = temp;
+            }
 
+            String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection orderCon = new SqlConnection(strOrderCon);
+ 
+            //select data to be bound
+            orderCon.Open();
+            String strSelectItem = "SELECT Artwork.ArtworkName FROM Artwork WHERE (Artwork.ArtworkID = @ArtworkID);";
+            SqlCommand cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmdSelectItem;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            artworkName.DataSource = cmdSelectItem.ExecuteReader();
+            artworkName.DataBind();
+            orderCon.Close();
+
+            orderCon.Open();
+            strSelectItem = "SELECT Artwork.ArtworkName, [User].Name, Artwork.Price, Artwork.StockQuantity FROM Artwork INNER JOIN [User] ON Artwork.Username = [User].Username WHERE (Artwork.ArtworkID = @ArtworkID);";
+            cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            da = new SqlDataAdapter();
+            da.SelectCommand = cmdSelectItem;
+            dt = new DataTable();
+            da.Fill(dt);
+            artworkDescription.DataSource = cmdSelectItem.ExecuteReader();
+            artworkDescription.DataBind();
+            orderCon.Close();
+            
+            orderCon.Open();
+            strSelectItem = "SELECT URL FROM Artwork WHERE (Artwork.ArtworkID = @ArtworkID);";
+            cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            da = new SqlDataAdapter();
+            da.SelectCommand = cmdSelectItem;
+            dt = new DataTable();
+            da.Fill(dt);
+            imageRepeater.DataSource = cmdSelectItem.ExecuteReader();
+            imageRepeater.DataBind();
+            orderCon.Close();
+
+            orderCon.Open();
+            strSelectItem = "SELECT StockQuantity FROM Artwork WHERE (Artwork.ArtworkID = @ArtworkID);";
+            cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            SqlDataReader dtrArtwork = cmdSelectItem.ExecuteReader();
+            String quantity = "";
+            if (dtrArtwork.HasRows)
+            {
+                while (dtrArtwork.Read())
+                {
+                    quantity = dtrArtwork["StockQuantity"].ToString();
+                }
+            }
+            else
+            {
+                quantity = "1";
+            }
+            Session["quantity"] = quantity;
+            orderCon.Close();
         }
-
-        protected void DetailsView1_PageIndexChanging(object sender, DetailsViewPageEventArgs e)
-        {
-
-        }  
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-
+            String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection orderCon = new SqlConnection(strOrderCon);
+            orderCon.Open();
+            SqlCommand cmd = new SqlCommand("INSERT INTO CartDetails (Username, ArtworkID, Quantity) VALUES ('" + Session["username"].ToString() + HiddenField1.Value + txtQuantity.Text + "')", orderCon);
+            cmd.ExecuteNonQuery();
+            orderCon.Close();
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
@@ -74,7 +115,7 @@ namespace Assignment.App_Pages
         protected void btnMinus_Click(object sender, EventArgs e)
         {
             int a = Convert.ToInt32(txtQuantity.Text);
-            if (a > 1)
+            if (a > 0)
             {
                 a--;
                 txtQuantity.Text = Convert.ToString(a);
@@ -84,7 +125,7 @@ namespace Assignment.App_Pages
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             int a = Convert.ToInt32(txtQuantity.Text);
-            int maxQuantity = 5; //gonna replace with maxQuantity from database
+            int maxQuantity = Convert.ToInt32(Session["quantity"].ToString()); ; //gonna replace with maxQuantity from database
             if (a < maxQuantity)
             {
                 a++;
