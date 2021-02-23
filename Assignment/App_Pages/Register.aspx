@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Mizuki Register" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Assignment.App_Pages.Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-	<link rel="stylesheet" type="text/css" href="../css/login_register.css" />
+	<link rel="stylesheet" type="text/css" href="../css/Login_Register.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!DOCTYPE html>
@@ -64,11 +64,16 @@
 						
 					</div>
 					
-					
+					<span class="text2">
+						Email
+					</span>
+					<div class="wrapInput1">
+						<asp:TextBox ID="TxtREmail" runat="server" class="input" TextMode="Email" ></asp:TextBox>
 						
+					</div>
 					
 
-				       <asp:Button ID="loginFormBtn" runat="server" Text="Register" class="formBtn" OnClick="loginFormBtn_Click" />  
+					<asp:Button ID="loginFormBtn" runat="server" Text="Register" class="formBtn" OnClick="loginFormBtn_Click" />  
 						
 
 						

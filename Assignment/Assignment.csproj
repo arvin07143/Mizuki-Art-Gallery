@@ -84,8 +84,22 @@
     <Content Include="App_Pages\Login.aspx" />
     <Content Include="App_Pages\Register.aspx" />
     <Content Include="App_Pages\BuyNow.aspx" />
+    <Content Include="ArtImage\1a9144b7cd3e8f9827e7fc63018653ba.jpg" />
+    <Content Include="ArtImage\2862dd13ac5df89c3f3500fef57b194c.jpg" />
+    <Content Include="ArtImage\2baf63ece32d100cec72010f60eab476.jpg" />
+    <Content Include="ArtImage\338b6e1c6d18876a94641c050ade8b5c.jpg" />
+    <Content Include="ArtImage\33a6bb5c4307cd51ef80519588e513f6.jpg" />
+    <Content Include="ArtImage\626de2ae9ac8a5bb8d3fc000a34b096e.jpg" />
+    <Content Include="ArtImage\6935359_breathe-art-print.jpg" />
+    <Content Include="ArtImage\b9e91261e283d16584cab66968dea55b.jpg" />
+    <Content Include="ArtImage\ba89e593b81de8e29eed24f0aa03b122.jpg" />
+    <Content Include="ArtImage\bd434aba8baf0b8bed9d684d20b58d13.jpg" />
+    <Content Include="ArtImage\c7fad8ca6cf942133d3d23a3fba6ecfe.jpg" />
+    <Content Include="ArtImage\contemporary-art-34.jpg" />
+    <Content Include="ArtImage\Inspiring Art - Two Worlds, One Ocean by Kelogsloops-01.jpg" />
+    <Content Include="ArtImage\woman-runner-jogger-jumping-powerful-pablo-romero.jpg" />
     <Content Include="css\lightbox.css" />
-    <Content Include="css\login_register.css" />
+    <Content Include="css\Login_Register.css" />
     <Content Include="css\manage_art.css" />
     <Content Include="css\profile.css" />
     <Content Include="images\beauty_20210117164458.jpg" />
@@ -194,6 +208,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

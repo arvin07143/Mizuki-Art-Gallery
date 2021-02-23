@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
-<link rel="stylesheet" type="text/css" href="../css/login_register.css" />
+<link rel="stylesheet" type="text/css" href="../css/Login_Register.css" />
 
         <div class="whiteboxPosition">
 			<div class="loginWhiteboxSize">
