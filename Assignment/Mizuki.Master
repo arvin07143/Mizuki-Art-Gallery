@@ -47,6 +47,7 @@
                         <a id="userProfileLink" class="nav-link dropdown-toggle" style="display:none" href="~/App_Pages/Profile.aspx" runat="server">Profile</a>
                         <div class="dropdown-menu" style="right:5px" id="dropDownMenu" runat="server">
                             <a class="dropdown-item" href="Profile.aspx">Profile</a>
+                            <a class="dropdown-item" href="ManageArt.aspx">Manage Art</a>
                             <a id="logoutLink" runat="server" class="dropdown-item" href="~/App_Pages/Logout.aspx">Logout</a>
                         </div>
                     </li>

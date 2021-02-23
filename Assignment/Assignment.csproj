@@ -70,10 +70,6 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\profile_test.mdf" />
-    <Content Include="App_Data\profile_test_log.ldf">
-      <DependentUpon>profile_test.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Pages\Art.aspx" />
     <Content Include="App_Pages\Cart.aspx" />
     <Content Include="App_Pages\Checkout.aspx" />
