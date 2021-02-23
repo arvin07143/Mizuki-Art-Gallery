@@ -35,10 +35,20 @@
             font-weight: 500;
             font-size: 10px;
         }
+        .heading {
+			font-family: "Montserrat", Arial, sans-serif;
+			font-size: 2rem;
+			font-weight: 500;
+			line-height: 1.5;
+			text-align: center;
+			padding: 3.5rem 0;
+			color: #1a1a1a;
+		}
     </style>
     
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
+    <h1 class="heading" style="color:black"><b><span>Cart</span></b></h1>
     <form runat="server">
         <!-- template for cart item repeater-->
         <div class="container">
