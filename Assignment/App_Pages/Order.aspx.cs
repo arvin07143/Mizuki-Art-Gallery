@@ -31,7 +31,7 @@ namespace Assignment.App_Pages
             orderCon.Close();
 
             orderCon.Open();
-            strSelectItem = "SELECT Artwork.ArtworkName, [User].Name, Artwork.Price, Artwork.StockQuantity FROM Artwork INNER JOIN [User] ON Artwork.Username = [User].Username WHERE (Artwork.ArtworkID = @ArtworkID);";
+            strSelectItem = "SELECT [User].Name, Artwork.Price, Artwork.StockQuantity FROM Artwork INNER JOIN [User] ON Artwork.Username = [User].Username WHERE (Artwork.ArtworkID = @ArtworkID);";
             cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
             cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
             da = new SqlDataAdapter();
@@ -59,19 +59,17 @@ namespace Assignment.App_Pages
             cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
             cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
             SqlDataReader dtrArtwork = cmdSelectItem.ExecuteReader();
-            String quantity = "";
             if (dtrArtwork.HasRows)
             {
                 while (dtrArtwork.Read())
                 {
-                    quantity = dtrArtwork["StockQuantity"].ToString();
+                    Session["stockQuantity"] = dtrArtwork["StockQuantity"].ToString();
                 }
             }
             else
             {
-                quantity = "1";
+                Session["stockQuantity"] = "1";
             }
-            Session["quantity"] = quantity;
             orderCon.Close();
 
             if (Session["username"] != null)
@@ -82,15 +80,17 @@ namespace Assignment.App_Pages
                 cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
                 cmdSelectItem.Parameters.AddWithValue("@Username", Session["username"].ToString());
                 dtrArtwork = cmdSelectItem.ExecuteReader();
-                String alreadyInCart = "false";
                 if (dtrArtwork.HasRows)
                 {
                     while (dtrArtwork.Read())
                     {
-                        alreadyInCart = "true";
+                        Session["alreadyInCart"] = "true";
                     }
                 }
-                Session["alreadyInCart"] = alreadyInCart;
+                else
+                {
+                    Session["alreadyInCart"] = "false";
+                }
                 orderCon.Close();
 
                 orderCon.Open();
@@ -151,7 +151,7 @@ namespace Assignment.App_Pages
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
         {
-
+            Session["txtQuantity"] = txtQuantity.Text;
         }
 
         protected void btnMinus_Click(object sender, EventArgs e)
@@ -167,7 +167,7 @@ namespace Assignment.App_Pages
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             int a = Convert.ToInt32(txtQuantity.Text);
-            int maxQuantity = Convert.ToInt32(Session["quantity"].ToString()); ; //gonna replace with maxQuantity from database
+            int maxQuantity = Convert.ToInt32(Session["stockQuantity"].ToString()); ; //gonna replace with maxQuantity from database
             if (a < maxQuantity)
             {
                 a++;

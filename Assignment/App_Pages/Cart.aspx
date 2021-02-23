@@ -87,7 +87,7 @@
                 <asp:Label ID="lblTotalPrice" runat="server"></asp:Label>
                 </div>
                 <div>
-                    <asp:Button ID="btnCheckout" CssClass="btn-checkout" runat="server" Text="Check Out" />
+                    <asp:Button ID="btnCheckout" CssClass="btn-checkout" runat="server" Text="Check Out" OnClick="btnCheckout_Click" />
                 </div>
             </div>
         </div>
