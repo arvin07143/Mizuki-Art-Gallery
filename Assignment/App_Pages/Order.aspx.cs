@@ -20,10 +20,7 @@ namespace Assignment.App_Pages
             {
                 try
                 {
-                    temp = Context.Items["ArtworkID"].ToString();
-                    HiddenField1.Value = temp;
-                    Session["artworkID"] = temp;
-                    
+                    temp = Context.Items["ArtworkID"].ToString();                   
                 }
                 catch (NullReferenceException ex)
                 {
@@ -33,8 +30,11 @@ namespace Assignment.App_Pages
             else
             {
                 temp = Session["artworkID"].ToString();
-                HiddenField1.Value = temp;
+                
             }
+
+            Session["artworkID"] = temp;
+            HiddenField1.Value = temp;
 
             String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection orderCon = new SqlConnection(strOrderCon);
@@ -95,6 +95,23 @@ namespace Assignment.App_Pages
             }
             Session["quantity"] = quantity;
             orderCon.Close();
+
+            orderCon.Open();
+            strSelectItem = "SELECT * FROM CartDetails WHERE (ArtworkID = @ArtworkID) AND (username = @Username);";
+            cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            cmdSelectItem.Parameters.AddWithValue("@Username", Session["username"].ToString());
+            dtrArtwork = cmdSelectItem.ExecuteReader();
+            String alreadyInCart = "false";
+            if (dtrArtwork.HasRows)
+            {
+                while (dtrArtwork.Read())
+                {
+                    alreadyInCart = "true";
+                }
+            }
+            Session["alreadyInCart"] = alreadyInCart;
+            orderCon.Close();
         }
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
@@ -102,8 +119,19 @@ namespace Assignment.App_Pages
             String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection orderCon = new SqlConnection(strOrderCon);
             orderCon.Open();
-            SqlCommand cmd = new SqlCommand("INSERT INTO CartDetails (Username, ArtworkID, Quantity) VALUES ('" + Session["username"].ToString() + HiddenField1.Value + txtQuantity.Text + "')", orderCon);
-            cmd.ExecuteNonQuery();
+
+            if (Session["alreadyInCart"].ToString().Equals("false"))
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO CartDetails (Username, ArtworkID, Quantity) VALUES ('" + Session["username"].ToString() + "','" + HiddenField1.Value + "','" + txtQuantity.Text + "')", orderCon);
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE CartDetails SET Quantity =  Quantity + " + txtQuantity.Text + " WHERE ArtworkID = @ArtworkID AND Username = @username;", orderCon);
+                cmd.Parameters.AddWithValue("artworkId", Session["artworkID"].ToString());
+                cmd.Parameters.AddWithValue("username", Session["username"].ToString());
+                cmd.ExecuteNonQuery();
+            }
             orderCon.Close();
         }
 
