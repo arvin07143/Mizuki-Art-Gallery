@@ -33,7 +33,7 @@ namespace Assignment.App_Pages
             Repeater1.DataBind();
             orderCon.Close();
 
-            lblSubtotal.Text = Session["TotalPrice"].ToString();
+            lblSubtotal.Text = String.Format("{0:0.00}", Session["TotalPrice"].ToString());
             lblTax.Text = (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString();
             lblTotal.Text = (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)).ToString();
         }
