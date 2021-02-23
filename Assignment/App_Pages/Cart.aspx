@@ -92,8 +92,7 @@
         <div class="container">
             <div class="checkoutbar bg-dark text-light shadow d-flex justify-content-between">
                 <div>
-                    Total: 
-                    
+                    Total: RM
                 <asp:Label ID="lblTotalPrice" runat="server"></asp:Label>
                 </div>
                 <div>
