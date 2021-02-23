@@ -1,10 +1,10 @@
-﻿* {
+﻿/** {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-}
+}*/
 
-body, html {
+/*body, html {
     height: 100%;
     background-image: url("https://i.pinimg.com/originals/9f/09/79/9f0979d83ab4537c9df1dc99336fbcbb.jpg");
     z-index: 0;
@@ -12,7 +12,6 @@ body, html {
     background-repeat: no-repeat;
 }
 
-/*---------------------------------------------*/
 a {
     font-size: 14px;
     line-height: 1.7;
@@ -27,7 +26,7 @@ a {
     a:hover {
         text-decoration: none;
         color: #85929E;
-    }
+    }*/
 
 /*---------------------------------------------*/
 
@@ -74,6 +73,7 @@ button {
     align-items: center;
     padding: 15px;
 }
+
 .loginWhiteboxSize {
     width: 380px;
     height: 420px;
@@ -99,7 +99,7 @@ button {
         [ Form ]*/
 
 
-.text1{
+.text1 {
     font-size: 30px;
     color: #555555;
     line-height: 1.2;
@@ -201,7 +201,4 @@ button {
     color: #555555;
     line-height: 1.4;
     text-transform: uppercase;
-   
 }
-
-
