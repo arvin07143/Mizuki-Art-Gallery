@@ -61,7 +61,7 @@ namespace Assignment.App_Pages
             int updated = cmdDeleteFav.ExecuteNonQuery();
             cnn.Close();
 
-            Response.Redirect("~/App_Pages/ProfileParameter.aspx");
+            Response.Redirect("~/App_Pages/Profile.aspx");
         }
 
     }

@@ -37,7 +37,6 @@ namespace Assignment
             cmdUpdateStock.Parameters.AddWithValue("@artID", artID);
 
             int updated = cmdUpdateStock.ExecuteNonQuery();
-            lblTest.Text = updated.ToString();
             cnn.Close();
 
         }

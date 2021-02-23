@@ -38,10 +38,10 @@
                                 <td style="width:15%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
                                 <td style="width:15%" class="align-middle"><%# Eval("ArtworkID") %></td>
                                 <td>
-                                    <img style="width:80px;height:80px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
+                                    <img style="width:70px;height:70px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
                                 </td>
                                 <td class="align-middle"><%# Eval("ArtworkName")%></td>
-                                <td style="width:15%" class="align-middle"><%# Eval("Price") %></td>
+                                <td style="width:15%" class="align-middle"(<%# Eval("Price") %>)</td>
                                 <td style="width:15%"class="align-middle"><%# Eval("Quantity")%></td>
                                 <td style="width:15%"class="align-middle"><%# Eval("TotalPrice")%></td>
                             </tr>
@@ -55,9 +55,9 @@
                                 <td style="width:15%" class="align-middle"></td>
                                 <td style="width:15%" class="align-middle"></td>
                                 <td style="width:30%"></td>
-                                <td></td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="Label2" runat="server" Text="Subtotal"></asp:Label></td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="lblSubtotal" runat="server" Text="RM???"></asp:Label></td>
+                                <td style="width:10%"></td>
+                                <td style="width:10%" class="align-middle"><asp:Label ID="lblSubtotalDis" runat="server" Text="Subtotal"></asp:Label></td>
+                                <td style="width:15%"><asp:Label style="display:block; text-align:right" ID="lblSubtotal" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                             <tr>
@@ -66,7 +66,7 @@
                                 <td style="width:30%"></td>
                                 <td></td>
                                 <td style="width:15%" class="align-middle"><asp:Label ID="lblTaxDis" runat="server" Text="Tax"></asp:Label>&nbsp;(6%)</td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="lblTax" runat="server" Text="RM???"></asp:Label></td>
+                                <td style="width:15%"><asp:Label style="display:block; text-align:right" ID="lblTax" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                             <tr>
@@ -76,7 +76,7 @@
                                 <td style="width:30%"></td>
                                 <td></td>
                                 <td style="width:15%" class="align-middle"><asp:Label ID="lblTotalDis" runat="server" Text="Total"></asp:Label></td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
+                                <td style="width:15%"><asp:Label style="display:block; text-align:right" ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                         </table>
