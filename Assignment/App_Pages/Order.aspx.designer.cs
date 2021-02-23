@@ -78,15 +78,6 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Button btnAdd;
 
         /// <summary>
-        /// btnAddToCart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddToCart;
-
-        /// <summary>
         /// btnAddToWishlist control.
         /// </summary>
         /// <remarks>
@@ -105,12 +96,12 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Button btnRemoveWishlist;
 
         /// <summary>
-        /// btnBuyNow control.
+        /// btnAddToCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyNow;
+        protected global::System.Web.UI.WebControls.Button btnAddToCart;
     }
 }

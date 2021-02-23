@@ -71,7 +71,7 @@
 
                             <tr>
                                 <td class="align-middle" colspan="2">
-                                    <asp:Button style="border:none; text-align:left; background-color:transparent" ID="btnContinue" runat="server" Text="&lt; Continue Shopping" OnClick="btnContinue_Click" />
+                                    <asp:Button class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" />
                                 </td>
                                 <td style="width:30%"></td>
                                 <td></td>
@@ -92,7 +92,7 @@
                         <asp:Label ID="lblPaymentMethod" runat="server" Text="Payment Method"></asp:Label>
                     </p>
                     <p>
-                        <asp:RadioButtonList style="" CssClass="radio-inline" ID="RadioButtonList1" runat="server">
+                        <asp:RadioButtonList style="" ValidateRequestMode="Disabled" CssClass="radio-inline" ID="RadioButtonList1" runat="server">
                             <asp:ListItem Selected="true">Credit Card <img style="width:50px; height:25px" src="https://w7.pngwing.com/pngs/117/675/png-transparent-visa-and-mastercard-ads-mastercard-credit-card-american-express-visa-debit-card-mastercard-text-payment-logo.png"/></asp:ListItem>
                             <asp:ListItem>FPX Transfer <img style="width:50px; height:30px" src="https://vectorise.net/logo/wp-content/uploads/2019/09/Logo-FPX.png"/></asp:ListItem>
                         </asp:RadioButtonList>
@@ -102,11 +102,11 @@
                         <asp:Label ID="lblNameOnCard" runat="server" Text="Name On Card"></asp:Label>
                     </p>
                     <p>
-                        <asp:TextBox ID="txtNameOnCard" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtNameOnCard" runat="server"></asp:TextBox>
                     </p>
                     <p>&nbsp;</p>
                     <p>
-                        <asp:Label ID="lblCarNum" runat="server" Text="Car Number"></asp:Label>
+                        <asp:Label ID="lblCardNum" runat="server" Text="Card Number"></asp:Label>
                     </p>
                     <p>
                         <asp:TextBox ID="txtCarNumber" runat="server" CssClass="form-control" OnTextChanged="TextBox1_TextChanged1"></asp:TextBox>

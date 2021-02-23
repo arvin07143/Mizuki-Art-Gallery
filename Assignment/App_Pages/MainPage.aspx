@@ -68,22 +68,22 @@
     <div class="carousel-item active">
       <img src="https://images.alphacoders.com/173/thumb-1920-173483.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <h5>Perspectivce</h5>
+        <p>The beauty of art is simply a matter of how you look at it.</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="https://static.rti.org.tw/assets/thumbnails/2019/10/01/26d27339a10153140d73771770621088.JPG" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+        <h5>Emotions</h5>
+        <p>Art is a form of expressing ones personality and letting emotions flow.</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="https://renewangtw.files.wordpress.com/2013/12/b9719-papas.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
+        <h5>Nature</h5>
+        <p>Art captures the beauty of nature that is indescribable by words.</p>
       </div>
     </div>
   </div>
