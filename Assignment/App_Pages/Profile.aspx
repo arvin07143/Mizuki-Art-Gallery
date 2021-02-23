@@ -17,7 +17,7 @@
                         <div class="col-md-6 ms-auto me-auto">
                             <div class="profile">
                                 <div class="avatar">
-                                    <img src="../img/beauty_20210117164458.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                    <img src="../images/beauty_20210117164458.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
                                 </div>
                                 <div class="name">
                                     <h3 class="title">
@@ -162,7 +162,6 @@
             </div>
         </div>
 
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>

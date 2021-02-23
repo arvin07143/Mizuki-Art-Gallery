@@ -83,10 +83,17 @@
     <Content Include="App_Pages\Login.aspx" />
     <Content Include="App_Pages\Register.aspx" />
     <Content Include="App_Pages\BuyNow.aspx" />
+    <Content Include="css\lightbox.css" />
     <Content Include="css\login_register.css" />
+    <Content Include="css\manage_art.css" />
     <Content Include="css\profile.css" />
-    <Content Include="img\beauty_20210117164458.jpg" />
+    <Content Include="images\beauty_20210117164458.jpg" />
     <Content Include="App_Pages\ManageArt.aspx" />
+    <Content Include="images\close.png" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\next.png" />
+    <Content Include="images\prev.png" />
+    <Content Include="js\lightbox.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
