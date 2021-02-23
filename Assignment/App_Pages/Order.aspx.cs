@@ -15,35 +15,13 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String temp = " ";
-            if (!IsPostBack)
-            {
-                try
-                {
-                    temp = Context.Items["ArtworkID"].ToString();                   
-                }
-                catch (NullReferenceException ex)
-                {
-                    Response.Write(ex.Message);
-                }
-            }
-            else
-            {
-                temp = Session["artworkID"].ToString();
-                
-            }
-
-            Session["artworkID"] = temp;
-            HiddenField1.Value = temp;
-
             String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection orderCon = new SqlConnection(strOrderCon);
- 
-            //select data to be bound
+
             orderCon.Open();
             String strSelectItem = "SELECT Artwork.ArtworkName FROM Artwork WHERE (Artwork.ArtworkID = @ArtworkID);";
             SqlCommand cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
-            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = cmdSelectItem;
             DataTable dt = new DataTable();
@@ -55,7 +33,7 @@ namespace Assignment.App_Pages
             orderCon.Open();
             strSelectItem = "SELECT Artwork.ArtworkName, [User].Name, Artwork.Price, Artwork.StockQuantity FROM Artwork INNER JOIN [User] ON Artwork.Username = [User].Username WHERE (Artwork.ArtworkID = @ArtworkID);";
             cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
-            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
             da = new SqlDataAdapter();
             da.SelectCommand = cmdSelectItem;
             dt = new DataTable();
@@ -67,7 +45,7 @@ namespace Assignment.App_Pages
             orderCon.Open();
             strSelectItem = "SELECT URL FROM Artwork WHERE (Artwork.ArtworkID = @ArtworkID);";
             cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
-            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
             da = new SqlDataAdapter();
             da.SelectCommand = cmdSelectItem;
             dt = new DataTable();
@@ -79,7 +57,7 @@ namespace Assignment.App_Pages
             orderCon.Open();
             strSelectItem = "SELECT StockQuantity FROM Artwork WHERE (Artwork.ArtworkID = @ArtworkID);";
             cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
-            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+            cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
             SqlDataReader dtrArtwork = cmdSelectItem.ExecuteReader();
             String quantity = "";
             if (dtrArtwork.HasRows)
@@ -99,9 +77,9 @@ namespace Assignment.App_Pages
             if (Session["username"] != null)
             {
                 orderCon.Open();
-                strSelectItem = "SELECT * FROM CartDetails WHERE (ArtworkID = @ArtworkID) AND (username = @Username);";
+                strSelectItem = "SELECT * FROM CartDetails WHERE (ArtworkID = @ArtworkID) AND (Username = @Username);";
                 cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
-                cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+                cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
                 cmdSelectItem.Parameters.AddWithValue("@Username", Session["username"].ToString());
                 dtrArtwork = cmdSelectItem.ExecuteReader();
                 String alreadyInCart = "false";
@@ -116,9 +94,9 @@ namespace Assignment.App_Pages
                 orderCon.Close();
 
                 orderCon.Open();
-                strSelectItem = "SELECT * FROM Favourite WHERE (ArtworkID = @ArtworkID) AND (username = @Username);";
+                strSelectItem = "SELECT * FROM Favourite WHERE (ArtworkID = @ArtworkID) AND (Username = @Username);";
                 cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
-                cmdSelectItem.Parameters.AddWithValue("@ArtworkID", temp);
+                cmdSelectItem.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
                 cmdSelectItem.Parameters.AddWithValue("@Username", Session["username"].ToString());
                 dtrArtwork = cmdSelectItem.ExecuteReader();
                 if (dtrArtwork.HasRows)
@@ -152,14 +130,14 @@ namespace Assignment.App_Pages
 
                 if (Session["alreadyInCart"].ToString().Equals("false"))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO CartDetails (Username, ArtworkID, Quantity) VALUES ('" + Session["username"].ToString() + "','" + HiddenField1.Value + "','" + txtQuantity.Text + "')", orderCon);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO CartDetails (Username, ArtworkID, Quantity) VALUES ('" + Session["username"].ToString() + "','" + Session["artworkID"].ToString() + "','" + txtQuantity.Text + "')", orderCon);
                     cmd.ExecuteNonQuery();
                 }
                 else
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE CartDetails SET Quantity =  Quantity + " + txtQuantity.Text + " WHERE ArtworkID = @ArtworkID AND Username = @username;", orderCon);
-                    cmd.Parameters.AddWithValue("artworkId", Session["artworkID"].ToString());
-                    cmd.Parameters.AddWithValue("username", Session["username"].ToString());
+                    SqlCommand cmd = new SqlCommand("UPDATE CartDetails SET Quantity =  Quantity + " + txtQuantity.Text + " WHERE ArtworkID = @ArtworkID AND Username = @Username;", orderCon);
+                    cmd.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
+                    cmd.Parameters.AddWithValue("@Username", Session["username"].ToString());
                     cmd.ExecuteNonQuery();
                 }
                 orderCon.Close();
@@ -204,7 +182,7 @@ namespace Assignment.App_Pages
                 String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 SqlConnection orderCon = new SqlConnection(strOrderCon);
                 orderCon.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Favourite (Username, ArtworkID) VALUES ('" + Session["username"].ToString() + "','" + HiddenField1.Value + "')", orderCon);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Favourite (Username, ArtworkID) VALUES ('" + Session["username"].ToString() + "','" + Session["artworkID"].ToString() + "')", orderCon);
                 cmd.ExecuteNonQuery();
                 orderCon.Close();
                 btnAddToWishlist.Visible = false;
@@ -221,9 +199,9 @@ namespace Assignment.App_Pages
             String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection orderCon = new SqlConnection(strOrderCon);
             orderCon.Open();
-            SqlCommand cmd = new SqlCommand("DELETE FROM Favourite WHERE ArtworkID = @ArtworkID AND Username = @username;", orderCon);
-            cmd.Parameters.AddWithValue("artworkId", Session["artworkID"].ToString());
-            cmd.Parameters.AddWithValue("username", Session["username"].ToString());
+            SqlCommand cmd = new SqlCommand("DELETE FROM Favourite WHERE ArtworkID = @ArtworkID AND Username = @Username;", orderCon);
+            cmd.Parameters.AddWithValue("@ArtworkID", Session["artworkID"].ToString());
+            cmd.Parameters.AddWithValue("@Username", Session["username"].ToString());
             cmd.ExecuteNonQuery();
             orderCon.Close();
             btnAddToWishlist.Visible = true;
