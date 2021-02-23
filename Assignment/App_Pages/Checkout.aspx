@@ -76,7 +76,7 @@
                                 <td style="width:30%"></td>
                                 <td></td>
                                 <td style="width:15%" class="align-middle"><asp:Label ID="lblTotalDis" runat="server" Text="Total"></asp:Label></td>
-                                <td style="width:15%"><asp:Label style="display:block; text-align:right" ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
+                                <td class="align-middle" style="width:15%"><asp:Label style="display:block; text-align:right" ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                         </table>

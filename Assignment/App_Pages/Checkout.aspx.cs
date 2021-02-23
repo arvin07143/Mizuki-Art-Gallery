@@ -33,9 +33,9 @@ namespace Assignment.App_Pages
             Repeater1.DataBind();
             orderCon.Close();
 
-            lblSubtotal.Text = String.Format("{0:0.00}", Session["TotalPrice"].ToString());
+            lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
             lblTax.Text = (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString();
-            lblTotal.Text = (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)).ToString();
+            lblTotal.Text = String.Format("{0:C2}",(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
