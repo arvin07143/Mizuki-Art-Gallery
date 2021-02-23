@@ -9,32 +9,46 @@
             font-size: 22px;
             font-weight: 800;
         }
-        .btn-checkout{
+
+        .btn-checkout {
             background: transparent;
             font-size: 18px;
             color: white;
             padding: 5px 32px;
             border: white solid 1px;
         }
-        .btn-plusminus{
-            background:transparent;
+
+        .btn-plusminus {
+            background: transparent;
             padding: 5px 5px;
             border: solid 1px;
-            font-weight:800;
-            font-size:18px;
+            font-weight: 800;
+            font-size: 18px;
             width: 40px;
             height: 40px;
         }
-        .btn-delete{
-            background:#ff8585;
-            padding: 5px 15px; 
+
+        .btn-delete {
+            background: #ff8585;
+            padding: 5px 15px;
             border: solid 1px;
-            font-weight:500;
-            font-size:10px;
+            font-weight: 500;
+            font-size: 10px;
         }
+        .heading {
+			font-family: "Montserrat", Arial, sans-serif;
+			font-size: 2rem;
+			font-weight: 500;
+			line-height: 1.5;
+			text-align: center;
+			padding: 3.5rem 0;
+			color: #1a1a1a;
+		}
     </style>
+    
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
+    <h1 class="heading" style="color:black"><b><span>Cart</span></b></h1>
     <form runat="server">
         <!-- template for cart item repeater-->
         <div class="container">
@@ -49,7 +63,7 @@
                                 <div class="d-flex justify-content-start" style="margin: 30px 0">
                                     <!--decrease button-->
                                     <asp:Button CommandName="minus" CommandArgument='<%# Eval("ArtworkID")%>'
-                                        Text="-" runat="server" ID="btnMinus" CssClass="btn-plusminus"/>
+                                        Text="-" runat="server" ID="btnMinus" CssClass="btn-plusminus" />
                                     <p class="card-text" style="margin: 0 10px 0 10px; padding-top: 8px">Quantity: <%# Eval("Quantity")%></p>
                                     <!--increase button-->
                                     <asp:Button CommandName="plus" CommandArgument='<%# Eval("ArtworkID")%>'
@@ -58,7 +72,7 @@
                                 <p class="card-text">Unit Price : RM<%# Eval("Price")%></p>
                                 <p class="card-text">Sub-total : RM<%# Eval("TotalPrice")%></p>
                                 <asp:Button CommandName="delete" CommandArgument='<%# Eval("ArtworkID")%>'
-                                    Text="Delete" runat="server" ID="btnDelete" CssClass="btn-delete"/>
+                                    Text="Delete" runat="server" ID="btnDelete" CssClass="btn-delete" />
                             </div>
                         </div>
                     </ItemTemplate>
@@ -67,14 +81,14 @@
         </div>
         <div class="container">
             <div class="checkoutbar bg-dark text-light shadow d-flex justify-content-between">
-                <div >
-                     Total: 
+                <div>
+                    Total: 
                     
                 <asp:Label ID="lblTotalPrice" runat="server"></asp:Label>
                 </div>
-               <div>
-                   <asp:Button ID="btnCheckout" CssClass="btn-checkout" runat="server" Text="Check Out"/>
-               </div>
+                <div>
+                    <asp:Button ID="btnCheckout" CssClass="btn-checkout" runat="server" Text="Check Out" />
+                </div>
             </div>
         </div>
     </form>

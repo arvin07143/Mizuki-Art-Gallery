@@ -3,10 +3,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
 
-        
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <style>
+            .navbar-collapse{flex-basis:100%;flex-grow:1;align-items:center}.navbar-toggler{padding:.25rem .75rem;font-size:1.25rem;line-height:1;background-color:transparent;border:1px solid transparent;border-radius:.25rem;transition:box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.navbar-toggler{transition:none}}.navbar-toggler:hover{text-decoration:none}.navbar-toggler:focus{text-decoration:none;outline:0;box-shadow:0 0 0 .25rem}.navbar-toggler-icon{display:inline-block;width:1.5em;height:1.5em;vertical-align:middle;background-repeat:no-repeat;background-position:center;background-size:100%}.navbar-nav-scroll{max-height:var(--bs-scroll-height,75vh);overflow-y:auto}@media (min-width:576px){.navbar-expand-sm{flex-wrap:nowrap;justify-content:flex-start}.navbar-expand-sm .navbar-nav{flex-direction:row}.navbar-expand-sm .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-sm .navbar-nav .nav-link{padding-right:.5rem;padding-left:.5rem}.navbar-expand-sm .navbar-nav-scroll{overflow:visible}.navbar-expand-sm .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-sm .navbar-toggler{display:none}}@media (min-width:768px){.navbar-expand-md{flex-wrap:nowrap;justify-content:flex-start}.navbar-expand-md .navbar-nav{flex-direction:row}.navbar-expand-md .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-md .navbar-nav .nav-link{padding-right:.5rem;padding-left:.5rem}.navbar-expand-md .navbar-nav-scroll{overflow:visible}.navbar-expand-md .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-md .navbar-toggler{display:none}}@media (min-width:992px){.navbar-expand-lg{flex-wrap:nowrap;justify-content:flex-start}.navbar-expand-lg .navbar-nav{flex-direction:row}.navbar-expand-lg .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-lg .navbar-nav .nav-link{padding-right:.5rem;padding-left:.5rem}.navbar-expand-lg .navbar-nav-scroll{overflow:visible}.navbar-expand-lg .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-lg .navbar-toggler{display:none}}@media (min-width:1200px){.navbar-expand-xl{flex-wrap:nowrap;justify-content:flex-start}.navbar-expand-xl .navbar-nav{flex-direction:row}.navbar-expand-xl .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-xl .navbar-nav .nav-link{padding-right:.5rem;padding-left:.5rem}.navbar-expand-xl .navbar-nav-scroll{overflow:visible}.navbar-expand-xl .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-xl .navbar-toggler{display:none}}@media (min-width:1400px){.navbar-expand-xxl{flex-wrap:nowrap;justify-content:flex-start}.navbar-expand-xxl .navbar-nav{flex-direction:row}.navbar-expand-xxl .navbar-nav .dropdown-menu{position:absolute}.navbar-expand-xxl .navbar-nav .nav-link{padding-right:.5rem;padding-left:.5rem}.navbar-expand-xxl .navbar-nav-scroll{overflow:visible}.navbar-expand-xxl .navbar-collapse{display:flex!important;flex-basis:auto}.navbar-expand-xxl .navbar-toggler{display:none}}.navbar-expand{flex-wrap:nowrap;justify-content:flex-start}.navbar-expand .navbar-nav{flex-direction:row}.navbar-expand .navbar-nav .dropdown-menu{position:absolute}.navbar-expand .navbar-nav .nav-link{padding-right:.5rem;padding-left:.5rem}.navbar-expand .navbar-nav-scroll{overflow:visible}.navbar-expand .navbar-collapse{display:flex!important;flex-basis:auto}
+        </style>
+
 
         <div class="container" id="product-section">
             <div class="row">
@@ -18,7 +22,7 @@
                                 <table>
                                     <tr>
                                         <div class="gallery-item">
-                                            <asp:ImageButton Width="100%" CssClass="gallery-image" ID="Image1" runat="server" ImageUrl='<%# Eval("URL") %>' Enabled="False" />
+                                            <asp:ImageButton Width="100%" height="100%" CssClass="gallery-image" ID="Image1" runat="server" ImageUrl='<%# Eval("URL") %>' Enabled="False" />
                                         </div>
                                     </tr>
                                 </table>
@@ -44,7 +48,7 @@
                             </asp:DetailsView>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding-left: 20px">
                         <div class="col-md-12">
                             <asp:DetailsView ID="artworkDescription" runat="server" Height="50px" Width="220px" AutoGenerateRows="False" Font-Size="Medium" GridLines="None">
                                 <Fields>
@@ -56,8 +60,8 @@
                         </div>
                     </div>
 
-                    <div class="row add-to-cart">
-                        <div class="col-md-5 product-qty">
+                    <div class="row add-to-cart" style="padding-left: 20px">
+                        <div class="col-md-12 product-qty">
                             <br />
                             <br />
                             <br />
@@ -70,16 +74,23 @@
                             <br />
                             <br />
                             <br />
-
                         </div>
                     </div>
                     <!-- end row -->
-                    <div class="row buttons">
-                        <div class="col-md-6">
-                            <asp:Button class="btn btn-warning btn-lg btn-brand btn-full-width" ID="btnAddToCart" Style="height: 50px" runat="server" Text="ADD TO CART" OnClick="btnAddToCart_Click" PostBackUrl="~/App_Pages/Order.aspx" />
+                    <div class="row buttons" style="margin: 5px">
+                        <div class="col-md-8">
+                            <asp:Button class="btn btn-warning btn-lg btn-brand btn-full-width" ID="btnAddToCart" Style="height: 70px; width: 100%" runat="server" Text="ADD TO CART" OnClick="btnAddToCart_Click" PostBackUrl="~/App_Pages/Order.aspx" Font-Size="Large" />
                         </div>
-                        <div class="col-md-6">
-                            <asp:Button class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnBuyNow" Style="height: 50px" runat="server" Text="BUY NOW" PostBackUrl="~/App_Pages/BuyNow.aspx" OnClick="btnBuyNow_Click" />
+                    </div>
+                    <div class="row buttons" style="margin: 5px">
+                        <div class="col-md-8">
+                            <asp:Button class="btn btn-success btn-lg btn-brand btn-full-width" ID="btnAddToWishlist" Style="height: 70px; width: 100%" runat="server" Text="ADD TO WISHLIST" PostBackUrl="~/App_Pages/Order.aspx" OnClick="btnAddToWishlist_Click" Visible="False" Font-Size="Large"/>
+                            <asp:Button class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnRemoveWishlist" Style="height: 70px; width: 100%" runat="server" Text="REMOVE FROM WISHLIST" PostBackUrl="~/App_Pages/Order.aspx" OnClick="btnRemoveWishlist_Click" Visible="False" Font-Size="Large"/>
+                        </div>
+                    </div>
+                    <div class="row buttons" style="margin: 5px">
+                        <div class="col-md-8">
+                            <asp:Button class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnBuyNow" Style="height: 70px; width: 100%" runat="server" Text="BUY NOW" PostBackUrl="~/App_Pages/BuyNow.aspx" OnClick="btnBuyNow_Click" Font-Size="Large" />
                         </div>
                     </div>
 
