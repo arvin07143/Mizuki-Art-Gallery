@@ -1,8 +1,4 @@
-﻿/** {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}*/
+﻿
 
 /*
 
@@ -35,7 +31,7 @@ body {
     height: 100%;
     background-image: url("https://i.pinimg.com/originals/9f/09/79/9f0979d83ab4537c9df1dc99336fbcbb.jpg");
     z-index: 0;
-    background-size: cover;
+    background-size:contain;
     background-repeat: no-repeat;
 }
 
