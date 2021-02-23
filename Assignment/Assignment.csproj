@@ -98,7 +98,7 @@
     <Content Include="ArtImage\Inspiring Art - Two Worlds, One Ocean by Kelogsloops-01.jpg" />
     <Content Include="ArtImage\woman-runner-jogger-jumping-powerful-pablo-romero.jpg" />
     <Content Include="css\lightbox.css" />
-    <Content Include="css\login_register.css" />
+    <Content Include="css\Login_Register.css" />
     <Content Include="css\manage_art.css" />
     <Content Include="css\profile.css" />
     <Content Include="images\beauty_20210117164458.jpg" />
