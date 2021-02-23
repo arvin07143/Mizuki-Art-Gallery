@@ -65,12 +65,11 @@
                             <br />
                             <br />
                             <br />
-                            <asp:Button class="btn btn-default btn-lg btn-qty" Text="-" runat="server" ID="btnMinus" OnClick="btnMinus_Click" Style="width: 52px; height: 46px; border-radius: 0" PostBackUrl="~/App_Pages/Order.aspx" />
+                            <asp:Button class="btn btn-default btn-lg btn-qty" Text="-" runat="server" ID="btnMinus" OnClick="btnMinus_Click" Style="width: 52px; height: 46px; border-radius: 0" />
                             <asp:TextBox class="btn btn-default btn-lg btn-qty" ID="txtQuantity" runat="server" Style="width: 80px; height: 46px; border-radius: 0" Text="1" AutoPostBack="True"></asp:TextBox>
-                            <asp:Button class="btn btn-default btn-lg btn-qty" Text="+" runat="server" ID="btnAdd" OnClick="btnAdd_Click" Style="width: 52px; height: 46px; border-radius: 0" PostBackUrl="~/App_Pages/Order.aspx" />
+                            <asp:Button class="btn btn-default btn-lg btn-qty" Text="+" runat="server" ID="btnAdd" OnClick="btnAdd_Click" Style="width: 52px; height: 46px; border-radius: 0" />
                             <br />
                             <br />
-                            <asp:HiddenField ID="HiddenField1" runat="server" Visible="False" />
                             <br />
                             <br />
                             <br />
@@ -79,13 +78,13 @@
                     <!-- end row -->
                     <div class="row buttons" style="margin: 5px">
                         <div class="col-md-8">
-                            <asp:Button class="btn btn-warning btn-lg btn-brand btn-full-width" ID="btnAddToCart" Style="height: 70px; width: 100%" runat="server" Text="ADD TO CART" OnClick="btnAddToCart_Click" PostBackUrl="~/App_Pages/Order.aspx" Font-Size="Large" />
+                            <asp:Button class="btn btn-warning btn-lg btn-brand btn-full-width" ID="btnAddToCart" Style="height: 70px; width: 100%" runat="server" Text="ADD TO CART" OnClick="btnAddToCart_Click" Font-Size="Large" />
                         </div>
                     </div>
                     <div class="row buttons" style="margin: 5px">
                         <div class="col-md-8">
-                            <asp:Button class="btn btn-success btn-lg btn-brand btn-full-width" ID="btnAddToWishlist" Style="height: 70px; width: 100%" runat="server" Text="ADD TO WISHLIST" PostBackUrl="~/App_Pages/Order.aspx" OnClick="btnAddToWishlist_Click" Visible="False" Font-Size="Large"/>
-                            <asp:Button class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnRemoveWishlist" Style="height: 70px; width: 100%" runat="server" Text="REMOVE FROM WISHLIST" PostBackUrl="~/App_Pages/Order.aspx" OnClick="btnRemoveWishlist_Click" Visible="False" Font-Size="Large"/>
+                            <asp:Button class="btn btn-success btn-lg btn-brand btn-full-width" ID="btnAddToWishlist" Style="height: 70px; width: 100%" runat="server" Text="ADD TO WISHLIST" OnClick="btnAddToWishlist_Click" Visible="False" Font-Size="Large"/>
+                            <asp:Button class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnRemoveWishlist" Style="height: 70px; width: 100%" runat="server" Text="REMOVE FROM WISHLIST" OnClick="btnRemoveWishlist_Click" Visible="False" Font-Size="Large"/>
                         </div>
                     </div>
                     <div class="row buttons" style="margin: 5px">
