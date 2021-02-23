@@ -48,7 +48,7 @@
                     </div>
                     <div class="description text-center">
                         <p>
-                            <asp:Label ID="lblProfDesc" runat="server" Text="Test description"></asp:Label>
+                            <asp:Label ID="lblProfDesc" runat="server" Text="Professional Artist with Ambition"></asp:Label>
                         </p>
                     </div>
                     <div class="row">

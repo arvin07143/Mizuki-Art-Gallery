@@ -92,8 +92,8 @@
                             <table class="table table-borderless table-hover">
                                 <tr>
                                     <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                    <td style="width: 10%">
-                                        <asp:Label ID="lblArtworkID" CssClass="align-middle" runat="server" Text='<%# Eval("ArtworkID") %>'> </asp:Label>
+                                    <td style="width: 10%" class="align-middle">
+                                        <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'> </asp:Label>
 
                                     </td>
                                     <td style="width: 30%">
