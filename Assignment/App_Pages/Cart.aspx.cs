@@ -80,7 +80,7 @@ namespace Assignment.App_Pages
                 cmdDecreaseCartItem.Parameters.AddWithValue("username", Session["username"].ToString());
                 cmdDecreaseCartItem.ExecuteNonQuery();
                 cartItemCon.Close();
-                //Response.Redirect("~/App_Pages/Cart.aspx");
+                Response.Redirect("~/App_Pages/Cart.aspx");
             }
             if (e.CommandName == "plus")
             {

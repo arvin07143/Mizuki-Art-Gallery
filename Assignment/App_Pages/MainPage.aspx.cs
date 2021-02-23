@@ -19,9 +19,8 @@ namespace Assignment.App_Pages
             //Get the Recipe id from command argumen tof linkbutton
             string artworkID = lnkRowSelection.CommandArgument.ToString();
 
-            // pass Recipe idto another page via query string
-            Context.Items.Add("ArtworkID", artworkID);
-            Server.Transfer("Order.aspx");
+            Session["artworkID"] = artworkID;
+            Response.Redirect("~/App_Pages/Order.aspx");
         }
     }
 }

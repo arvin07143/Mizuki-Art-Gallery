@@ -53,8 +53,41 @@
 		
 		.gallery-image:hover {
 			transform: scale(1.15);
+
 		}
+
+
     </style>
+<script type="text/javascript">
+function LoadDiv(url) {
+    var img = new Image();
+    var bcgDiv = document.getElementById("divBackground");
+    var imgDiv = document.getElementById("divImage");
+    var imgFull = document.getElementById("imgFull");
+    var imgLoader = document.getElementById("imgLoader");
+    imgLoader.style.display = "block";
+    img.onload = function () {
+        imgFull.src = img.src;
+        imgFull.style.display = "block";
+        imgLoader.style.display = "none";
+   };
+    img.src = url;
+    var width = document.body.clientWidth;
+    if (document.body.clientHeight > document.body.scrollHeight) {
+        bcgDiv.style.height = document.body.clientHeight + "px";
+    }
+    else {
+        bcgDiv.style.height = document.body.scrollHeight + "px";
+    }
+    imgDiv.style.left = (width - 650) / 2 + "px";
+    imgDiv.style.top = "20px";
+    bcgDiv.style.width = "100%";
+ 
+    bcgDiv.style.display = "block";
+    imgDiv.style.display = "block";
+    return false;
+</script>
+}
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -68,22 +101,22 @@
     <div class="carousel-item active">
       <img src="https://images.alphacoders.com/173/thumb-1920-173483.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <h5>Live in the Moment </h5>
+        <p>Forget yesterday.</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="https://static.rti.org.tw/assets/thumbnails/2019/10/01/26d27339a10153140d73771770621088.JPG" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+        <h5>Desire for Freedom</h5>
+        <p>Take it Easy.</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="https://renewangtw.files.wordpress.com/2013/12/b9719-papas.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
+        <h5>Follow Your Dreams</h5>
+        <p>Have heart.</p>
       </div>
     </div>
   </div>
@@ -111,6 +144,7 @@
         </asp:Repeater>
                 </div>
         </div>
+
 
     </form>
 

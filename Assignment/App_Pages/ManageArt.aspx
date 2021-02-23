@@ -14,7 +14,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
-        <asp:Label ID="lblTest" runat="server" Text=""></asp:Label>
         <div class="modal fade bd-example-modal-lg" id="modalForm">
             <div class="modal-dialog">
                 <div class="modal-content">
