@@ -4,13 +4,7 @@
     box-sizing: border-box;
 }*/
 
-/*body, html {
-    height: 100%;
-    background-image: url("https://i.pinimg.com/originals/9f/09/79/9f0979d83ab4537c9df1dc99336fbcbb.jpg");
-    z-index: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+/*
 
 a {
     font-size: 14px;
@@ -37,7 +31,13 @@ a {
 /*---------------------------------------------*/
 
 
-
+body {
+    height: 100%;
+    background-image: url("https://i.pinimg.com/originals/9f/09/79/9f0979d83ab4537c9df1dc99336fbcbb.jpg");
+    z-index: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 /*---------------------------------------------*/
 button {
@@ -186,7 +186,7 @@ button {
     background-color: #333333;
     border-radius: 27px;
     margin-top: 5px;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
     transition: all 0.4s;
 }
 
