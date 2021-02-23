@@ -20,12 +20,9 @@
 
         .btn-plusminus {
             background: transparent;
-            padding: 5px 5px;
             border: solid 1px;
-            font-weight: 800;
-            font-size: 18px;
-            width: 40px;
-            height: 40px;
+            width: 52px;
+            height: 46px;
         }
 
         .btn-delete {
@@ -34,6 +31,13 @@
             border: solid 1px;
             font-weight: 500;
             font-size: 10px;
+        }
+        .quantity{
+            border:solid 1px;
+            padding: 8px 5px 0px 5px;
+            margin:0px 5px; 
+            text-align: center; 
+            width: 90px
         }
         .heading {
 			font-family: "Montserrat", Arial, sans-serif;
@@ -44,6 +48,11 @@
 			padding: 3.5rem 0;
 			color: #1a1a1a;
 		}
+        .btn-delete{
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 18px;
+        }
     </style>
     
 </asp:Content>
@@ -64,7 +73,8 @@
                                     <!--decrease button-->
                                     <asp:Button CommandName="minus" CommandArgument='<%# Eval("ArtworkID")%>'
                                         Text="-" runat="server" ID="btnMinus" CssClass="btn-plusminus" />
-                                    <p class="card-text" style="margin: 0 10px 0 10px; padding-top: 8px">Quantity: <%# Eval("Quantity")%></p>
+                                    <!--quantity-->
+                                    <p class="card-text quantity"> <%# Eval("Quantity")%></p>
                                     <!--increase button-->
                                     <asp:Button CommandName="plus" CommandArgument='<%# Eval("ArtworkID")%>'
                                         Text="+" runat="server" ID="btnPlus" CssClass="btn-plusminus" />
@@ -72,7 +82,7 @@
                                 <p class="card-text">Unit Price : RM<%# Eval("Price")%></p>
                                 <p class="card-text">Sub-total : RM<%# Eval("TotalPrice")%></p>
                                 <asp:Button CommandName="delete" CommandArgument='<%# Eval("ArtworkID")%>'
-                                    Text="Delete" runat="server" ID="btnDelete" CssClass="btn-delete" />
+                                    Text="Delete" runat="server" ID="btnDelete" CssClass="btn-delete text-light bg-danger" />
                             </div>
                         </div>
                     </ItemTemplate>
