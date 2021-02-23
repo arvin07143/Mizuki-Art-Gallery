@@ -64,11 +64,16 @@
 						
 					</div>
 					
-					
+					<span class="text2">
+						Email
+					</span>
+					<div class="wrapInput1">
+						<asp:TextBox ID="TxtREmail" runat="server" class="input" TextMode="Email" ></asp:TextBox>
 						
+					</div>
 					
 
-				       <asp:Button ID="loginFormBtn" runat="server" Text="Register" class="formBtn" OnClick="loginFormBtn_Click" />  
+					<asp:Button ID="loginFormBtn" runat="server" Text="Register" class="formBtn" OnClick="loginFormBtn_Click" />  
 						
 
 						
