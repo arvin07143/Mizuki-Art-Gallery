@@ -54,12 +54,12 @@ namespace Assignment.App_Pages
                 {
                     using (SqlCommand cmd = new SqlCommand("insert into [dbo].[User] values(@Username, @UserPassword, @Name, @DOB, @Gender,@Email)", cnn))
                     {
-                        cmd.Parameters.AddWithValue("Name", TxtRName.Text);
-                        cmd.Parameters.AddWithValue("Gender", gender);
-                        cmd.Parameters.AddWithValue("DOB", DateTime.Parse(TxtRDOB.Text));
-                        cmd.Parameters.AddWithValue("Username", TxtRUsername.Text);
-                        cmd.Parameters.AddWithValue("UserPassword", TxtRPass.Text);
-                        cmd.Parameters.AddWithValue("Email", TxtREmail.Text);
+                        cmd.Parameters.AddWithValue("@Name", TxtRName.Text);
+                        cmd.Parameters.AddWithValue("@Gender", gender);
+                        cmd.Parameters.AddWithValue("@DOB", DateTime.Parse(TxtRDOB.Text));
+                        cmd.Parameters.AddWithValue("@Username", TxtRUsername.Text);
+                        cmd.Parameters.AddWithValue("@UserPassword", TxtRPass.Text);
+                        cmd.Parameters.AddWithValue("@Email", TxtREmail.Text);
 
                         cnn.Open();
                         cmd.ExecuteNonQuery();
