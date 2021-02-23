@@ -74,7 +74,8 @@
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
             <ItemTemplate> 
 				<table>
-					<tr><div class="gallery-item"><asp:ImageButton CssClass="gallery-image" ID="Image1"  runat="server" ImageUrl='<%# Eval("URL") %>' PostBackUrl="~/App_Pages/Order.aspx"/><%# Eval("ArtworkName") %></div></tr>
+					<tr><div class="gallery-item"><asp:ImageButton CssClass="gallery-image" ID="Image1"  runat="server" ImageUrl='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="Image_Click" /></div></tr>
+					<asp:HiddenField ID="ArtworkID" runat="server" Value = '<%# Eval("ArtworkID") %>' />
 				</table>
             </ItemTemplate>
         </asp:Repeater>
