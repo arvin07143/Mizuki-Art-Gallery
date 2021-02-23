@@ -96,6 +96,24 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Button btnAddToCart;
 
         /// <summary>
+        /// btnAddToWishlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddToWishlist;
+
+        /// <summary>
+        /// btnRemoveWishlist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemoveWishlist;
+
+        /// <summary>
         /// btnBuyNow control.
         /// </summary>
         /// <remarks>
