@@ -91,7 +91,7 @@ function LoadDiv(url) {
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <div id="carouselExampleCaptions" class="carousel slide " style="max-height: 600px; max-width: 1000px; margin: auto;" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide " style="max-height: 600px; max-width: 1000px; margin: auto;" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
