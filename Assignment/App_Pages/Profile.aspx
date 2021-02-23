@@ -21,9 +21,9 @@
                                 </div>
                                 <div class="name">
                                     <h3 class="title">
-                                        <asp:Label ID="lblName" runat="server" Text="testname"></asp:Label></h3>
+                                        <asp:Label ID="lblName" runat="server" Text=""></asp:Label></h3>
                                     <h6>
-                                        <asp:Label ID="lblProf" runat="server" Text="Artist / User"></asp:Label>
+                                        <asp:Label ID="lblProf" runat="server" Text=""></asp:Label>
                                     </h6>
                                 </div>
                             </div>
@@ -148,9 +148,9 @@
                                             </td>
                                             <td class="align-middle"><%# Eval("artName")%></td>
                                             <td class="align-middle">
-                                                <asp:LinkButton ID="btnBuy" runat="server"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
+                                                <asp:LinkButton ID="btnBuy" runat="server" OnClick="btnAddToCart"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
                                             <td class="align-middle">
-                                                <asp:LinkButton ID="btnDeleteFav" runat="server"><i class="material-icons">clear</i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnDeleteFav" runat="server" OnClick="btnDeleteFav"><i class="material-icons">clear</i></asp:LinkButton>
                                             </td>
                                         </tr>
                                     </table>

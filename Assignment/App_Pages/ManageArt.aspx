@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <asp:Button CssClass="btn btn-success" runat="server" onClick="addItemFormSubmitClicked" Text="Save" />
+                            <asp:Button CssClass="btn btn-success" runat="server" OnClick="addItemFormSubmitClicked" Text="Save" />
                         </div>
                     </div>
                 </div>
@@ -66,12 +66,12 @@
                     <div class="col-4"></div>
                     <div class="col-8 float-end">
                         <asp:LinkButton class="btn btn-success float-end" ID="btnAddNewArt" runat="server" data-toggle="modal" data-target="#modalForm" OnClientClick="return false;">Add New Artwork <i class="material-icons" >add</i></asp:LinkButton>
-                        <asp:LinkButton class="btn btn-success float-end mr-3" ID="btnViewGallery" runat="server"  OnClientClick="lightbox.start($('#gallery-img'));return false;">View As Gallery <i class="material-icons" >collections</i></asp:LinkButton>
+                        <asp:LinkButton class="btn btn-success float-end mr-3" ID="btnViewGallery" runat="server" OnClientClick="lightbox.start($('#gallery-img'));return false;">View As Gallery <i class="material-icons" >collections</i></asp:LinkButton>
                     </div>
                 </div>
                 <div class="row">
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" SelectCommand="SELECT [Id], [price], [name], [stock], [pic] FROM [ArtMan]"></asp:SqlDataSource>
-                    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+                    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
                         <HeaderTemplate>
                             <table class="table">
                                 <thead>
@@ -91,7 +91,7 @@
                                         <a href='<%#Eval("pic") %>' id="gallery-img" data-lightbox="img-gallery" data-title="<%# Eval("name") %>">
                                             <img class="img-thumbnail img-fluid" style="max-width: 80%" src='<%#Eval("pic") %>'>
                                         </a>
-                                    </td>
+                                    &nbsp;</td>
                                     <td style="width: 20%" class="align-middle"><%# Eval("name") %></td>
                                     <td style="width: 20%" class="align-middle"><%# Eval("price","{0:C2}") %></td>
                                     <td style="width: 20%" class="align-middle">
@@ -104,6 +104,11 @@
                                 </tr>
                             </table>
                         </ItemTemplate>
+                        <FooterTemplate>
+                            <%-- Label used for showing Error Message --%>
+                            <asp:Label ID="lblErrorMsg" runat="server" Text="Sorry, you have no artworks." Visible="false">
+                            </asp:Label>
+                        </FooterTemplate>
                     </asp:Repeater>
                 </div>
             </div>

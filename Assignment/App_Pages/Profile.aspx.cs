@@ -11,6 +11,19 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["name"] != null)
+            {
+                lblName.Text = Session["name"].ToString();
+            }
+        }
+
+        protected void btnAddToCart(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDeleteFav(object sender, EventArgs e)
+        {
 
         }
     }

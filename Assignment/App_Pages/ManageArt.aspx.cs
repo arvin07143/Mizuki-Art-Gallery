@@ -23,6 +23,8 @@ namespace Assignment
             TextBox textStock = (TextBox)item.FindControl("txtStock");
             int a = Int32.Parse(textStock.Text);
             textStock.Text = (--a).ToString();
+
+            //TODO : SQL
         }
 
         protected void btnAddStockClick(object sender, EventArgs e)
@@ -32,13 +34,8 @@ namespace Assignment
             TextBox textStock = (TextBox)item.FindControl("txtStock");
             int a = Int32.Parse(textStock.Text);
             textStock.Text = (++a).ToString();
-        }
 
-        private void MessageBox(string msg)
-        {
-            Label lbl = new Label();
-            lbl.Text = "<script language='javascript'>" + Environment.NewLine + "window.alert('" + msg + "')</script>";
-            Page.Controls.Add(lbl);
+            //TODO : SQL
         }
 
         protected void addItemFormSubmitClicked(object sender, EventArgs e)
@@ -46,14 +43,33 @@ namespace Assignment
             string artName = formArtName.Text;
             float artPrice = float.Parse(formArtPrice.Text);
             int artQuantity = Int32.Parse(formArtStock.Text);
-            string filePath = "../images/" + imgFile.FileName;
+            string filePath = "../artImages/" + imgFile.FileName;
 
             if (imgFile.HasFile && imgFile.PostedFile != null)
             {
-                string imagepath = Server.MapPath("~/images/") + imgFile.FileName;
+                string imagepath = Server.MapPath("~/artImages/") + imgFile.FileName;
                 imgFile.PostedFile.SaveAs(imagepath);
             }
 
+            //TODO : SQL
+
+        }
+
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
+            if (sender is Repeater rptDemo && rptDemo.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    // Show the Error Label (if no data is present).
+                    Label lblErrorMsg = e.Item.FindControl("lblErrorMsg") as Label;
+                    if (lblErrorMsg != null)
+                    {
+                        lblErrorMsg.Visible = true;
+                    }
+                }
+            }
         }
     }
 }
