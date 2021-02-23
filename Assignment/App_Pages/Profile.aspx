@@ -12,9 +12,9 @@
     <form id="form1" runat="server">
         <div class="main main-raised">
             <div class="profile-content" style="margin-top: 100px">
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkID, Artwork.ArtworkName, Artwork.URL FROM Artwork INNER JOIN Favourite ON Artwork.ArtworkID = Favourite.ArtworkID INNER JOIN [User] ON Artwork.Username = [User].Username AND Favourite.Username = [User].Username AND [User].Username = @currentUserName">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkID, Artwork.ArtworkName, Artwork.URL FROM Artwork INNER JOIN Favourite ON Artwork.ArtworkID = Favourite.ArtworkID AND Favourite.Username = @currentUser">
                     <SelectParameters>
-                        <asp:SessionParameter Name="currentUserName" SessionField="username" />
+                        <asp:SessionParameter Name="currentUser" SessionField="username" />
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Order].OrderID FROM [User] INNER JOIN [Order] ON [User].Username = [Order].Username WHERE [User].Username = @currentUserName">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="description text-center">
                         <p>
-                            <asp:Label ID="lblProfDesc" runat="server" Text="Test description"></asp:Label>
+                            <asp:Label ID="lblProfDesc" runat="server" Text="Professional Artist with Ambition"></asp:Label>
                         </p>
                     </div>
                     <div class="row">
@@ -169,7 +169,9 @@
                                     <table class="table w-75 p3 ms-auto me-auto">
                                         <tr>
                                             <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                            <td style="width: 10%" class="align-middle"><%# Eval("ArtworkID") %></td>
+                                            <td style="width: 10%" class="align-middle">
+                                                <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'></asp:Label>
+                                            </td>
                                             <td>
                                                 <img class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
                                             </td>

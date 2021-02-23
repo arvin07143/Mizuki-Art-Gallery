@@ -17,8 +17,7 @@
              <div class="col-md-9 ms-auto me-auto ">
                  <h1 style="margin-left:60px"><b>Check Out</b></h1>
                 <div style="margin-left:-20px" class="tab-pane" id="checkout">
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" SelectCommand="SELECT [artID], [artImgLink], [artName] FROM [Wish]"></asp:SqlDataSource>
-                <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                     <HeaderTemplate>
                         <table class="table w-75 p3 ms-auto me-auto">
                             <thead>
@@ -26,6 +25,7 @@
                                     <th style="width:15%" scope="col">No.</th>
                                     <th style="width:15%" scope="col">Art ID</th>
                                     <th scope="col">Product</th>
+                                    <th style="width:15%" scope="col">Unit Price</th>
                                     <th style="width:15%" scope="col">Quantity</th>
                                     <th style="width:15%" scope="col">Total Price</th>
                                 </tr>
@@ -36,14 +36,14 @@
                         <table class="table w-75 p3 ms-auto me-auto">
                             <tr>
                                 <td style="width:15%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                <td style="width:15%" class="align-middle"><%# Eval("artID") %></td>
+                                <td style="width:15%" class="align-middle"><%# Eval("ArtworkID") %></td>
                                 <td>
-                                    <img style="width:80px;height:80px" class="img-thumbnail img-fluid" src='<%#Eval("artImgLink") %>'> <!--and also his name-->
+                                    <img style="width:80px;height:80px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
                                 </td>
-                                <td class="align-middle"><%# Eval("artName")%></td>
-                                <td style="width:15%"class="align-middle"></td>
-                                    <!--and also his name-->
-                                <td style="width:15%"class="align-middle"></td>
+                                <td class="align-middle"><%# Eval("ArtworkName")%></td>
+                                <td style="width:15%" class="align-middle"><%# Eval("Price") %></td>
+                                <td style="width:15%"class="align-middle"><%# Eval("Quantity")%></td>
+                                <td style="width:15%"class="align-middle"><%# Eval("TotalPrice")%></td>
                             </tr>
                         </table>
                     </ItemTemplate>
@@ -65,13 +65,13 @@
                                 <td style="width:15%" class="align-middle"></td>
                                 <td style="width:30%"></td>
                                 <td></td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="lblTaxDis" runat="server" Text="Tax"></asp:Label></td>
+                                <td style="width:15%" class="align-middle"><asp:Label ID="lblTaxDis" runat="server" Text="Tax"></asp:Label>&nbsp;(6%)</td>
                                 <td style="width:15%" class="align-middle"><asp:Label ID="lblTax" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                             <tr>
                                 <td class="align-middle" colspan="2">
-                                    <asp:Button style="border:none; text-align:left; background-color:transparent" ID="btnContinue" runat="server" Text="&lt; Continue Shopping" />
+                                    <asp:Button style="border:none; text-align:left; background-color:transparent" ID="btnContinue" runat="server" Text="&lt; Continue Shopping" OnClick="btnContinue_Click" />
                                 </td>
                                 <td style="width:30%"></td>
                                 <td></td>

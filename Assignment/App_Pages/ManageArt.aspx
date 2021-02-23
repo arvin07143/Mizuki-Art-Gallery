@@ -7,7 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-    <link rel="stylesheet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     <link href="../css/lightbox.css" rel="stylesheet" />
     <script src="../js/lightbox.js"></script>
@@ -15,7 +14,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
-        <asp:Label ID="lblTest" runat="server" Text=""></asp:Label>
         <div class="modal fade bd-example-modal-lg" id="modalForm">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -66,8 +64,8 @@
                 <div class="row py-3">
                     <div class="col-4"></div>
                     <div class="col-8 float-end">
-                        <asp:LinkButton class="btn btn-success float-end" ID="btnAddNewArt" runat="server" data-toggle="modal" data-target="#modalForm" OnClientClick="return false;">Add New Artwork <i class="material-icons" >add</i></asp:LinkButton>
-                        <asp:LinkButton class="btn btn-success float-end mr-3" ID="btnViewGallery" runat="server" OnClientClick="lightbox.start($('#gallery-img'));return false;">View As Gallery <i class="material-icons" >collections</i></asp:LinkButton>
+                        <asp:LinkButton class="btn btn-primary float-end align-middle" ID="btnAddNewArt" runat="server" data-toggle="modal" data-target="#modalForm" OnClientClick="return false;">Add New Artwork <i class="material-icons align-middle" >add</i></asp:LinkButton>
+                        <asp:LinkButton class="btn btn-success float-end me-3 align-middle" ID="btnViewGallery" runat="server" OnClientClick="lightbox.start($('#gallery-img'));return false;">View As Gallery <i class="material-icons align-middle">collections</i></asp:LinkButton>
                     </div>
                 </div>
                 <div class="row">
@@ -92,8 +90,8 @@
                         <ItemTemplate>
                             <table class="table table-borderless table-hover">
                                 <tr>
-                                    <td style="width: 10%"><%# Container.ItemIndex + 1 %></td>
-                                    <td style="width: 10%">
+                                    <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                    <td style="width: 10%" class="align-middle">
                                         <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'> </asp:Label>
 
                                     </td>
