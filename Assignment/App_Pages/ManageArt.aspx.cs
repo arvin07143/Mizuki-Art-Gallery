@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -23,6 +24,22 @@ namespace Assignment
             TextBox textStock = (TextBox)item.FindControl("txtStock");
             int a = Int32.Parse(textStock.Text);
             textStock.Text = (--a).ToString();
+
+            Label artLabel = (Label)item.FindControl("lblArtworkID");
+            int artID = Int32.Parse(artLabel.Text);
+
+            String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(con);
+            cnn.Open();
+            String updateStock = "UPDATE [dbo].[Artwork] SET [StockQuantity] = @newStock WHERE [ArtworkID] = @artID";
+            SqlCommand cmdUpdateStock = new SqlCommand(updateStock, cnn);
+            cmdUpdateStock.Parameters.AddWithValue("@newStock", a);
+            cmdUpdateStock.Parameters.AddWithValue("@artID", artID);
+
+            int updated = cmdUpdateStock.ExecuteNonQuery();
+            lblTest.Text = updated.ToString();
+            cnn.Close();
+
         }
 
         protected void btnAddStockClick(object sender, EventArgs e)
@@ -32,13 +49,22 @@ namespace Assignment
             TextBox textStock = (TextBox)item.FindControl("txtStock");
             int a = Int32.Parse(textStock.Text);
             textStock.Text = (++a).ToString();
-        }
 
-        private void MessageBox(string msg)
-        {
-            Label lbl = new Label();
-            lbl.Text = "<script language='javascript'>" + Environment.NewLine + "window.alert('" + msg + "')</script>";
-            Page.Controls.Add(lbl);
+            Label artLabel = (Label)item.FindControl("lblArtworkID");
+            int artID = Int32.Parse(artLabel.Text);
+
+            String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(con);
+            cnn.Open();
+            String updateStock = "UPDATE [dbo].[Artwork] SET [StockQuantity] = @newStock WHERE [ArtworkID] = @artID";
+            SqlCommand cmdUpdateStock = new SqlCommand(updateStock, cnn);
+            cmdUpdateStock.Parameters.AddWithValue("@newStock", a);
+            cmdUpdateStock.Parameters.AddWithValue("@artID", artID);
+
+            cmdUpdateStock.ExecuteNonQuery();
+
+            cnn.Close();
+
         }
 
         protected void addItemFormSubmitClicked(object sender, EventArgs e)
@@ -46,14 +72,45 @@ namespace Assignment
             string artName = formArtName.Text;
             float artPrice = float.Parse(formArtPrice.Text);
             int artQuantity = Int32.Parse(formArtStock.Text);
-            string filePath = "../images/" + imgFile.FileName;
+            string filePath = "../ArtImage/" + imgFile.FileName;
 
             if (imgFile.HasFile && imgFile.PostedFile != null)
             {
-                string imagepath = Server.MapPath("~/images/") + imgFile.FileName;
+                string imagepath = Server.MapPath("~/ArtImage/") + imgFile.FileName;
                 imgFile.PostedFile.SaveAs(imagepath);
             }
 
+            String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(con);
+            cnn.Open();
+            String updateStock = "INSERT INTO [dbo].[Artwork] VALUES(@ArtworkName,@StockQuantity,@Price,@Username,@URL);";
+            SqlCommand cmdUpdateStock = new SqlCommand(updateStock, cnn);
+            cmdUpdateStock.Parameters.AddWithValue("@ArtworkName", artName);
+            cmdUpdateStock.Parameters.AddWithValue("@StockQuantity", artQuantity);
+            cmdUpdateStock.Parameters.AddWithValue("@Price", artPrice);
+            cmdUpdateStock.Parameters.AddWithValue("@URL", filePath);
+            cmdUpdateStock.Parameters.AddWithValue("@Username", Session["username"].ToString());
+            cmdUpdateStock.ExecuteNonQuery();
+
+            cnn.Close();
+
+        }
+
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
+            if (sender is Repeater rptDemo && rptDemo.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    // Show the Error Label (if no data is present).
+                    Label lblErrorMsg = e.Item.FindControl("lblErrorMsg") as Label;
+                    if (lblErrorMsg != null)
+                    {
+                        lblErrorMsg.Visible = true;
+                    }
+                }
+            }
         }
     }
 }

@@ -6,12 +6,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-    <link rel="stylesheet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
         <div class="main main-raised">
-            <div class="profile-content" style="margin-top:100px">
+            <div class="profile-content" style="margin-top: 100px">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkID, Artwork.ArtworkName, Artwork.URL FROM Artwork INNER JOIN Favourite ON Artwork.ArtworkID = Favourite.ArtworkID INNER JOIN [User] ON Artwork.Username = [User].Username AND Favourite.Username = [User].Username AND [User].Username = @currentUserName">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="currentUserName" SessionField="username" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Order].OrderID FROM [User] INNER JOIN [Order] ON [User].Username = [Order].Username WHERE [User].Username = @currentUserName">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="currentUserName" SessionField="username" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Name, DOB, Gender FROM [User] WHERE [User].Username = @currUsername">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="currUsername" SessionField="username" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 ms-auto me-auto">
@@ -21,9 +36,11 @@
                                 </div>
                                 <div class="name">
                                     <h3 class="title">
-                                        <asp:Label ID="lblName" runat="server" Text="testname"></asp:Label></h3>
+                                        <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
+
+                                    </h3>
                                     <h6>
-                                        <asp:Label ID="lblProf" runat="server" Text="Artist / User"></asp:Label>
+                                        <asp:Label ID="lblProf" runat="server" Text=""></asp:Label>
                                     </h6>
                                 </div>
                             </div>
@@ -62,60 +79,70 @@
                     </div>
                     <div class="tab-content tab-space">
                         <div class="tab-pane active" id="info">
-                            <table class="table table-borderless w-75 p3 ms-auto me-auto table-striped">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Name</th>
-                                        <td>
-                                            <asp:Label ID="lblProfName" runat="server" Text="test name"></asp:Label></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Date of Birth</th>
-                                        <td>
-                                            <asp:Label ID="lblProfDOB" runat="server" Text="test date"></asp:Label></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Gender</th>
-                                        <td>
-                                            <asp:Label ID="lblProfGender" runat="server" Text="test gender"></asp:Label></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource4">
+                                <ItemTemplate>
+                                    <table class="table table-borderless w-75 p3 ms-auto me-auto table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Name</th>
+                                                <td>
+                                                    <asp:Label ID="lblProfName" runat="server" Text='<%# Eval("Name") %>'></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Date of Birth</th>
+                                                <td>
+                                                    <asp:Label ID="lblProfDOB" runat="server" Text='<%# Eval("DOB","{0:d MMMM yyyy}") %>'></asp:Label></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Gender</th>
+                                                <td>
+                                                    <asp:Label ID="lblProfGender" runat="server" Text='<%# Eval("Gender") %>'></asp:Label></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </div>
 
                         <div class="tab-pane" id="history">
-                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" SelectCommand="SELECT [PurchaseID], [Price], [Content 1] AS Content_1, [Content 2] AS Content_2, [Name 1] AS Name_1, [Name 2] AS Name_2, [Date] FROM [Table]"></asp:SqlDataSource>
-                            <asp:Repeater ID="Repeater2" DataSourceID="SqlDataSource2" runat="server">
+                            <asp:Repeater ID="Repeater2" DataSourceID="SqlDataSource1" runat="server">
                                 <HeaderTemplate>
                                     <table class="table bordered ms-auto me-auto w-75 p-3">
                                         <thead>
                                             <tr>
-                                                <th style="width:10%" scope="col">No.</th>
-                                                <th style="width:10%" scope="col">Order ID</th>
-                                                <th style="width:15%" scope="col">Date</th>
+                                                <th style="width: 10%" scope="col">No.</th>
+                                                <th style="width: 10%" scope="col">Order ID</th>
+                                                <th style="width: 15%" scope="col">Date</th>
                                                 <th scope="col">Contents</th>
-                                                <th style="width:15%" scope="col">Price</th>
+                                                <th style="width: 15%" scope="col">Price</th>
                                             </tr>
                                         </thead>
                                     </table>
                                 </HeaderTemplate>
                                 <ItemTemplate>
+                                    <asp:HiddenField ID="txtOuterID" runat="server" Value='<%# Eval("OrderID") %>' Visible="false" />
+                                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkName FROM Artwork INNER JOIN OrderDetails ON Artwork.ArtworkID = OrderDetails.ArtworkID INNER JOIN [Order] ON OrderDetails.OrderID = [Order].OrderID AND [Order].OrderID = CAST(@orderID AS INT)">
+                                        <SelectParameters>
+                                            <asp:ControlParameter ControlID="txtOuterID" Name="orderID" PropertyName="Value" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
                                     <table class="table borderless ms-auto me-auto w-75 p-3">
                                         <tr>
-                                            <td style="width:10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                            <td style="width:10%" class="align-middle"><%# Eval("PurchaseID") %></td>
-                                            <td style="width:15%" class="align-middle"><%# Eval("Date","{0:dd/MM/yyyy}") %></td>
-                                            <td style="margin-left:-10px">
-                                                <table class="table">
-                                                    <tr>
-                                                        <td><%# Eval("Name_1") %></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><%# Eval("Name_2") %></td>
-                                                    </tr>
-                                                </table>
+                                            <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                            <td style="width: 10%" class="align-middle"><%# Eval("OrderID") %></td>
+                                            <td style="width: 15%" class="align-middle"></td>
+                                            <td style="margin-left: -10px">
+                                                <asp:Repeater ID="Repeater3" runat="server" DataSourceID="SqlDataSource3">
+                                                    <ItemTemplate>
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td><%# Eval("ArtworkName") %></td>
+                                                            </tr>
+                                                        </table>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
                                             </td>
-                                            <td style="width:15%"class="align-middle"><%# Eval("Price","{0:C2}")%></td>
+                                            <td style="width: 15%" class="align-middle"></td>
                                         </tr>
                                     </table>
                                 </ItemTemplate>
@@ -123,14 +150,14 @@
                         </div>
 
                         <div class="tab-pane" id="wishlist">
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" SelectCommand="SELECT [artID], [artImgLink], [artName] FROM [Wish]"></asp:SqlDataSource>
-                            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+
+                            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource2">
                                 <HeaderTemplate>
                                     <table class="table w-75 p3 ms-auto me-auto">
                                         <thead>
                                             <tr>
-                                                <th style="width:10%" scope="col">No.</th>
-                                                <th style="width:10%" scope="col">Art ID</th>
+                                                <th style="width: 10%" scope="col">No.</th>
+                                                <th style="width: 10%" scope="col">Art ID</th>
                                                 <th scope="col"></th>
                                                 <th scope="col"></th>
                                                 <th scope="col"></th>
@@ -141,16 +168,16 @@
                                 <ItemTemplate>
                                     <table class="table w-75 p3 ms-auto me-auto">
                                         <tr>
-                                            <td style="width:10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                            <td style="width:10%" class="align-middle"><%# Eval("artID") %></td>
+                                            <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                            <td style="width: 10%" class="align-middle"><%# Eval("ArtworkID") %></td>
                                             <td>
-                                                <img class="img-thumbnail img-fluid" src='<%#Eval("artImgLink") %>'>
+                                                <img class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
                                             </td>
-                                            <td class="align-middle"><%# Eval("artName")%></td>
+                                            <td class="align-middle"><%# Eval("ArtworkName")%></td>
                                             <td class="align-middle">
-                                                <asp:LinkButton ID="btnBuy" runat="server"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
+                                                <asp:LinkButton ID="btnBuy" runat="server" OnClick="btnAddToCart"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
                                             <td class="align-middle">
-                                                <asp:LinkButton ID="btnDeleteFav" runat="server"><i class="material-icons">clear</i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnDeleteFav" runat="server" OnClick="btnDeleteFav"><i class="material-icons">clear</i></asp:LinkButton>
                                             </td>
                                         </tr>
                                     </table>

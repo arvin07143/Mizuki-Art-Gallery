@@ -15,6 +15,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
+        <asp:Label ID="lblTest" runat="server" Text=""></asp:Label>
         <div class="modal fade bd-example-modal-lg" id="modalForm">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -49,7 +50,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <asp:Button CssClass="btn btn-success" runat="server" onClick="addItemFormSubmitClicked" Text="Save" />
+                            <asp:Button CssClass="btn btn-success" runat="server" OnClick="addItemFormSubmitClicked" Text="Save" />
                         </div>
                     </div>
                 </div>
@@ -66,19 +67,24 @@
                     <div class="col-4"></div>
                     <div class="col-8 float-end">
                         <asp:LinkButton class="btn btn-success float-end" ID="btnAddNewArt" runat="server" data-toggle="modal" data-target="#modalForm" OnClientClick="return false;">Add New Artwork <i class="material-icons" >add</i></asp:LinkButton>
-                        <asp:LinkButton class="btn btn-success float-end mr-3" ID="btnViewGallery" runat="server"  OnClientClick="lightbox.start($('#gallery-img'));return false;">View As Gallery <i class="material-icons" >collections</i></asp:LinkButton>
+                        <asp:LinkButton class="btn btn-success float-end mr-3" ID="btnViewGallery" runat="server" OnClientClick="lightbox.start($('#gallery-img'));return false;">View As Gallery <i class="material-icons" >collections</i></asp:LinkButton>
                     </div>
                 </div>
                 <div class="row">
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" SelectCommand="SELECT [Id], [price], [name], [stock], [pic] FROM [ArtMan]"></asp:SqlDataSource>
-                    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Price, ArtworkID, ArtworkName, StockQuantity, URL FROM Artwork WHERE (Username = @currentUsername)">
+                        <SelectParameters>
+                            <asp:SessionParameter Name="currentUsername" SessionField="username" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
                         <HeaderTemplate>
                             <table class="table">
                                 <thead>
                                     <td style="width: 10%">No.</td>
+                                    <td style="width: 10%">Artwork ID</td>
                                     <td style="width: 30%">Artwork Image</td>
                                     <td style="width: 20%">Artwork Name</td>
-                                    <td style="width: 20%">Artwork Price</td>
+                                    <td style="width: 10%">Artwork Price</td>
                                     <td style="width: 20%">Artwork Stock</td>
                                 </thead>
                             </table>
@@ -87,23 +93,32 @@
                             <table class="table table-borderless table-hover">
                                 <tr>
                                     <td style="width: 10%"><%# Container.ItemIndex + 1 %></td>
-                                    <td style="width: 30%">
-                                        <a href='<%#Eval("pic") %>' id="gallery-img" data-lightbox="img-gallery" data-title="<%# Eval("name") %>">
-                                            <img class="img-thumbnail img-fluid" style="max-width: 80%" src='<%#Eval("pic") %>'>
-                                        </a>
+                                    <td style="width: 10%">
+                                        <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'> </asp:Label>
+
                                     </td>
-                                    <td style="width: 20%" class="align-middle"><%# Eval("name") %></td>
-                                    <td style="width: 20%" class="align-middle"><%# Eval("price","{0:C2}") %></td>
+                                    <td style="width: 30%">
+                                        <a href='<%#Eval("URL") %>' id="gallery-img" data-lightbox="img-gallery" data-title="<%# Eval("ArtworkName") %>">
+                                            <img class="img-thumbnail img-fluid" style="max-width: 80%" src='<%#Eval("URL") %>'>
+                                        </a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td style="width: 20%" class="align-middle"><%# Eval("ArtworkName") %></td>
+                                    <td style="width: 10%" class="align-middle"><%# Eval("Price","{0:C2}") %></td>
                                     <td style="width: 20%" class="align-middle">
                                         <row>
                                                 <asp:LinkButton class="btn btn-default btn-qty" ID="btnRemove" runat="server" onClick="btnRemoveStockClick"><i class="material-icons">remove</i></asp:LinkButton>
-                                                <asp:TextBox class="btn btn-outline-dark btn-qty" ID="txtStock" runat="server" text=<%# Eval("stock") %>></asp:TextBox>
+                                                <asp:TextBox class="btn btn-outline-dark btn-qty" ID="txtStock" runat="server" text=<%# Eval("StockQuantity") %>></asp:TextBox>
                                                 <asp:LinkButton class="btn btn-default btn-qty" ID="btnAdd" runat="server" onClick="btnAddStockClick"><i class="material-icons">add</i></asp:LinkButton>
                                             </row>
                                     </td>
                                 </tr>
                             </table>
                         </ItemTemplate>
+                        <FooterTemplate>
+                            <%-- Label used for showing Error Message --%>
+                            <asp:Label ID="lblErrorMsg" runat="server" Text="Sorry, you have no artworks." Visible="false">
+                            </asp:Label>
+                        </FooterTemplate>
                     </asp:Repeater>
                 </div>
             </div>
