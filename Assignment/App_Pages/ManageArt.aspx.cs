@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -24,7 +25,21 @@ namespace Assignment
             int a = Int32.Parse(textStock.Text);
             textStock.Text = (--a).ToString();
 
-            //TODO : SQL
+            Label artLabel = (Label)item.FindControl("lblArtworkID");
+            int artID = Int32.Parse(artLabel.Text);
+
+            String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(con);
+            cnn.Open();
+            String updateStock = "UPDATE [dbo].[Artwork] SET [StockQuantity] = @newStock WHERE [ArtworkID] = @artID";
+            SqlCommand cmdUpdateStock = new SqlCommand(updateStock, cnn);
+            cmdUpdateStock.Parameters.AddWithValue("@newStock", a);
+            cmdUpdateStock.Parameters.AddWithValue("@artID", artID);
+
+            int updated = cmdUpdateStock.ExecuteNonQuery();
+            lblTest.Text = updated.ToString();
+            cnn.Close();
+
         }
 
         protected void btnAddStockClick(object sender, EventArgs e)
@@ -35,7 +50,21 @@ namespace Assignment
             int a = Int32.Parse(textStock.Text);
             textStock.Text = (++a).ToString();
 
-            //TODO : SQL
+            Label artLabel = (Label)item.FindControl("lblArtworkID");
+            int artID = Int32.Parse(artLabel.Text);
+
+            String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(con);
+            cnn.Open();
+            String updateStock = "UPDATE [dbo].[Artwork] SET [StockQuantity] = @newStock WHERE [ArtworkID] = @artID";
+            SqlCommand cmdUpdateStock = new SqlCommand(updateStock, cnn);
+            cmdUpdateStock.Parameters.AddWithValue("@newStock", a);
+            cmdUpdateStock.Parameters.AddWithValue("@artID", artID);
+
+            cmdUpdateStock.ExecuteNonQuery();
+
+            cnn.Close();
+
         }
 
         protected void addItemFormSubmitClicked(object sender, EventArgs e)
@@ -43,15 +72,27 @@ namespace Assignment
             string artName = formArtName.Text;
             float artPrice = float.Parse(formArtPrice.Text);
             int artQuantity = Int32.Parse(formArtStock.Text);
-            string filePath = "../artImages/" + imgFile.FileName;
+            string filePath = "../ArtImage/" + imgFile.FileName;
 
             if (imgFile.HasFile && imgFile.PostedFile != null)
             {
-                string imagepath = Server.MapPath("~/artImages/") + imgFile.FileName;
+                string imagepath = Server.MapPath("~/ArtImage/") + imgFile.FileName;
                 imgFile.PostedFile.SaveAs(imagepath);
             }
 
-            //TODO : SQL
+            String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection cnn = new SqlConnection(con);
+            cnn.Open();
+            String updateStock = "INSERT INTO [dbo].[Artwork] VALUES(@ArtworkName,@StockQuantity,@Price,@Username,@URL);";
+            SqlCommand cmdUpdateStock = new SqlCommand(updateStock, cnn);
+            cmdUpdateStock.Parameters.AddWithValue("@ArtworkName", artName);
+            cmdUpdateStock.Parameters.AddWithValue("@StockQuantity", artQuantity);
+            cmdUpdateStock.Parameters.AddWithValue("@Price", artPrice);
+            cmdUpdateStock.Parameters.AddWithValue("@URL", filePath);
+            cmdUpdateStock.Parameters.AddWithValue("@Username", Session["username"].ToString());
+            cmdUpdateStock.ExecuteNonQuery();
+
+            cnn.Close();
 
         }
 
