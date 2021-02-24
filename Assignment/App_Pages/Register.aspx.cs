@@ -65,8 +65,17 @@ namespace Assignment.App_Pages
                         cmd.ExecuteNonQuery();
                     }
                 }
-                Response.Redirect("Login.aspx");
-                
+               
+
+
+                System.Text.StringBuilder javaScript = new System.Text.StringBuilder();
+                string scriptKey = "SuccessMessage";
+
+                javaScript.Append("var userConfirmation = window.confirm('" + "Successfully registerd." + "');\n");
+                javaScript.Append("window.location='login.aspx';");
+
+                ClientScript.RegisterStartupScript(this.GetType(), scriptKey, javaScript.ToString(), true);
+
             }
             else
             {
@@ -75,5 +84,6 @@ namespace Assignment.App_Pages
             
 
         }
+       
     }
 }

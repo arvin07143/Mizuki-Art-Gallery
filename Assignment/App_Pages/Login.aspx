@@ -30,7 +30,8 @@
 						
 
 						<div>
-                             <asp:HyperLink id="forgetPassword" NavigateUrl="#" Text="Forgot Password?" runat="server" class="forgetPasswordText"/> 
+                             <asp:LinkButton  id="forgetPassword"  runat="server" class="forgetPasswordText" OnClick="msg"> Forgot Password?</asp:LinkButton>
+						
 							
 						     
 							

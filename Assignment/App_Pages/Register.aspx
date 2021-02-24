@@ -73,7 +73,7 @@
 					</div>
 					
 
-					<asp:Button ID="loginFormBtn" runat="server" Text="Register" class="formBtn" OnClick="loginFormBtn_Click" />  
+					<asp:Button ID="loginFormBtn" runat="server" Text="Register" class="formBtn" OnClick="loginFormBtn_Click"  />  
 						
 
 						
