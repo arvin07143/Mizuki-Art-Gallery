@@ -22,11 +22,12 @@
                         <table class="table w-75 p3 ms-auto me-auto">
                             <thead>
                                 <tr>
-                                    <th style="width:15%" scope="col">No.</th>
-                                    <th style="width:15%" scope="col">Art ID</th>
-                                    <th scope="col">Product</th>
+                                    <th style="width:10%" scope="col">No.</th>
+                                    <th style="width:10%" scope="col">Art ID</th>
+                                    <th style="width:20%" scope ="col">Product</th>
+                                    <th style="width:20%" scope="col">Name</th>
                                     <th style="width:15%" scope="col">Unit Price</th>
-                                    <th style="width:15%" scope="col">Quantity</th>
+                                    <th style="width:10%" scope="col">Quantity</th>
                                     <th style="width:15%" scope="col">Total Price</th>
                                 </tr>
                             </thead>
@@ -35,15 +36,15 @@
                     <ItemTemplate>
                         <table class="table w-75 p3 ms-auto me-auto">
                             <tr>
-                                <td style="width:15%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                <td style="width:15%" class="align-middle"><%# Eval("ArtworkID") %></td>
-                                <td>
-                                    <img style="width:70px;height:70px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
+                                <td style="width:10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                <td style="width:10%" class="align-middle"><%# Eval("ArtworkID") %></td>
+                                <td style="width:20%" class="align-middle">
+                                    <img style="width:80%; height:100px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
                                 </td>
-                                <td class="align-middle"><%# Eval("ArtworkName")%></td>
-                                <td style="width:15%" class="align-middle"(<%# Eval("Price") %>)</td>
-                                <td style="width:15%"class="align-middle"><%# Eval("Quantity")%></td>
-                                <td style="width:15%"class="align-middle"><%# Eval("TotalPrice")%></td>
+                                <td style="width:20%" class="align-middle"><%# Eval("ArtworkName")%></td>
+                                <td style="width:15%" class="align-middle"><%# Eval("Price")%></td>
+                                <td style="width:10%" class="align-middle"><%# Eval("Quantity")%></td>
+                                <td style="width:15%" class="align-middle"><%# Eval("TotalPrice")%></td>
                             </tr>
                         </table>
                     </ItemTemplate>
