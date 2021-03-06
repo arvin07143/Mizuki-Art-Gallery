@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Assignment.App_Pages
@@ -11,16 +14,16 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmdGetURL = new SqlCommand("SELECT TOP 3 [URL] from [Artwork]", con);
+            carouselRepeater.DataSource = cmdGetURL.ExecuteReader();
+            carouselRepeater.DataBind();
+            HtmlGenericControl div = (HtmlGenericControl)carouselRepeater.Items[0].FindControl("carouselItem");
+            div.Attributes.Add("class", "carousel-item active");
+            con.Close();
         }
-        protected void Image_Click(object sender, System.EventArgs e)
-        {
-            ImageButton lnkRowSelection = (ImageButton)sender;
-            //Get the Recipe id from command argumen tof linkbutton
-            string artworkID = lnkRowSelection.CommandArgument.ToString();
-
-            Session["artworkID"] = artworkID;
-            Response.Redirect("~/App_Pages/Order.aspx");
-        }
+        
+        
     }
 }
