@@ -2,6 +2,9 @@
 
 <asp:Content ID="styleContent" ContentPlaceHolderID="head" runat="server">
     <style>
+        html{
+            scroll-behavior: auto;
+        }
         .checkoutbar {
             min-width: 415px;
             padding: 20px 40px;
@@ -38,7 +41,7 @@
 
         .quantity {
             border: solid 1px;
-            padding: 8px 5px 0px 5px;
+            padding: 5px 5px 0px 5px;
             margin: 0px 5px;
             text-align: center;
             width: 90px

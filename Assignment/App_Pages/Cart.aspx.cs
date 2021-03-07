@@ -26,10 +26,6 @@ namespace Assignment.App_Pages
                     String strSelectCartItem = "Select Cart.ArtworkID AS ArtworkID, Art.ArtworkName AS ArtworkName, Art.Price AS PRICE, Cart.Quantity AS Quantity, Cart.Quantity * Art.Price AS TotalPrice, Art.URL AS URL from Artwork Art, CartDetails Cart, [User] u Where Cart.Username = u.Username and Cart.Username=@username and Art.ArtworkID = Cart.ArtworkID;";
                     SqlCommand cmdSelectCartItem = new SqlCommand(strSelectCartItem, cartCon);
                     cmdSelectCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = cmdSelectCartItem;
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
 
                     cartItemRepeater.DataSource = cmdSelectCartItem.ExecuteReader();
                     cartItemRepeater.DataBind();
@@ -62,6 +58,7 @@ namespace Assignment.App_Pages
             SqlConnection cartItemCon = new SqlConnection(strCartItemCon);
             cartItemCon.Open();
             String artworkId = e.CommandArgument.ToString();
+            Label lblQuantity = (Label)e.Item.FindControl("lblQuantity");
             if (e.CommandName == "delete")
             {
                 String strDelCartItem = "DELETE FROM CartDetails WHERE ArtworkID=@artworkId AND Username=@username";
@@ -86,7 +83,14 @@ namespace Assignment.App_Pages
                     cmdDecreaseCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
                     cmdDecreaseCartItem.ExecuteNonQuery();
                     cartItemCon.Close();
-                    Response.Redirect("~/App_Pages/Cart.aspx");
+                  
+                    int qty = Convert.ToInt32(lblQuantity.Text);
+                    qty -= 1;
+                    lblQuantity.Text = qty.ToString();
+                }
+                else
+                {
+                    lblQuantity.Text = "0";
                 }
                 
             }
@@ -109,9 +113,15 @@ namespace Assignment.App_Pages
                     cmdIncreaseCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
                     cmdIncreaseCartItem.ExecuteNonQuery();
                     cartItemCon.Close();
-                    Response.Redirect("~/App_Pages/Cart.aspx");
+                    int qty = Convert.ToInt32(lblQuantity.Text);
+                    qty += 1;
+                    lblQuantity.Text = qty.ToString();
                 }
-                
+                else
+                {
+                    lblQuantity.Text = stockQty.ToString();
+                }
+
             }
         }
 
