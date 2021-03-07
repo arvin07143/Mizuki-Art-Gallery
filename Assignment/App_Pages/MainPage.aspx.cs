@@ -24,10 +24,20 @@ namespace Assignment.App_Pages
                 HtmlGenericControl div = (HtmlGenericControl)carouselRepeater.Items[0].FindControl("carouselItem");
                 div.Attributes.Add("class", "carousel-item active");
 
-                cmdGetURL = new SqlCommand("SELECT TOP 3 ArtworkID, ArtworkName, Username, URL FROM [Artwork]", con);
-                newArtworkRepeater.DataSource = cmdGetURL.ExecuteReader();
-                newArtworkRepeater.DataBind();
+                cmdGetURL = new SqlCommand("SELECT TOP 6 ArtworkID, ArtworkName, Username, URL FROM [Artwork]", con);
+                rptTrending.DataSource = cmdGetURL.ExecuteReader();
+                rptTrending.DataBind();
+
+                cmdGetURL = new SqlCommand("SELECT TOP 6 ArtworkID, ArtworkName, Username, URL FROM [Artwork]", con);
+                rptHotSelling.DataSource = cmdGetURL.ExecuteReader();
+                rptHotSelling.DataBind();
+
+                cmdGetURL = new SqlCommand("SELECT TOP 6 ArtworkID, ArtworkName, Username, URL FROM [Artwork]", con);
+                rptNewArt.DataSource = cmdGetURL.ExecuteReader();
+                rptNewArt.DataBind();
                 con.Close();
+
+
             }
         }
 

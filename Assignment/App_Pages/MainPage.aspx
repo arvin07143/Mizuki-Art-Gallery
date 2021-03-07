@@ -2,6 +2,7 @@
 
 <asp:Content ID="mainPageHeader" ContentPlaceHolderID="head" runat="server">
     <style>
+
         .img-slide {
             height: 300px;
             width: 400px;
@@ -9,11 +10,28 @@
             object-position: center;
             margin: auto;
         }
-        .img-row{
+
+        .img-row {
             height: 240px;
             width: 135px;
             object-fit: cover;
             object-position: center;
+        }
+
+        .overlay {
+            position: relative;
+            top: -140px;
+            z-index: 2;
+        }
+
+        .card{
+            min-width: 180px !important;
+        }
+        .card-img-top {
+            height: 260px;
+        }
+        #content hr{
+            margin: 50px 0 30px 0;
         }
     </style>
 </asp:Content>
@@ -21,7 +39,7 @@
 
     <form id="form1" runat="server">
 
-        <div class="bg-dark">
+        <div class="bg-dark" style="height: 500px">
             <div id="carouselExampleControls" class="carousel slide container w-50 pt-2" data-interval="3000" data-pause="hover">
                 <div class="carousel-inner m-auto">
                     <asp:Repeater ID="carouselRepeater" runat="server">
@@ -45,42 +63,65 @@
                 </a>
             </div>
         </div>
-
-        <div class="container mt-3 mb-3">
-            <hr />
-            <h1>New Artwork</h1>
-            <div class="card-group">
-                <asp:Repeater ID="newArtworkRepeater" runat="server">
-                    <ItemTemplate>
-                        <div class="card">
-                            <asp:ImageButton ID="artImageBtn" runat="server" class="card-img-top img-row" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click"/>
-                            <div class="card-body">
-                                <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                <p class="card-text" runat="server"><%# Eval("Username") %></p>
+        <div id="content" class="overlay">
+            <div class="container">
+                <h1 class="text-light mb-4">Trending</h1>
+                <div class="card-group">
+                    <asp:Repeater ID="rptTrending" runat="server">
+                        <ItemTemplate>
+                            <div class="card">
+                                <asp:ImageButton ID="ibtnTrending" runat="server" class="card-img-top img-row" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
+                                <div class="card-body">
+                                    <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
+                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                </div>
                             </div>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+                        </ItemTemplate>
+                    </asp:Repeater>
 
+                </div>
+                <hr />
+            </div>
+
+            <div class="container">
+                <h1 class="mb-4">Hot Selling</h1>
+                <div class="card-group">
+                    <asp:Repeater ID="rptHotSelling" runat="server">
+                        <ItemTemplate>
+                            <div class="card">
+                                <asp:ImageButton ID="ibtnHotSelling" runat="server" class="card-img-top img-row" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
+                                <div class="card-body">
+                                    <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
+                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                </div>
+                <hr />
+            </div>
+
+            <div class="container">
+                <h1 class="mb-4">New Artwork</h1>
+                <div class="card-group">
+                    <asp:Repeater ID="rptNewArt" runat="server">
+                        <ItemTemplate>
+                            <div class="card">
+                                <asp:ImageButton ID="ibtnNewArt" runat="server" class="card-img-top img-row" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
+                                <div class="card-body">
+                                    <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
+                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                </div>
+                <hr />
             </div>
         </div>
 
-        <div class="container mt-3 mb-3">
-            <hr />
-            <div class="w-100">
-                <h1>Trending</h1>
-                <img src="https://via.placeholder.com/300x150" />
-                <p>Lorem Ipsum</p>
-            </div>
-        </div>
-        <div class="container mt-3 mb-3">
-            <hr />
-            <div class="w-100">
-                <h1>New From Loke7Yao</h1>
-                <img src="https://via.placeholder.com/300x150" />
-                <p>Lorem Ipsum</p>
-            </div>
-        </div>
     </form>
 
 

@@ -17,6 +17,7 @@ namespace Assignment
             {
                 Response.Redirect("~/App_Pages/MainPage.aspx");
             }
+            Page.SetFocus(TxtLUsername);
         }
 
         protected void loginFormBtn_Click(object sender, EventArgs e)
