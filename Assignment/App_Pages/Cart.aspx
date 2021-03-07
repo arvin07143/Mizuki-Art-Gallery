@@ -74,7 +74,7 @@
                                     <asp:Button CommandName="minus" CommandArgument='<%# Eval("ArtworkID")%>'
                                         Text="-" runat="server" ID="btnMinus" CssClass="btn-plusminus" />
                                     <!--quantity-->
-                                    <p class="card-text quantity"> <%# Eval("Quantity")%></p>
+                                    <asp:Label ID="lblQuantity" CssClass="card-text quantity" Text='<%# Eval("Quantity")%>' runat="server"></asp:Label>
                                     <!--increase button-->
                                     <asp:Button CommandName="plus" CommandArgument='<%# Eval("ArtworkID")%>'
                                         Text="+" runat="server" ID="btnPlus" CssClass="btn-plusminus" />
@@ -93,7 +93,8 @@
             <div class="checkoutbar bg-dark text-light shadow d-flex justify-content-between">
                 <div>
                     Total: RM
-                <asp:Label ID="lblTotalPrice" runat="server"></asp:Label>
+                <asp:Label ID="lblTotalPrice" runat="server"></asp:Label><br />
+                    <asp:Label ID="lblError" runat="server"></asp:Label>
                 </div>
                 <div>
                     <asp:Button ID="btnCheckout" CssClass="btn-checkout" runat="server" Text="Check Out" OnClick="btnCheckout_Click" />
