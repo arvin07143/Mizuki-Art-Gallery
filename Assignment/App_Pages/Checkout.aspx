@@ -22,11 +22,12 @@
                         <table class="table w-75 p3 ms-auto me-auto">
                             <thead>
                                 <tr>
-                                    <th style="width:15%" scope="col">No.</th>
-                                    <th style="width:15%" scope="col">Art ID</th>
-                                    <th scope="col">Product</th>
+                                    <th style="width:10%" scope="col">No.</th>
+                                    <th style="width:10%" scope="col">Art ID</th>
+                                    <th style="width:20%" scope ="col">Product</th>
+                                    <th style="width:20%" scope="col">Name</th>
                                     <th style="width:15%" scope="col">Unit Price</th>
-                                    <th style="width:15%" scope="col">Quantity</th>
+                                    <th style="width:10%" scope="col">Quantity</th>
                                     <th style="width:15%" scope="col">Total Price</th>
                                 </tr>
                             </thead>
@@ -35,15 +36,15 @@
                     <ItemTemplate>
                         <table class="table w-75 p3 ms-auto me-auto">
                             <tr>
-                                <td style="width:15%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                <td style="width:15%" class="align-middle"><%# Eval("ArtworkID") %></td>
-                                <td>
-                                    <img style="width:80px;height:80px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
+                                <td style="width:10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                <td style="width:10%" class="align-middle"><%# Eval("ArtworkID") %></td>
+                                <td style="width:20%" class="align-middle">
+                                    <img style="width:80%; height:100px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
                                 </td>
-                                <td class="align-middle"><%# Eval("ArtworkName")%></td>
-                                <td style="width:15%" class="align-middle"><%# Eval("Price") %></td>
-                                <td style="width:15%"class="align-middle"><%# Eval("Quantity")%></td>
-                                <td style="width:15%"class="align-middle"><%# Eval("TotalPrice")%></td>
+                                <td style="width:20%" class="align-middle"><%# Eval("ArtworkName")%></td>
+                                <td style="width:15%" class="align-middle"><%# Eval("Price")%></td>
+                                <td style="width:10%" class="align-middle"><%# Eval("Quantity")%></td>
+                                <td style="width:15%" class="align-middle"><%# Eval("TotalPrice")%></td>
                             </tr>
                         </table>
                     </ItemTemplate>
@@ -55,9 +56,9 @@
                                 <td style="width:15%" class="align-middle"></td>
                                 <td style="width:15%" class="align-middle"></td>
                                 <td style="width:30%"></td>
-                                <td></td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="Label2" runat="server" Text="Subtotal"></asp:Label></td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="lblSubtotal" runat="server" Text="RM???"></asp:Label></td>
+                                <td style="width:10%"></td>
+                                <td style="width:10%" class="align-middle"><asp:Label ID="lblSubtotalDis" runat="server" Text="Subtotal"></asp:Label></td>
+                                <td style="width:15%"><asp:Label style="display:block; text-align:right" ID="lblSubtotal" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                             <tr>
@@ -66,17 +67,17 @@
                                 <td style="width:30%"></td>
                                 <td></td>
                                 <td style="width:15%" class="align-middle"><asp:Label ID="lblTaxDis" runat="server" Text="Tax"></asp:Label>&nbsp;(6%)</td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="lblTax" runat="server" Text="RM???"></asp:Label></td>
+                                <td style="width:15%"><asp:Label style="display:block; text-align:right" ID="lblTax" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                             <tr>
                                 <td class="align-middle" colspan="2">
-                                    <asp:Button style="border:none; text-align:left; background-color:transparent" ID="btnContinue" runat="server" Text="&lt; Continue Shopping" OnClick="btnContinue_Click" />
+                                    <asp:Button class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" />
                                 </td>
                                 <td style="width:30%"></td>
                                 <td></td>
                                 <td style="width:15%" class="align-middle"><asp:Label ID="lblTotalDis" runat="server" Text="Total"></asp:Label></td>
-                                <td style="width:15%" class="align-middle"><asp:Label ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
+                                <td class="align-middle" style="width:15%"><asp:Label style="display:block; text-align:right" ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                         </table>
@@ -92,7 +93,7 @@
                         <asp:Label ID="lblPaymentMethod" runat="server" Text="Payment Method"></asp:Label>
                     </p>
                     <p>
-                        <asp:RadioButtonList style="" CssClass="radio-inline" ID="RadioButtonList1" runat="server">
+                        <asp:RadioButtonList style="" ValidateRequestMode="Disabled" CssClass="radio-inline" ID="RadioButtonList1" runat="server">
                             <asp:ListItem Selected="true">Credit Card <img style="width:50px; height:25px" src="https://w7.pngwing.com/pngs/117/675/png-transparent-visa-and-mastercard-ads-mastercard-credit-card-american-express-visa-debit-card-mastercard-text-payment-logo.png"/></asp:ListItem>
                             <asp:ListItem>FPX Transfer <img style="width:50px; height:30px" src="https://vectorise.net/logo/wp-content/uploads/2019/09/Logo-FPX.png"/></asp:ListItem>
                         </asp:RadioButtonList>
@@ -102,11 +103,11 @@
                         <asp:Label ID="lblNameOnCard" runat="server" Text="Name On Card"></asp:Label>
                     </p>
                     <p>
-                        <asp:TextBox ID="txtNameOnCard" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtNameOnCard" runat="server"></asp:TextBox>
                     </p>
                     <p>&nbsp;</p>
                     <p>
-                        <asp:Label ID="lblCarNum" runat="server" Text="Car Number"></asp:Label>
+                        <asp:Label ID="lblCardNum" runat="server" Text="Card Number"></asp:Label>
                     </p>
                     <p>
                         <asp:TextBox ID="txtCarNumber" runat="server" CssClass="form-control" OnTextChanged="TextBox1_TextChanged1"></asp:TextBox>

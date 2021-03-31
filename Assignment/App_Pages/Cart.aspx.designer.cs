@@ -15,15 +15,6 @@ namespace Assignment.App_Pages
     {
 
         /// <summary>
-        /// cartItemRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater cartItemRepeater;
-
-        /// <summary>
         /// lblTotalPrice control.
         /// </summary>
         /// <remarks>
@@ -33,6 +24,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Label lblTotalPrice;
 
         /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
         /// btnCheckout control.
         /// </summary>
         /// <remarks>
@@ -40,5 +40,14 @@ namespace Assignment.App_Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCheckout;
+
+        /// <summary>
+        /// cartItemRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater cartItemRepeater;
     }
 }

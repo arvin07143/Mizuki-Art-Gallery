@@ -26,10 +26,6 @@ namespace Assignment.App_Pages
                     String strSelectCartItem = "Select Cart.ArtworkID AS ArtworkID, Art.ArtworkName AS ArtworkName, Art.Price AS PRICE, Cart.Quantity AS Quantity, Cart.Quantity * Art.Price AS TotalPrice, Art.URL AS URL from Artwork Art, CartDetails Cart, [User] u Where Cart.Username = u.Username and Cart.Username=@username and Art.ArtworkID = Cart.ArtworkID;";
                     SqlCommand cmdSelectCartItem = new SqlCommand(strSelectCartItem, cartCon);
                     cmdSelectCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
-                    SqlDataAdapter da = new SqlDataAdapter();
-                    da.SelectCommand = cmdSelectCartItem;
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
 
                     cartItemRepeater.DataSource = cmdSelectCartItem.ExecuteReader();
                     cartItemRepeater.DataBind();
@@ -62,41 +58,94 @@ namespace Assignment.App_Pages
             SqlConnection cartItemCon = new SqlConnection(strCartItemCon);
             cartItemCon.Open();
             String artworkId = e.CommandArgument.ToString();
+            Label lblQuantity = (Label)e.Item.FindControl("lblQuantity");
             if (e.CommandName == "delete")
             {
                 String strDelCartItem = "DELETE FROM CartDetails WHERE ArtworkID=@artworkId AND Username=@username";
                 SqlCommand cmdDelCartItem = new SqlCommand(strDelCartItem, cartItemCon);
-                cmdDelCartItem.Parameters.AddWithValue("artworkId", artworkId);
-                cmdDelCartItem.Parameters.AddWithValue("username", Session["username"].ToString());
+                cmdDelCartItem.Parameters.AddWithValue("@artworkId", artworkId);
+                cmdDelCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
                 cmdDelCartItem.ExecuteNonQuery();
                 cartItemCon.Close();
                 Response.Redirect("~/App_Pages/Cart.aspx");
             }
             if (e.CommandName == "minus")
             {
-                String strDecreaseCartItem = "UPDATE CartDetails SET Quantity = Quantity-1 WHERE ArtworkID=@artworkId AND Username=@username";
-                SqlCommand cmdDecreaseCartItem = new SqlCommand(strDecreaseCartItem, cartItemCon);
-                cmdDecreaseCartItem.Parameters.AddWithValue("artworkId", artworkId);
-                cmdDecreaseCartItem.Parameters.AddWithValue("username", Session["username"].ToString());
-                cmdDecreaseCartItem.ExecuteNonQuery();
-                cartItemCon.Close();
-                //Response.Redirect("~/App_Pages/Cart.aspx");
+                SqlCommand cmdCheckQtyNve = new SqlCommand("SELECT Quantity FROM CartDetails WHERE ArtworkID=@artworkId AND Username=@username", cartItemCon);
+                cmdCheckQtyNve.Parameters.AddWithValue("@artworkId", artworkId);
+                cmdCheckQtyNve.Parameters.AddWithValue("@username", Session["username"].ToString());
+                int cartItemQty = Convert.ToInt32(cmdCheckQtyNve.ExecuteScalar());
+                if(cartItemQty > 0)
+                {
+                    String strDecreaseCartItem = "UPDATE CartDetails SET Quantity = Quantity-1 WHERE ArtworkID=@artworkId AND Username=@username";
+                    SqlCommand cmdDecreaseCartItem = new SqlCommand(strDecreaseCartItem, cartItemCon);
+                    cmdDecreaseCartItem.Parameters.AddWithValue("@artworkId", artworkId);
+                    cmdDecreaseCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
+                    cmdDecreaseCartItem.ExecuteNonQuery();
+                    cartItemCon.Close();
+                  
+                    int qty = Convert.ToInt32(lblQuantity.Text);
+                    qty -= 1;
+                    lblQuantity.Text = qty.ToString();
+                }
+                else
+                {
+                    lblQuantity.Text = "0";
+                }
+                
             }
             if (e.CommandName == "plus")
             {
-                String strIncreaseCartItem = "UPDATE CartDetails SET Quantity = Quantity+1 WHERE ArtworkID=@artworkId AND Username=@username";
-                SqlCommand cmdIncreaseCartItem = new SqlCommand(strIncreaseCartItem, cartItemCon);
-                cmdIncreaseCartItem.Parameters.AddWithValue("artworkId", artworkId);
-                cmdIncreaseCartItem.Parameters.AddWithValue("username", Session["username"].ToString());
-                cmdIncreaseCartItem.ExecuteNonQuery();
-                cartItemCon.Close();
-                Response.Redirect("~/App_Pages/Cart.aspx");
+                //check qty in cart
+                SqlCommand cmdCheckQty = new SqlCommand("SELECT Quantity FROM CartDetails WHERE ArtworkID = @artworkId AND Username = @username", cartItemCon);
+                cmdCheckQty.Parameters.AddWithValue("@artworkId", artworkId);
+                cmdCheckQty.Parameters.AddWithValue("@username", Session["username"].ToString());
+                int cartItemQty = Convert.ToInt32(cmdCheckQty.ExecuteScalar());
+                //check stock qty
+                SqlCommand cmdCheckMaxQty = new SqlCommand("SELECT [StockQuantity] FROM Artwork WHERE ArtworkID = @artworkId", cartItemCon);
+                cmdCheckMaxQty.Parameters.AddWithValue("@artworkId", artworkId);
+                int stockQty = Convert.ToInt32(cmdCheckMaxQty.ExecuteScalar());
+                if (cartItemQty < stockQty)
+                {
+                    String strIncreaseCartItem = "UPDATE CartDetails SET Quantity = Quantity+1 WHERE ArtworkID=@artworkId AND Username=@username";
+                    SqlCommand cmdIncreaseCartItem = new SqlCommand(strIncreaseCartItem, cartItemCon);
+                    cmdIncreaseCartItem.Parameters.AddWithValue("@artworkId", artworkId);
+                    cmdIncreaseCartItem.Parameters.AddWithValue("@username", Session["username"].ToString());
+                    cmdIncreaseCartItem.ExecuteNonQuery();
+                    cartItemCon.Close();
+                    int qty = Convert.ToInt32(lblQuantity.Text);
+                    qty += 1;
+                    lblQuantity.Text = qty.ToString();
+                }
+                else
+                {
+                    lblQuantity.Text = stockQty.ToString();
+                }
+
             }
         }
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/App_Pages/Checkout.aspx");
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+            //check if the cart is empty
+            SqlCommand cmdCartItemCount = new SqlCommand("SELECT COUNT(ArtworkID) FROM CartDetails WHERE Username=@username AND Quantity > 0", con);
+            cmdCartItemCount.Parameters.AddWithValue("@username", Session["username"].ToString());
+            int cartItemCount = Convert.ToInt32(cmdCartItemCount.ExecuteScalar());
+            if (cartItemCount > 0)
+            {
+                //delete item with 0 quantity
+                SqlCommand cmd = new SqlCommand("DELETE FROM CartDetails WHERE Quantity=0 AND Username=@username", con);
+                cmd.Parameters.AddWithValue("@username", Session["username"].ToString());
+                cmd.ExecuteNonQuery();
+                Response.Redirect("~/App_Pages/Checkout.aspx");
+            }
+            else
+            {
+                lblError.Text = "You cannot check out with your cart empty.";
+            }
+
         }
     }
 }
