@@ -13,7 +13,10 @@ namespace Assignment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Session["username"] == null)
+            {
+                Response.Redirect("~/App_Pages/Login.aspx");
+            }
         }
 
         protected void btnRemoveStockClick(object sender, EventArgs e)
