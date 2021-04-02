@@ -6,7 +6,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
@@ -47,9 +46,7 @@
                         </div>
                     </div>
                     <div class="description text-center">
-                        <p>
-                            <asp:Label ID="lblProfDesc" runat="server" Text="Professional Artist with Ambition"></asp:Label>
-                        </p>
+                        <p>Professional Artist with Ambition</p>
                     </div>
                     <div class="row">
                         <div class="col-md-6 ms-auto me-auto">
@@ -79,29 +76,56 @@
                     </div>
                     <div class="tab-content tab-space">
                         <div class="tab-pane active" id="info">
-                            <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource4">
-                                <ItemTemplate>
-                                    <table class="table table-borderless w-75 p3 ms-auto me-auto table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">Name</th>
-                                                <td>
-                                                    <asp:Label ID="lblProfName" runat="server" Text='<%# Eval("Name") %>'></asp:Label></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Date of Birth</th>
-                                                <td>
-                                                    <asp:Label ID="lblProfDOB" runat="server" Text='<%# Eval("DOB","{0:d MMMM yyyy}") %>'></asp:Label></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Gender</th>
-                                                <td>
-                                                    <asp:Label ID="lblProfGender" runat="server" Text='<%# Eval("Gender") %>'></asp:Label></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </ItemTemplate>
-                            </asp:Repeater>
+                            <div class="d-flex flex-row-reverse w-75 ms-auto me-auto">
+                                <asp:Button ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" CssClass="btn btn-outline-info" />
+                            </div>
+                            <table class="table table-borderless w-75 p3 ms-auto me-auto table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 40%">Name</th>
+                                        <td>
+                                            <asp:TextBox ID="txtName" BorderStyle="None" BackColor="Transparent" runat="server" Text='' Enabled="false"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ForeColor="Red" ID="rfvName" ControlToValidate="txtName" runat="server" ErrorMessage="Name must not be blank"></asp:RequiredFieldValidator>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 40%">Date of Birth</th>
+                                        <td>
+                                            <asp:TextBox ID="txtDOB" BorderStyle="None" BackColor="Transparent" runat="server" Text='' Enabled="false"></asp:TextBox>
+                                            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:Calendar ID="Calendar1" runat="server" Visible="false"></asp:Calendar>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 40%">Gender</th>
+                                        <td>
+                                            <asp:TextBox ID="txtGender" BorderStyle="None" BackColor="Transparent" runat="server" Text='' Enabled="false"></asp:TextBox>
+                                            <asp:DropDownList ID="DropDownList1" runat="server" Visible="false">
+                                                <asp:ListItem Value="M">Male</asp:ListItem>
+                                                <asp:ListItem Value="F">Female</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 40%">Email</th>
+                                        <td>
+                                            <asp:TextBox ID="txtEmail" BorderStyle="None" BackColor="Transparent" runat="server" Text='' Enabled="false"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ForeColor="Red" ID="rfvEmail" ControlToValidate="txtEmail" runat="server" ErrorMessage="Email must not be blank"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="emailRegex" runat="server" ControlToValidate="txtEmail"
+                                                ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                                                ErrorMessage="Invalid email address" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-outline-danger pr-2" Visible="false" />
+                                    <asp:Button ID="btnSave" runat="server" Text="Save Changes" OnClick="btnSave_Click" CssClass="btn btn-outline-success pl-2" Visible="false" />
+                                    </div>
+                            </div>
                         </div>
 
                         <div class="tab-pane" id="history">
