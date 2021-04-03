@@ -63,9 +63,14 @@ namespace Assignment.App_Pages
             cmdAddToCart.Parameters.AddWithValue("@Username", Session["username"]);
             cmdAddToCart.Parameters.AddWithValue("@ArtworkID", artID);
             cmdAddToCart.Parameters.AddWithValue("@Quantity", 1);
+            try
+            {
+                int updated = cmdAddToCart.ExecuteNonQuery();
+                cnn.Close();
+            } catch (Exception)
+            {
 
-            int updated = cmdAddToCart.ExecuteNonQuery();
-            cnn.Close();
+            }      
         }
 
         protected void btnDeleteFav(object sender, EventArgs e)
