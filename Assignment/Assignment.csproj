@@ -71,6 +71,7 @@
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
     <Content Include="App_Pages\Art.aspx" />
+    <Content Include="App_Pages\ArtDetail.aspx" />
     <Content Include="App_Pages\Cart.aspx" />
     <Content Include="App_Pages\Checkout.aspx" />
     <Content Include="App_Pages\Logout.aspx" />
@@ -100,6 +101,13 @@
     </Compile>
     <Compile Include="App_Pages\Art.aspx.designer.cs">
       <DependentUpon>Art.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Pages\ArtDetail.aspx.cs">
+      <DependentUpon>ArtDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Pages\ArtDetail.aspx.designer.cs">
+      <DependentUpon>ArtDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Pages\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
