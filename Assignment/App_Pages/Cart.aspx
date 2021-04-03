@@ -68,13 +68,16 @@
             width: 180px;
             object-fit: cover;
         }
+        #form1{
+            min-height: 600px;
+        }
     </style>
 
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
     <h1 class="heading" style="color: black"><b><span>Cart</span></b></h1>
     <div style="width: 50%; margin: auto;">
-        <form runat="server">
+        <form runat="server" id="form1">
             <div class="container">
                 <div class="checkoutbar bg-dark text-light shadow d-flex justify-content-between">
                     <div>
@@ -104,8 +107,14 @@
                                         <asp:Button CommandName="plus" CommandArgument='<%# Eval("ArtworkID")%>'
                                             Text="+" runat="server" ID="btnPlus" CssClass="btn-plusminus" />
                                     </div>
-                                    <p class="card-text">Unit Price : RM<%# Eval("Price")%></p>
+                                    <!--<p class="card-text">Unit Price : RM<%# Eval("Price")%></p>
                                     <p class="card-text">Sub-total : RM<%# Eval("TotalPrice")%></p>
+                                    -->
+                                    RM <br />
+                                    <asp:Label ID="lblUnit" Text='<%# Eval("Price")%>' runat="server" />
+                                    RM <br />
+                                    <asp:Label ID="lblSubtotal" Text='<%# Eval("TotalPrice")%>' runat="server" />
+
                                     <asp:Button CommandName="delete" CommandArgument='<%# Eval("ArtworkID")%>'
                                         Text="Delete" runat="server" ID="btnDelete" CssClass="btn-delete text-light bg-danger" />
                                 </div>

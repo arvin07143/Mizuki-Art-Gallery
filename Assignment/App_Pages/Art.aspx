@@ -81,33 +81,28 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="true" href="#digitalArtContent" data-toggle="tab">Active</a>
+                            <a class="nav-link active" aria-current="true" href="#watercolorPaintingContent" data-toggle="tab">Watercolor Painting</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#oilPaintingContent" data-toggle="tab">oilPaintingContent</a>
+                            <a class="nav-link" href="#oilPaintingContent" data-toggle="tab">Oil Painting</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#sketchesContent"  data-toggle="tab">sketchesContent</a>
+                            <a class="nav-link " href="#sketchesContent"  data-toggle="tab">Sketches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#acrylicPaintingContent" data-toggle="tab">acrylicPaintingContent</a>
+                            <a class="nav-link " href="#acrylicPaintingContent" data-toggle="tab">Acrylic Painting</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#test1" data-toggle="tab">test1</a></li>
-                                <li><a class="dropdown-item" href="#test2" data-toggle="tab">test2</a></li>
-                                
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#otherContent" data-toggle="tab">Other</a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" role="tabpanel" id="digitalArtContent">
+                        <div class="tab-pane fade show active" role="tabpanel" id="watercolorPaintingContent">
                             <div class="gallery">
-                                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork]"></asp:SqlDataSource>
-                                <asp:Repeater ID="Repeater2" runat="server" DataSourceID="SqlDataSource1">
+                                <asp:SqlDataSource ID="SqlDataSourceDigitalArt" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '2'"></asp:SqlDataSource>
+                                <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSourceDigitalArt">
                                     <ItemTemplate>
                                         <table>
                                             <tr>
@@ -122,19 +117,72 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="oilPaintingContent">
-                            <p>oilPaintingContent</p>
+                            <div class="gallery">
+                                <asp:SqlDataSource ID="SqlDataSource_oil" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '4'"></asp:SqlDataSource>
+                                <asp:Repeater ID="Repeater2" runat="server" DataSourceID="SqlDataSource_oil">
+                                    <ItemTemplate>
+                                        <table>
+                                            <tr>
+                                                <div class="gallery-item">
+                                                    <asp:ImageButton CssClass="gallery-image" ID="Image1" runat="server" ImageUrl='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="Image_Click" />
+                                                </div>
+                                            </tr>
+                                            <asp:HiddenField ID="ArtworkID" runat="server" Value='<%# Eval("ArtworkID") %>' />
+                                        </table>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="sketchesContent">
-                            <p>sketchesContent</p>
+                            <div class="gallery">
+                                <asp:SqlDataSource ID="SqlDataSource_sketches" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '5'"></asp:SqlDataSource>
+                                <asp:Repeater ID="Repeater3" runat="server" DataSourceID="SqlDataSource_sketches">
+                                    <ItemTemplate>
+                                        <table>
+                                            <tr>
+                                                <div class="gallery-item">
+                                                    <asp:ImageButton CssClass="gallery-image" ID="Image1" runat="server" ImageUrl='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="Image_Click" />
+                                                </div>
+                                            </tr>
+                                            <asp:HiddenField ID="ArtworkID" runat="server" Value='<%# Eval("ArtworkID") %>' />
+                                        </table>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="acrylicPaintingContent">
-                            <p>acrylicPaintingContent</p>
+                            <div class="gallery">
+                                <asp:SqlDataSource ID="SqlDataSource_acrylic" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '3'"></asp:SqlDataSource>
+                                <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource_acrylic">
+                                    <ItemTemplate>
+                                        <table>
+                                            <tr>
+                                                <div class="gallery-item">
+                                                    <asp:ImageButton CssClass="gallery-image" ID="Image1" runat="server" ImageUrl='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="Image_Click" />
+                                                </div>
+                                            </tr>
+                                            <asp:HiddenField ID="ArtworkID" runat="server" Value='<%# Eval("ArtworkID") %>' />
+                                        </table>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                         </div>
-                        <div class="tab-pane fade" role="tabpanel" id="test1">
-                            <p>test1</p>
-                        </div>
-                        <div class="tab-pane fade" role="tabpanel" id="test2">
-                            <p>teset2</p>
+                        <div class="tab-pane fade" role="tabpanel" id="otherContent">
+                            <div class="gallery">
+                                <asp:SqlDataSource ID="SqlDataSource_other" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '1'"></asp:SqlDataSource>
+                                <asp:Repeater ID="Repeater5" runat="server" DataSourceID="SqlDataSource_other">
+                                    <ItemTemplate>
+                                        <table>
+                                            <tr>
+                                                <div class="gallery-item">
+                                                    <asp:ImageButton CssClass="gallery-image" ID="Image1" runat="server" ImageUrl='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="Image_Click" />
+                                                </div>
+                                            </tr>
+                                            <asp:HiddenField ID="ArtworkID" runat="server" Value='<%# Eval("ArtworkID") %>' />
+                                        </table>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -158,7 +206,7 @@
                 </asp:Repeater>
             </div>
         </div>--%>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork]"></asp:SqlDataSource>
+        
     </form>
 </asp:Content>
 

@@ -17,11 +17,13 @@ namespace Assignment.App_Pages
         protected void Image_Click(object sender, System.EventArgs e)
         {
             ImageButton lnkRowSelection = (ImageButton)sender;
-            //Get the Recipe id from command argumen tof linkbutton
-            string artworkID = lnkRowSelection.CommandArgument.ToString();
+            ////Get the Recipe id from command argumen tof linkbutton
+            //string artworkID = lnkRowSelection.CommandArgument.ToString();
 
-            Session["artworkID"] = artworkID;
-            Response.Redirect("~/App_Pages/Order.aspx");
+            //Session["artworkID"] = artworkID;
+            //Response.Redirect("~/App_Pages/Order.aspx");
+            string queryString = "~/App_Pages/ArtDetail.aspx?ArtworkID=" + lnkRowSelection.CommandArgument.ToString();
+            Response.Redirect(queryString);
         }
     }
 }

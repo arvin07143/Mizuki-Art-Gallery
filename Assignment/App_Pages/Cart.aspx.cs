@@ -87,6 +87,11 @@ namespace Assignment.App_Pages
                     int qty = Convert.ToInt32(lblQuantity.Text);
                     qty -= 1;
                     lblQuantity.Text = qty.ToString();
+                    Label unitPriceLabel = e.Item.FindControl("lblUnit") as Label;
+                    Label subtotalLabel = e.Item.FindControl("lblSubtotal") as Label;
+                    subtotalLabel.Text = (Convert.ToDouble(subtotalLabel.Text) - Convert.ToDouble(unitPriceLabel.Text)).ToString();
+                    double total = Convert.ToDouble(lblTotalPrice.Text);
+                    lblTotalPrice.Text = (total - Convert.ToDouble(unitPriceLabel.Text)).ToString();
                 }
                 else
                 {
@@ -116,6 +121,11 @@ namespace Assignment.App_Pages
                     int qty = Convert.ToInt32(lblQuantity.Text);
                     qty += 1;
                     lblQuantity.Text = qty.ToString();
+                    Label unitPriceLabel = e.Item.FindControl("lblUnit") as Label;
+                    Label subtotalLabel = e.Item.FindControl("lblSubtotal") as Label;
+                    subtotalLabel.Text = (Convert.ToDouble(unitPriceLabel.Text) + Convert.ToDouble(subtotalLabel.Text)).ToString();
+                    double total = Convert.ToDouble(lblTotalPrice.Text);
+                    lblTotalPrice.Text = (total + Convert.ToDouble(unitPriceLabel.Text)).ToString();
                 }
                 else
                 {

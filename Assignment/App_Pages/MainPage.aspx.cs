@@ -44,11 +44,10 @@ namespace Assignment.App_Pages
         protected void SlideImg_Click(object sender, ImageClickEventArgs e)
         {
             ImageButton lnkRowSelection = (ImageButton)sender;
-            //Get the Recipe id from command argumen tof linkbutton
+            //Get the id from command argumen tof linkbutton
             string artworkID = lnkRowSelection.CommandArgument.ToString();
-
-            Session["artworkID"] = artworkID;
-            Response.Redirect("~/App_Pages/Order.aspx");
+            
+            Response.Redirect("~/App_Pages/ArtDetail.aspx?ArtworkID=" + artworkID);
         }
     }
 }
