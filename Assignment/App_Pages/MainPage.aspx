@@ -10,13 +10,9 @@
             object-position: center;
             margin: auto;
         }
+        
 
-        .img-row {
-            height: 240px;
-            width: 135px;
-            object-fit: cover;
-            object-position: center;
-        }
+        
 
         .overlay {
             position: relative;
@@ -28,7 +24,9 @@
             min-width: 180px !important;
         }
         .card-img-top {
-            height: 260px;
+            height: 280px;
+            object-fit: cover;
+            object-position:center;
         }
         #content hr{
             margin: 50px 0 30px 0;
@@ -38,7 +36,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <form id="form1" runat="server">
-
+        <%--carousel--%>
         <div class="bg-dark" style="height: 500px">
             <div id="carouselExampleControls" class="carousel slide container w-50 pt-2" data-interval="3000" data-pause="hover">
                 <div class="carousel-inner m-auto">
@@ -63,6 +61,8 @@
                 </a>
             </div>
         </div>
+        <%--end of carousel--%>
+
         <div id="content" class="overlay">
             <div class="container">
                 <h1 class="text-light mb-4">Trending</h1>
@@ -70,7 +70,7 @@
                     <asp:Repeater ID="rptTrending" runat="server">
                         <ItemTemplate>
                             <div class="card">
-                                <asp:ImageButton ID="ibtnTrending" runat="server" class="card-img-top img-row" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
+                                <asp:ImageButton ID="ibtnTrending" runat="server" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" CssClass="card-img-top" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
                                     <p class="card-text" runat="server"><%# Eval("Username") %></p>
@@ -89,7 +89,7 @@
                     <asp:Repeater ID="rptHotSelling" runat="server">
                         <ItemTemplate>
                             <div class="card">
-                                <asp:ImageButton ID="ibtnHotSelling" runat="server" class="card-img-top img-row" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
+                                <asp:ImageButton ID="ibtnHotSelling" runat="server" class="card-img-top" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
                                     <p class="card-text" runat="server"><%# Eval("Username") %></p>
@@ -108,7 +108,7 @@
                     <asp:Repeater ID="rptNewArt" runat="server">
                         <ItemTemplate>
                             <div class="card">
-                                <asp:ImageButton ID="ibtnNewArt" runat="server" class="card-img-top img-row" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
+                                <asp:ImageButton ID="ibtnNewArt" runat="server" class="card-img-top" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
                                     <p class="card-text" runat="server"><%# Eval("Username") %></p>
