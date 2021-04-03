@@ -110,11 +110,11 @@
                                     <!--<p class="card-text">Unit Price : RM<%# Eval("Price")%></p>
                                     <p class="card-text">Sub-total : RM<%# Eval("TotalPrice")%></p>
                                     -->
-                                    RM <br />
+                                    <br />RM &nbsp;
                                     <asp:Label ID="lblUnit" Text='<%# Eval("Price")%>' runat="server" />
-                                    RM <br />
+                                    <br />RM &nbsp;
                                     <asp:Label ID="lblSubtotal" Text='<%# Eval("TotalPrice")%>' runat="server" />
-
+                                    <br />
                                     <asp:Button CommandName="delete" CommandArgument='<%# Eval("ArtworkID")%>'
                                         Text="Delete" runat="server" ID="btnDelete" CssClass="btn-delete text-light bg-danger" />
                                 </div>
