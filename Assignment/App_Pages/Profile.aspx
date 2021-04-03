@@ -137,7 +137,8 @@
                                                 <th style="width: 10%" scope="col">No.</th>
                                                 <th style="width: 10%" scope="col">Order ID</th>
                                                 <th style="width: 15%" scope="col">Date</th>
-                                                <th scope="col">Contents</th>
+                                                <th style="width: 35%" scope="col">Contents</th>
+                                                <th style="width: 15%" scope="col">Subtotal</th>
                                                 <th style="width: 15%" scope="col">Price</th>
                                             </tr>
                                         </thead>
@@ -145,7 +146,7 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:HiddenField ID="txtOuterID" runat="server" Value='<%# Eval("OrderID") %>' Visible="false" />
-                                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkName FROM Artwork INNER JOIN OrderDetails ON Artwork.ArtworkID = OrderDetails.ArtworkID INNER JOIN [Order] ON OrderDetails.OrderID = [Order].OrderID AND [Order].OrderID = CAST(@orderID AS INT)">
+                                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkName, OrderDetails.Quantity, (OrderDetails.Quantity * Artwork.Price) AS Subtotal FROM Artwork INNER JOIN OrderDetails ON Artwork.ArtworkID = OrderDetails.ArtworkID INNER JOIN [Order] ON OrderDetails.OrderID = [Order].OrderID AND [Order].OrderID = CAST(@orderID AS INT)">
                                         <SelectParameters>
                                             <asp:ControlParameter ControlID="txtOuterID" Name="orderID" PropertyName="Value" />
                                         </SelectParameters>
@@ -155,12 +156,23 @@
                                             <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
                                             <td style="width: 10%" class="align-middle"><%# Eval("OrderID") %></td>
                                             <td style="width: 15%" class="align-middle"></td>
-                                            <td style="margin-left: -10px">
+                                            <td style="width: 35%; margin-left: -10px">
                                                 <asp:Repeater ID="Repeater3" runat="server" DataSourceID="SqlDataSource3">
                                                     <ItemTemplate>
                                                         <table class="table">
                                                             <tr>
-                                                                <td><%# Eval("ArtworkName") %></td>
+                                                                <td><%# Eval("Quantity") %>x&nbsp;&nbsp;<%# Eval("ArtworkName") %></td>
+                                                            </tr>
+                                                        </table>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </td>
+                                            <td style="width: 15%; margin-left: -10px">
+                                                <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource3">
+                                                    <ItemTemplate>
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td><%# String.Format("RM {0:0.00}",Eval("Subtotal")) %></td>
                                                             </tr>
                                                         </table>
                                                     </ItemTemplate>
