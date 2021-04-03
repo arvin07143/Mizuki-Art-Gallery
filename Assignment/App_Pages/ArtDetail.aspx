@@ -44,6 +44,10 @@
                                 <asp:Label ID="artistName" runat="server" CssClass="h5"></asp:Label>
                             </div>
                             <div>
+                                <p style="display: inline; color: grey; margin-right: 10px">In Stock: </p>
+                                <asp:Label ID="stockQuantity" runat="server"></asp:Label>
+                            </div>
+                            <div>
                                 <p style="display: inline; color: grey; margin-right: 10px">RM </p>
                                 <asp:Label ID="price" runat="server"></asp:Label>
                             </div>
