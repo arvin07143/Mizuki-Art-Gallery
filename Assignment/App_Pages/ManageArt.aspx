@@ -10,6 +10,16 @@
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     <link href="../css/lightbox.css" rel="stylesheet" />
     <script src="../js/lightbox.js"></script>
+    <script>
+        function UploadFileCheck(source, arguments) {
+            var sFile = arguments.Value;
+            arguments.IsValid =
+                ((sFile.endsWith('.jpg')) ||
+                    (sFile.endsWith('.jpeg')) ||
+                    (sFile.endsWith('.gif')) ||
+                    (sFile.endsWith('.png')));
+        }
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -26,37 +36,49 @@
                             <label for="formArtName" class="col-sm-3 col-form-label">Art Name</label>
                             <div class="col-sm-9">
                                 <asp:TextBox ID="formArtName" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ValidationGroup="Add Form" ForeColor="Red" ID="rfvNewArtName" ControlToValidate="formArtName" runat="server" Display="Dynamic" ErrorMessage="Art Name Cannot Be Blank"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="formArtCategory" class="col-sm-3 col-form-label">Art Category</label>
+                            <div class="col-sm-9">
+                                <asp:DropDownList ID="formArtCategory" CssClass="form-select" runat="server"></asp:DropDownList>
+
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="formArtPrice" class="col-sm-3 col-form-label">Art Price</label>
                             <div class="col-sm-9">
                                 <asp:TextBox ID="formArtPrice" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ValidationGroup="Add Form" ForeColor="Red" ID="rfvFormPrice" Display="Dynamic" ControlToValidate="formArtPrice" runat="server" ErrorMessage="Price Cannot Be Blank"></asp:RequiredFieldValidator>
+                                <asp:CompareValidator ValidationGroup="Add Form" ForeColor="Red" ID="priceFormValidator" Display="Dynamic" ControlToValidate="formArtPrice" Type="Double" ValueToCompare="0.01" Operator="GreaterThan" runat="server" ErrorMessage="Price Must Be Larger Than 1"></asp:CompareValidator>
+
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="formArtStock" class="col-sm-3 col-form-label">Art Quantity</label>
                             <div class="col-sm-9">
                                 <asp:TextBox ID="formArtStock" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ValidationGroup="Add Form" ForeColor="Red" ID="rfvFormStock" Display="Dynamic" ControlToValidate="formArtStock" runat="server" ErrorMessage="Stock Value Cannot Be Blank"></asp:RequiredFieldValidator>
+                                <asp:CompareValidator ValidationGroup="Add Form" ForeColor="Red" ID="stockFormValidator" Display="Dynamic" ControlToValidate="formArtStock" Type="Integer" ValueToCompare="1" Operator="GreaterThanEqual" runat="server" ErrorMessage="Stock Must Be Greater or Equal 1"></asp:CompareValidator>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="imgFile" class="form-label">Upload your image here</label>
                             <asp:FileUpload ID="imgFile" runat="server" CssClass="form-control" />
+                            <asp:CustomValidator ValidationGroup="Add Form" ForeColor="Red" ID="CustomValidator1" ControlToValidate="imgFile" runat="server" SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid: File Type (allowed types: jpg, jpeg, gif, png)" ClientValidationFunction="UploadFileCheck"></asp:CustomValidator>
                             <div id="uploadHelp" class="form-text">
                                 Supported file extensions : .JPG
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <asp:Button CssClass="btn btn-success" runat="server" OnClick="addItemFormSubmitClicked" Text="Save" />
+                            <asp:Button CssClass="btn btn-success" runat="server" OnClick="addItemFormSubmitClicked" ValidationGroup="Add Form" Text="Save" />
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
-
 
         <div class="main main-raised" style="margin-top: 100px">
             <div class="container" style="">
@@ -69,7 +91,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Price, ArtworkID, ArtworkName, StockQuantity, URL FROM Artwork WHERE (Username = @currentUsername)">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.Price, Artwork.ArtworkID, Artwork.ArtworkName, Artwork.StockQuantity, Artwork.URL, ArtCategory.CategoryName FROM Artwork INNER JOIN ArtCategory ON Artwork.CategoryID = ArtCategory.CategoryID WHERE (Artwork.Username = @currentUsername)">
                         <SelectParameters>
                             <asp:SessionParameter Name="currentUsername" SessionField="username" />
                         </SelectParameters>
@@ -78,36 +100,55 @@
                         <HeaderTemplate>
                             <table class="table">
                                 <thead>
-                                    <td style="width: 10%">No.</td>
                                     <td style="width: 10%">Artwork ID</td>
-                                    <td style="width: 30%">Artwork Image</td>
-                                    <td style="width: 20%">Artwork Name</td>
-                                    <td style="width: 10%">Artwork Price</td>
-                                    <td style="width: 20%">Artwork Stock</td>
+                                    <td style="width: 20%">Thumbnail</td>
+                                    <td style="width: 15%">Name</td>
+                                    <td style="width: 15%">Category</td>
+                                    <td style="width: 15%">Price</td>
+                                    <td style="width: 15%">Stock</td>
+                                    <td style="width: 10%"></td>
                                 </thead>
                             </table>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <table class="table table-borderless table-hover">
+                            <table class="table table-borderless table-hover table-responsive">
                                 <tr>
-                                    <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                    <td style="width: 10%" class="align-middle">
+                                    <td style="width: 10%; text-align: center" class="align-middle">
                                         <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'> </asp:Label>
-
                                     </td>
-                                    <td style="width: 30%">
+                                    <td style="width: 20%">
                                         <a href='<%#Eval("URL") %>' id="gallery-img" data-lightbox="img-gallery" data-title="<%# Eval("ArtworkName") %>">
                                             <img class="img-thumbnail img-fluid" style="max-width: 80%" src='<%#Eval("URL") %>'>
                                         </a>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                    <td style="width: 20%" class="align-middle"><%# Eval("ArtworkName") %></td>
-                                    <td style="width: 10%" class="align-middle"><%# Eval("Price","{0:C2}") %></td>
-                                    <td style="width: 20%" class="align-middle">
-                                        <row>
-                                                <asp:LinkButton class="btn btn-default btn-qty" ID="btnRemove" runat="server" onClick="btnRemoveStockClick"><i class="material-icons">remove</i></asp:LinkButton>
-                                                <asp:TextBox class="btn btn-outline-dark btn-qty" ID="txtStock" runat="server" text=<%# Eval("StockQuantity") %>></asp:TextBox>
-                                                <asp:LinkButton class="btn btn-default btn-qty" ID="btnAdd" runat="server" onClick="btnAddStockClick"><i class="material-icons">add</i></asp:LinkButton>
-                                            </row>
+                                        &nbsp;&nbsp;&nbsp;</td>
+                                    <td style="width: 15%" class="align-middle">
+                                        <asp:TextBox ID="artName" runat="server" Text='<%# Eval("ArtworkName") %>' Enabled="false" BorderStyle="None" BackColor="Transparent" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ValidationGroup="Edit Image" ForeColor="Red" Display="Dynamic" ID="rfvArtName" runat="server" ErrorMessage="Art Name Cannot Be Blank" ControlToValidate="artName"></asp:RequiredFieldValidator>
+                                    </td>
+                                    <td style="width: 15%" class="align-middle">
+                                        <asp:Label ID="lblCategory" runat="server" Text='<%# Eval("CategoryName") %>'></asp:Label>
+                                        <asp:DropDownList ID="ddlCat" CssClass="form-select" runat="server" Visible="false"></asp:DropDownList>
+                                    </td>
+                                    <td style="width: 15%" class="align-middle">
+                                        <div class="input-group">
+                                            <div class="input-group-text" style="background-color: transparent; border: none">RM</div>
+                                            <asp:TextBox ID="artPrice" Display="Dynamic" runat="server" Text='<%# Eval("Price","{0:2}") %>' Enabled="false" BorderStyle="None" BackColor="Transparent" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator ValidationGroup="Edit Image" ID="rfvPrice" ForeColor="Red" Display="Dynamic" ControlToValidate="artPrice" runat="server" ErrorMessage="Price Cannot Be Blank"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ValidationGroup="Edit Image" ID="priceValidator" ForeColor="Red" Display="Dynamic" ControlToValidate="artPrice" Type="Double" ValueToCompare="0.01" Operator="GreaterThan" runat="server" ErrorMessage="Price Must Be Larger Than 1"></asp:CompareValidator>
+                                    </td>
+                                    <td style="width: 15%" class="align-middle">
+                                        <asp:TextBox ID="txtStock" runat="server" Text='<%# Eval("StockQuantity") %>' Enabled="false" BorderStyle="None" BackColor="Transparent" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ValidationGroup="Edit Image" ID="rfvStock" ForeColor="Red" Display="Dynamic" ControlToValidate="txtStock" runat="server" ErrorMessage="Stock Value Cannot Be Blank"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ValidationGroup="Edit Image" ID="stockValidator" ForeColor="Red" Display="Dynamic" ControlToValidate="txtStock" Type="Integer" ValueToCompare="1" Operator="GreaterThanEqual" runat="server" ErrorMessage="Stock Must Be Greater or Equal 1"></asp:CompareValidator>
+                                    </td>
+                                    <td class="align-middle align-content-center" style="width: 10%">
+                                        <div class="btn-group-vertical" role="group">
+                                            <asp:LinkButton ID="btnEditImage" CssClass="btn btn-outline-info" runat="server" OnClick="btnEditImage_Click" CausesValidation="false">Edit</asp:LinkButton>
+                                            <asp:LinkButton ID="btnSaveImage" CssClass="btn btn-outline-success" runat="server" OnClick="btnSaveImage_Click" Visible="False" ValidationGroup="Edit Image">Save</asp:LinkButton>
+                                            <asp:LinkButton ID="btnCancelEdit" CssClass="btn btn-outline-danger" runat="server" OnClick="btnCancel_Click" Visible="False" CausesValidation="false">Cancel</asp:LinkButton>
+                                            <asp:LinkButton ID="btnDeleteImage" CssClass="btn btn-danger" runat="server" OnClick="btnDeleteImage_Click" Visible="False" CausesValidation="false">Delete Art</asp:LinkButton>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>

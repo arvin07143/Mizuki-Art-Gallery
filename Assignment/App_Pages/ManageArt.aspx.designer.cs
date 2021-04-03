@@ -33,6 +33,24 @@ namespace Assignment
         protected global::System.Web.UI.WebControls.TextBox formArtName;
 
         /// <summary>
+        /// rfvNewArtName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewArtName;
+
+        /// <summary>
+        /// formArtCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList formArtCategory;
+
+        /// <summary>
         /// formArtPrice control.
         /// </summary>
         /// <remarks>
@@ -40,6 +58,24 @@ namespace Assignment
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox formArtPrice;
+
+        /// <summary>
+        /// rfvFormPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFormPrice;
+
+        /// <summary>
+        /// priceFormValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator priceFormValidator;
 
         /// <summary>
         /// formArtStock control.
@@ -51,6 +87,24 @@ namespace Assignment
         protected global::System.Web.UI.WebControls.TextBox formArtStock;
 
         /// <summary>
+        /// rfvFormStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFormStock;
+
+        /// <summary>
+        /// stockFormValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator stockFormValidator;
+
+        /// <summary>
         /// imgFile control.
         /// </summary>
         /// <remarks>
@@ -58,6 +112,15 @@ namespace Assignment
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload imgFile;
+
+        /// <summary>
+        /// CustomValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
 
         /// <summary>
         /// btnAddNewArt control.
