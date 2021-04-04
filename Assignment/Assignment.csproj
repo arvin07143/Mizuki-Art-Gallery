@@ -79,6 +79,7 @@
     <Content Include="App_Pages\Order.aspx" />
     <Content Include="App_Pages\Profile.aspx" />
     <Content Include="App_Pages\Login.aspx" />
+    <Content Include="App_Pages\Receipt.aspx" />
     <Content Include="App_Pages\Register.aspx" />
     <Content Include="css\lightbox.css" />
     <Content Include="css\login_register.css" />
@@ -157,6 +158,13 @@
     </Compile>
     <Compile Include="App_Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Pages\Receipt.aspx.cs">
+      <DependentUpon>Receipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Pages\Receipt.aspx.designer.cs">
+      <DependentUpon>Receipt.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

@@ -534,7 +534,7 @@
                                     <tr>
                                         <td style="width: 60%" class="align-middle"><%# Eval("ArtworkName")%></td>
                                         <td style="width: 10%" class="align-middle"><%# Eval("Quantity")%></td>
-                                        <td style="width: 30%; text-align: right"" class="align-middle"><%# Eval("TotalPrice")%></td>
+                                        <td style="width: 30%; text-align: right" class="align-middle"><%# Eval("TotalPrice")%></td>
                                     </tr>
                                 </table>
                             </ItemTemplate>

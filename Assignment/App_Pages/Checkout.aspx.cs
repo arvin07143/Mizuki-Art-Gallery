@@ -44,6 +44,7 @@ namespace Assignment.App_Pages
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
+
             Double total = Convert.ToDouble(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text));
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
@@ -79,6 +80,8 @@ namespace Assignment.App_Pages
                 cmdAddOrderDetails.ExecuteNonQuery();
             }
             con.Close();
+
+            
 
             //rmb add delete query
         }
