@@ -48,14 +48,16 @@ namespace Assignment.App_Pages
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
             con.Open();
-            SqlCommand cmdAddOrder = new SqlCommand("INSERT INTO [dbo].[Order] VALUES (@Username, @Date, @Total, @PaymentType, @CardNumber, @DeliveryAddress, @RecipientName);", con);
+            SqlCommand cmdAddOrder = new SqlCommand("INSERT INTO [dbo].[Order] VALUES (@Username, @Date, @Total, @PaymentType, @CardNumber, @DeliveryAddress, @RecipientName, @EmailAddress, @ContactNumber);", con);
             cmdAddOrder.Parameters.AddWithValue("@Username", Session["Username"].ToString());
             cmdAddOrder.Parameters.AddWithValue("@Date", DateTime.Now.ToString("dd-MM-yyyy"));
             cmdAddOrder.Parameters.AddWithValue("@Total", total);
             cmdAddOrder.Parameters.AddWithValue("@PaymentType", rblPayment.Text);
             cmdAddOrder.Parameters.AddWithValue("@CardNumber", txtCardNumber.Text);
-            cmdAddOrder.Parameters.AddWithValue("@DeliveryAddress", txtAddress.Text);
-            cmdAddOrder.Parameters.AddWithValue("@RecipientName", txtRecipentName.Text);
+            cmdAddOrder.Parameters.AddWithValue("@DeliveryAddress", txtDeliveryAddress.Text + " " + txtZipCode.Text + " " + txtCity.Text + " " + ddlState.Text);
+            cmdAddOrder.Parameters.AddWithValue("@RecipientName", txtName.Text);
+            cmdAddOrder.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
+            cmdAddOrder.Parameters.AddWithValue("@ContactNumber", txtContactNo.Text);
             cmdAddOrder.ExecuteNonQuery();
             con.Close();
 
@@ -119,6 +121,11 @@ namespace Assignment.App_Pages
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
         }
