@@ -51,6 +51,9 @@ namespace Assignment.App_Pages
             cmdAddOrder.Parameters.AddWithValue("@Username", Session["Username"].ToString());
             cmdAddOrder.Parameters.AddWithValue("@Date", DateTime.Now.ToString("dd-MM-yyyy"));
             cmdAddOrder.Parameters.AddWithValue("@Total", total);
+            cmdAddOrder.Parameters.AddWithValue("@CardNumber", txtCardNumber.Text);
+            cmdAddOrder.Parameters.AddWithValue("@DeliveryAddress", txtAddress.Text);
+            cmdAddOrder.Parameters.AddWithValue("@RecipentName", txtRecipentName.Text);
             cmdAddOrder.ExecuteNonQuery();
             con.Close();
 
@@ -73,9 +76,11 @@ namespace Assignment.App_Pages
             }
             con.Close();
 
+            //rmb add delete query
+        }
 
-
-
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
