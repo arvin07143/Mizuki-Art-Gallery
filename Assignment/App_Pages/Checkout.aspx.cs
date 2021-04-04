@@ -107,8 +107,8 @@ namespace Assignment.App_Pages
             cmdClearCart.ExecuteNonQuery();
             con.Close();
 
-            Response.Redirect("~/App_Pages/ProductDelivery.aspx");
-
+            string queryString = "~/App_Pages/Receipt.aspx?OrderID=" + orderID + "&ZipCode=" + txtZipCode.Text + "&City=" + txtCity.Text + "&State=" + ddlState.Text;
+            Response.Redirect(queryString);
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)

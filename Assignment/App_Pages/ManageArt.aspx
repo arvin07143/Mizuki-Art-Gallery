@@ -213,7 +213,7 @@
                                             <td style="width: 15%" class="align-middle">
                                                 <asp:Label ID="lblPurchasedBy" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
                                             </td>
-                                            <td style="width: 15%" class="align-middle">
+                                            <td style="width: 10%" class="align-middle">
                                                 <asp:TextBox ID="lblSalesQuantity" runat="server" Text='<%# Eval("Quantity") %>' Enabled="false" BorderStyle="None" BackColor="Transparent" CssClass="form-control"></asp:TextBox>
                                             </td>
                                             <td style="width: 15%" class="align-middle">

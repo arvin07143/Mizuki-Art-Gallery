@@ -159,13 +159,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Label Label12;
 
         /// <summary>
-        /// lblByID control.
+        /// lblName2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblByID;
+        protected global::System.Web.UI.WebControls.Label lblName2;
 
         /// <summary>
         /// lblPhone control.
