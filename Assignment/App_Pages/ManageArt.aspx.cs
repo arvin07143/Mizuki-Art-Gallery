@@ -128,7 +128,7 @@ namespace Assignment
             String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection cnn = new SqlConnection(con);
             cnn.Open();
-            String deleteArt = "DELETE FROM [dbo].[Artwork] WHERE [ArtworkID] = @artID";
+            String deleteArt = "UPDATE [dbo].[Artwork] SET [Artwork].[StockQuantity] = 0 WHERE [ArtworkID] = @artID";
             SqlCommand cmdUpdateStock = new SqlCommand(deleteArt, cnn);
             cmdUpdateStock.Parameters.AddWithValue("@artID", artID);
 
