@@ -100,6 +100,23 @@ namespace Assignment
             }
         }
 
+        protected void Repeater2_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
+            if (sender is Repeater rptDemo && rptDemo.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    // Show the Error Label (if no data is present).
+                    Label lblErrorMsg2 = e.Item.FindControl("lblErrorMsg2") as Label;
+                    if (lblErrorMsg2 != null)
+                    {
+                        lblErrorMsg2.Visible = true;
+                    }
+                }
+            }
+        }
+
         protected void btnDeleteImage_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
