@@ -40,5 +40,43 @@ namespace Assignment.App_Pages
         {
             Response.Redirect("~/App_Pages/MainPage.aspx");
         }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Double total = Convert.ToDouble(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text));
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
+            con.Open();
+            SqlCommand cmdAddOrder = new SqlCommand("INSERT INTO [dbo].[Order] (Username, Date, Total) VALUES (@Username, @Date, @Total);", con);
+            cmdAddOrder.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+            cmdAddOrder.Parameters.AddWithValue("@Date", DateTime.Now.ToString("dd-MM-yyyy"));
+            cmdAddOrder.Parameters.AddWithValue("@Total", total);
+            cmdAddOrder.ExecuteNonQuery();
+            con.Close();
+
+            con.Open();
+            SqlCommand cmdOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
+            int orderID = Convert.ToInt32(cmdOrderID.ExecuteScalar());
+            con.Close();
+
+            con.Open();
+            SqlCommand cmdCartDetails = new SqlCommand("SELECT CartDetails.ArtworkID, CartDetails.Quantity FROM CartDetails WHERE CartDetails.Username= @Username;", con);
+            cmdCartDetails.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+            SqlDataReader cart = cmdCartDetails.ExecuteReader();
+            while (cart.Read())
+            {
+                SqlCommand cmdAddOrderDetails = new SqlCommand("INSERT INTO OrderDetails VALUES (@OrderID, @ArtworkID, @Quantity);", con);
+                cmdAddOrderDetails.Parameters.AddWithValue("@OrderID", orderID);
+                cmdAddOrderDetails.Parameters.AddWithValue("@ArtworkID", cart["ArtworkID"].ToString());
+                cmdAddOrderDetails.Parameters.AddWithValue("@Quantity", cart["Quantity"].ToString());
+                cmdAddOrderDetails.ExecuteNonQuery();
+            }
+            con.Close();
+
+
+
+
+
+        }
     }
 }

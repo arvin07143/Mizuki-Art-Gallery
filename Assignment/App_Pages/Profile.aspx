@@ -16,7 +16,7 @@
                         <asp:SessionParameter Name="currentUser" SessionField="username" />
                     </SelectParameters>
                 </asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Order].OrderID FROM [User] INNER JOIN [Order] ON [User].Username = [Order].Username WHERE [User].Username = @currentUserName">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Order].OrderID, [Order].Total, FORMAT([Order].Date, 'dd/MM/yyyy') AS Date FROM [User] INNER JOIN [Order] ON [User].Username = [Order].Username WHERE [User].Username = @currentUserName">
                     <SelectParameters>
                         <asp:SessionParameter Name="currentUserName" SessionField="username" />
                     </SelectParameters>
@@ -155,7 +155,7 @@
                                         <tr>
                                             <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
                                             <td style="width: 10%" class="align-middle"><%# Eval("OrderID") %></td>
-                                            <td style="width: 15%" class="align-middle"></td>
+                                            <td style="width: 15%" class="align-middle"><%# Eval("Date") %></td>
                                             <td style="width: 35%; margin-left: -10px">
                                                 <asp:Repeater ID="Repeater3" runat="server" DataSourceID="SqlDataSource3">
                                                     <ItemTemplate>
@@ -178,7 +178,7 @@
                                                     </ItemTemplate>
                                                 </asp:Repeater>
                                             </td>
-                                            <td style="width: 15%" class="align-middle"></td>
+                                            <td style="width: 15%" class="align-middle"><%# String.Format("RM {0:0.00}",Eval("Total")) %></td>
                                         </tr>
                                     </table>
                                 </ItemTemplate>
