@@ -81,7 +81,7 @@
             <br />
             <table class="auto-style3" style="width:80%; border:1px solid black">
                 <tr>
-                    <td class="auto-style8"><asp:Label style="float:right" ID="Label9" runat="server" Text="Sold To :"></asp:Label>
+                    <td class="auto-style8"><asp:Label style="float:right" ID="Label9" runat="server" Text="Deliver To :"></asp:Label>
                     </td>
                     <td class="auto-style10">
                         <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
@@ -102,25 +102,25 @@
                         <asp:Label style="float:right" ID="Label11" runat="server" Text="Card Number :"></asp:Label>
                     </td>
                     <td class="auto-style12">
-                        <asp:Label ID="lblCardNumber" runat="server" Text="CardNumber"></asp:Label>
+                        <asp:Label ID="lblCardNumber" runat="server" Text="CardNumber"><%# Eval("CardNumber")%></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">&nbsp;</td>
                     <td class="auto-style14">
-                        <asp:Label ID="lblCityZip" runat="server" Text="City +  zip"></asp:Label>
+                        <asp:Label ID="lblCityZip" runat="server" Text="City +  zip"><%# Eval("Price")%></asp:Label>
                     </td>
                     <td style="text-align:right">
                         <asp:Label style="float:right" ID="Label12" runat="server" Text="By :"></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="lblByID" runat="server" Text="ID"></asp:Label>
+                        <asp:Label ID="lblName2" runat="server" Text="ID"><%# Eval("Name")%></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style4">&nbsp;</td>
                     <td class="auto-style14">
-                        <asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label>
+                        <asp:Label ID="lblPhone" runat="server" Text="Phone"><%# Eval("ContactNumber")%></asp:Label>
                     </td>
                 </tr>
             </table>
@@ -145,9 +145,9 @@
                                 <table class="table w-75 p3 ms-auto me-auto" style="width:80%; border-color:black; border-width:1px; border-style:solid; border-top:none">
                                     <tr>
                                         <td style="width: 10%; border-right:solid; text-align:center" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                        <td style="width: 40%; border-right:solid;text-align:center"" class="align-middle"><%# Eval("ArtworkName")%></td>
-                                        <td style="width: 10%; border-right:solid;text-align:center"" class="align-middle"><%# Eval("Quantity")%></td>
-                                        <td style="width: 10%; border-right:solid;text-align:center"" class="align-middle"><%# Eval("Price")%></td>
+                                        <td style="width: 40%; border-right:solid;text-align:center" class="align-middle"><%# Eval("ArtworkName")%></td>
+                                        <td style="width: 10%; border-right:solid;text-align:center" class="align-middle"><%# Eval("Quantity")%></td>
+                                        <td style="width: 10%; border-right:solid;text-align:center" class="align-middle"><%# Eval("Price")%></td>
                                         <td style="width: 10%; text-align: right" class="align-middle"><%# Eval("TotalPrice")%></td>
                                        
                                     </tr>

@@ -16,38 +16,41 @@ namespace Assignment.App_Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string orderID = Request.QueryString["orderID"];
-
             String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection orderCon = new SqlConnection(strOrderCon);
 
+            lblCityZip.Text = Request.QueryString["ZipCode"] + Request.QueryString["City"] + Request.QueryString["State"];
+
             orderCon.Open();
-            String strSelectItem = "SELECT Cart.ArtworkID, Art.ArtworkName, Art.Price, Art.URL, Cart.Quantity, Cart.Quantity * Art.Price AS TotalPrice FROM Artwork Art, CartDetails Cart WHERE Art.ArtworkID = Cart.ArtworkID AND Cart.Username= @Username;";
-            SqlCommand cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
-            cmdSelectItem.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+            SqlCommand cmdOrder = new SqlCommand("SELECT *, FORMAT([Order].Date, 'dd/MM/yyyy') AS FormattedDate, [User].Name FROM [Order] INNER JOIN [User] ON ([Order].Username = [User].Username) WHERE OrderID = @OrderID;", orderCon);
+            cmdOrder.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
+            SqlDataReader orderDR = cmdOrder.ExecuteReader();
+            while (orderDR.Read())
+            {
+                lblName.Text = orderDR["RecipientName"].ToString();
+                lblPaymentType.Text = orderDR["PaymentType"].ToString();
+                lblPhone.Text = orderDR["ContactNumber"].ToString();
+                lblCardNumber.Text = orderDR["CardNumber"].ToString();
+                lblOrderID.Text = orderDR["OrderID"].ToString();
+                lblDate.Text = orderDR["FormattedDate"].ToString();
+                lblName2.Text = orderDR["Name"].ToString();
+            }
+            orderCon.Close();
+
+            orderCon.Open();
+            SqlCommand cmdGetOrderDetails = new SqlCommand("SELECT OrderDetails.*, Artwork.*, (Artwork.Price * OrderDetails.Quantity) AS TotalPrice FROM OrderDetails INNER JOIN ARTWORK ON (OrderDetails.ArtworkID = Artwork.ArtworkID) WHERE OrderID = @OrderID", orderCon);
+            cmdGetOrderDetails.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
             SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = cmdSelectItem;
+            da.SelectCommand = cmdGetOrderDetails;
             DataTable dt = new DataTable();
             da.Fill(dt);
-            Repeater1.DataSource = cmdSelectItem.ExecuteReader();
-            Repeater1.DataBind();
+            Repeater1.DataSource = cmdGetOrderDetails.ExecuteReader();
+            Repeater1.DataBind();            
             orderCon.Close();
 
             lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
             lblTax.Text = (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString();
             lblTotal.Text = String.Format("{0:C2}", (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
-
-            orderCon.Open();
-            SqlConnection orderCont = new SqlConnection(strOrderCon);
-            String strSelectAllItem = "SELECT * FROM Order WHERE Username = @Username;";
-            SqlCommand cmdSelectAllItem = new SqlCommand(strSelectAllItem, orderCont);
-            cmdSelectAllItem.Parameters.AddWithValue("@Username", Session["Username"].ToString());
-            SqlDataAdapter daa = new SqlDataAdapter();
-            daa.SelectCommand = cmdSelectAllItem;
-            DataTable dt1 = new DataTable();
-            daa.Fill(dt1);
-            orderCont.Close();
-
 
         }
 
