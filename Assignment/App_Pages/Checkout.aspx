@@ -340,7 +340,6 @@
                             <asp:ListItem Value="Visa" >Visa<img style="width:50px; height:20px" src="https://creditcardsinmalaysia.files.wordpress.com/2015/04/visa-card-malaysia.gif"/></asp:ListItem>
                             <asp:ListItem Value="Master" >Master<img style="width:50px; height:45px" src="https://brand.mastercard.com/content/dam/mccom/brandcenter/thumbnails/mastercard_vrt_pos_92px_2x.png"/></asp:ListItem>
                         </asp:RadioButtonList>
-                        <asp:TextBox ID="txtName0" runat="server" CssClass="auto-style10" Width="70px" ReadOnly="True" Visible="False" Wrap="False"></asp:TextBox>
                     </p>
                     <p>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="rblPayment" Display="Dynamic" ErrorMessage="Payment Mothod is required"></asp:RequiredFieldValidator>
@@ -431,7 +430,7 @@
                             <asp:ListItem>12</asp:ListItem>
                         </asp:DropDownList>
                         &nbsp;
-                        <asp:DropDownList CssClass="auto-style2" ID="ddlYear" runat="server" Height="30px" Width="58px">
+                        <asp:DropDownList CssClass="auto-style2" ID="ddlYear" runat="server" Height="35px" Width="58px">
                             <asp:ListItem>2020</asp:ListItem>
                             <asp:ListItem>2021</asp:ListItem>
                             <asp:ListItem>2022</asp:ListItem>

@@ -117,17 +117,28 @@ namespace Assignment.App_Pages
         }
         
         //kyao de function
+     
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
+        }
+
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
             string num = args.Value;
 
-            if (num.Length != 14)
+            if (txtCardNumber.Text.Length != 14)
             {
                 CustomValidator1.ErrorMessage = "Card Number should be 14 digits";
                 args.IsValid = false;
             }
 
-            if (rblPayment.Text == "Visa")
+            else if (rblPayment.Text == "Visa")
             {
                 if (num.First() != '4')
                 {
@@ -137,7 +148,7 @@ namespace Assignment.App_Pages
 
             }
 
-            if (rblPayment.Text == "Master")
+            else if (rblPayment.Text == "Master")
             {
                 if (num.First() != '5')
                 {
@@ -146,16 +157,6 @@ namespace Assignment.App_Pages
 
                 }
             }
-        }
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-
         }
     }
 }

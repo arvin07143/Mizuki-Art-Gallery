@@ -18,8 +18,8 @@ namespace Assignment.App_Pages
         {
             String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection orderCon = new SqlConnection(strOrderCon);
-
-            lblCityZip.Text = Request.QueryString["ZipCode"] + Request.QueryString["City"] + Request.QueryString["State"];
+           
+            lblCityZip.Text = Request.QueryString["ZipCode"] + " " + Request.QueryString["City"] + " "+ Request.QueryString["State"];
 
             orderCon.Open();
             SqlCommand cmdOrder = new SqlCommand("SELECT *, FORMAT([Order].Date, 'dd/MM/yyyy') AS FormattedDate, [User].Name FROM [Order] INNER JOIN [User] ON ([Order].Username = [User].Username) WHERE OrderID = @OrderID;", orderCon);
@@ -34,6 +34,7 @@ namespace Assignment.App_Pages
                 lblOrderID.Text = orderDR["OrderID"].ToString();
                 lblDate.Text = orderDR["FormattedDate"].ToString();
                 lblName2.Text = orderDR["Name"].ToString();
+                lblAddress.Text = orderDR["DeliveryAddress"].ToString();
             }
             orderCon.Close();
 
