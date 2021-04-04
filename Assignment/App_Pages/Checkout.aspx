@@ -396,7 +396,7 @@
                     </p>
                     <p>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button Style="height: 50px; display: inline; right: 50%; width: 100%" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Check Out" OnClick="btnCheckout_Click"  />
+                        <asp:Button Style="height: 50px; display: inline; right: 50%; width: 100%" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Check Out" OnClick="btnCheckout_Click" PostBackUrl="~/App_Pages/ProductDelivery.aspx"  />
                         &nbsp;
                     </p>
                 </div>
