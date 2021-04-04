@@ -47,6 +47,7 @@ namespace Assignment.App_Pages
             Double total = Convert.ToDouble(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text));
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
+            //Insert into Order table
             con.Open();
             SqlCommand cmdAddOrder = new SqlCommand("INSERT INTO [dbo].[Order] VALUES (@Username, @Date, @Total, @PaymentType, @CardNumber, @DeliveryAddress, @RecipientName, @EmailAddress, @ContactNumber);", con);
             cmdAddOrder.Parameters.AddWithValue("@Username", Session["Username"].ToString());
@@ -61,11 +62,13 @@ namespace Assignment.App_Pages
             cmdAddOrder.ExecuteNonQuery();
             con.Close();
 
+            //get latest OrderID from Order table
             con.Open();
-            SqlCommand cmdOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
-            int orderID = Convert.ToInt32(cmdOrderID.ExecuteScalar());
+            SqlCommand cmdgetOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
+            int orderID = Convert.ToInt32(cmdgetOrderID.ExecuteScalar());
             con.Close();
 
+            //Insert into OrderDetails table
             con.Open();
             SqlCommand cmdCartDetails = new SqlCommand("SELECT CartDetails.ArtworkID, CartDetails.Quantity FROM CartDetails WHERE CartDetails.Username= @Username;", con);
             cmdCartDetails.Parameters.AddWithValue("@Username", Session["Username"].ToString());
@@ -80,7 +83,19 @@ namespace Assignment.App_Pages
             }
             con.Close();
 
-            //rmb add delete query
+            //Reduce Stock
+            con.Open();
+            SqlCommand cmdGetArtworkCount = new SqlCommand("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", con);
+            cmdGetArtworkCount.Parameters.AddWithValue("@OrderID", orderID);
+            SqlDataReader rows = cmdCartDetails.ExecuteReader();
+            while (rows.Read())
+            {
+                SqlCommand cmdReduceStock = new SqlCommand("UPDATE Artwork SET StockQuantity = StockQuantity - (SELECT Quantity FROM OrderDetails WHERE OrderID = @OrderID AND ArtworkID = @ArtworkID) WHERE ArtworkID = @ArtworkID", con);
+                cmdReduceStock.Parameters.AddWithValue("@OrderID", orderID);
+                cmdReduceStock.Parameters.AddWithValue("@ArtworkID", rows["ArtworkID"].ToString());
+                cmdReduceStock.ExecuteNonQuery();
+            }
+            con.Close();
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
