@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.Price, Artwork.ArtworkID, Artwork.ArtworkName, Artwork.StockQuantity, Artwork.URL, ArtCategory.CategoryName FROM Artwork INNER JOIN ArtCategory ON Artwork.CategoryID = ArtCategory.CategoryID WHERE (Artwork.Username = @currentUsername) AND Artwork.StockQuantity > 0">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.Price, Artwork.ArtworkID, Artwork.ArtworkName, Artwork.StockQuantity, Artwork.URL, ArtCategory.CategoryName FROM Artwork INNER JOIN ArtCategory ON Artwork.CategoryID = ArtCategory.CategoryID WHERE (Artwork.Username = @currentUsername) AND Artwork.StockQuantity > -1">
                         <SelectParameters>
                             <asp:SessionParameter Name="currentUsername" SessionField="username" />
                         </SelectParameters>
