@@ -16,7 +16,7 @@
                         <asp:SessionParameter Name="currentUser" SessionField="username" />
                     </SelectParameters>
                 </asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Order].OrderID, [Order].Total, FORMAT([Order].Date, 'dd/MM/yyyy') AS Date FROM [User] INNER JOIN [Order] ON [User].Username = [Order].Username WHERE [User].Username = @currentUserName">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Order].OrderID, [Order].Total, FORMAT([Order].Date, 'dd/MM/yyyy') AS Date FROM [User] INNER JOIN [Order] ON [User].Username = [Order].Username WHERE [User].Username = @currentUserName ORDER BY [Order].Date DESC">
                     <SelectParameters>
                         <asp:SessionParameter Name="currentUserName" SessionField="username" />
                     </SelectParameters>
