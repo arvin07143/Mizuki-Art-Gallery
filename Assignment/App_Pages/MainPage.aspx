@@ -73,7 +73,7 @@
                                 <asp:ImageButton ID="ibtnTrending" runat="server" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" CssClass="card-img-top" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -92,7 +92,7 @@
                                 <asp:ImageButton ID="ibtnHotSelling" runat="server" class="card-img-top" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -111,7 +111,7 @@
                                 <asp:ImageButton ID="ibtnNewArt" runat="server" class="card-img-top" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
                                 </div>
                             </div>
                         </ItemTemplate>

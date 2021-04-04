@@ -82,6 +82,7 @@ namespace Assignment.App_Pages
                 cmdAddOrderDetails.Parameters.AddWithValue("@Quantity", cart["Quantity"].ToString());
                 cmdAddOrderDetails.ExecuteNonQuery();
             }
+            cart.Close();
             con.Close();
 
             //rmb add delete query
@@ -98,6 +99,7 @@ namespace Assignment.App_Pages
                 cmdReduceStock.Parameters.AddWithValue("@ArtworkID", rows["ArtworkID"].ToString());
                 cmdReduceStock.ExecuteNonQuery();
             }
+            rows.Close();
             con.Close();
 
             //clear cart
