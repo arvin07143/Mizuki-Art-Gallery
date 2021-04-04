@@ -78,15 +78,6 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.RadioButtonList rblPayment;
 
         /// <summary>
-        /// txtName0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName0;
-
-        /// <summary>
         /// RequiredFieldValidator4 control.
         /// </summary>
         /// <remarks>
