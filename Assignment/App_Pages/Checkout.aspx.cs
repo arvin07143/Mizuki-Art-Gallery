@@ -96,6 +96,15 @@ namespace Assignment.App_Pages
                 cmdReduceStock.ExecuteNonQuery();
             }
             con.Close();
+
+            //clear cart
+            con.Open();
+            SqlCommand cmdClearCart = new SqlCommand("DELETE FROM CartDetails WHERE Username = @Username", con);
+            cmdClearCart.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+            cmdClearCart.ExecuteNonQuery();
+            con.Close();
+
+            Response.Redirect("~/App_Pages/ProductDelivery.aspx");
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
