@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
         <div class="main main-raised">
             <div class="profile-content" style="margin-top: 100px">
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkID, Artwork.ArtworkName, Artwork.URL FROM Artwork INNER JOIN Favourite ON Artwork.ArtworkID = Favourite.ArtworkID AND Favourite.Username = @currentUser">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkID, Artwork.ArtworkName, Artwork.URL FROM Artwork INNER JOIN Favourite ON Artwork.ArtworkID = Favourite.ArtworkID AND Favourite.Username = @currentUser AND Artwork.StockQuantity>0">
                     <SelectParameters>
                         <asp:SessionParameter Name="currentUser" SessionField="username" />
                     </SelectParameters>
@@ -124,7 +124,7 @@
                                 <div class="col-sm-12 text-center">
                                     <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-outline-danger pr-2" Visible="false" />
                                     <asp:Button ID="btnSave" runat="server" Text="Save Changes" OnClick="btnSave_Click" CssClass="btn btn-outline-success pl-2" Visible="false" />
-                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -203,21 +203,21 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <table class="table w-75 p3 ms-auto me-auto">
-                                        <tr>
-                                            <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                            <td style="width: 10%" class="align-middle">
-                                                <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'></asp:Label>
-                                            </td>
-                                            <td>
-                                                <img class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
-                                            </td>
-                                            <td class="align-middle"><%# Eval("ArtworkName")%></td>
-                                            <td class="align-middle">
-                                                <asp:LinkButton ID="btnBuy" runat="server" OnClick="btnAddToCart"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
-                                            <td class="align-middle">
-                                                <asp:LinkButton ID="btnDeleteFav" runat="server" OnClick="btnDeleteFav"><i class="material-icons">clear</i></asp:LinkButton>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                                <td style="width: 10%" class="align-middle">
+                                                    <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <img class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
+                                                </td>
+                                                <td class="align-middle"><%# Eval("ArtworkName")%></td>
+                                                <td class="align-middle">
+                                                    <asp:LinkButton ID="btnBuy" runat="server" OnClick="btnAddToCart"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
+                                                <td class="align-middle">
+                                                    <asp:LinkButton ID="btnDeleteFav" runat="server" OnClick="btnDeleteFav"><i class="material-icons">clear</i></asp:LinkButton>
+                                                </td>
+                                            </tr>
                                     </table>
                                 </ItemTemplate>
                             </asp:Repeater>
