@@ -572,7 +572,7 @@
                         </table>
                             <asp:Button style="margin-left:55px" class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" Width="300px" />
                             <br /><br />
-                            <asp:Button style="margin-left:55px" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Check Out" OnClick="btnCheckout_Click" Width="300px"  />
+                            <asp:Button style="margin-left:55px" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Check Out" OnClick="btnCheckout_Click" Width="300px" PostBackUrl="~/App_Pages/ProductDelivery.aspx"  />
 
 
                     </div>
