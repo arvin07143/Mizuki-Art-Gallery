@@ -9,6 +9,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <style>
             .navbar-collapse {
@@ -255,61 +257,14 @@
                margin-left: 10px;
                margin-right: 1px;
             }
-            .auto-style2 {
-                width: 325px;
-            }
-            .auto-style3 {
-                width: 273px;
-                height: 104px;
-            }
-            .auto-style5 {
-                width: 252px;
-            }
-            .auto-style7 {
-                width: 377px;
-            }
-            .auto-style8 {
-                width: 377px;
-                height: 43px;
-            }
-            .auto-style10 {
-                display: block;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 1.42857143;
-                color: #555;
-                background-clip: padding-box;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                border-radius: 4px;
-                transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-                box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-                -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-                -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-                border: 1px solid #ccc;
-                padding: 6px 12px;
-                background-color: #fff;
-                background-image: none;
-            }
-            .auto-style11 {
-                height: 104px;
-            }
-            .auto-style12 {
-                width: 377px;
-                height: 224px;
-            }
-            .auto-style13 {
-                height: 224px;
-            }
+           
             </style>
 
         <div style="width: 100%" id="product-section">
             <div class="row">
-                <div class="col-md-8 ms-auto me-auto ">
+                <div class="col-md-7 ms-auto me-auto ">
                     <h1 style="margin-left: 60px"><b>Check Out</b></h1>
-        &nbsp;&nbsp;&nbsp;
+
                     <br />
 
          <p  style="margin-left: 60px">
@@ -322,196 +277,289 @@
                  </tr>
             </thead>
             <tr>
-                <td class="auto-style3">
-                    <p>&nbsp;</p>
-                    <p><asp:Label ID="Label3" runat="server" Text="Recipent Full Name"></asp:Label></p>
-                    <p><asp:TextBox ID="txtName" runat="server" CssClass="form-control" Width="300px"></asp:TextBox></p>
+                <td>
+                <div class="form-group row" style="width:350px">
+                     <asp:Label ID="lblRecipientName" class="col-4 col-form-label" runat="server">Recipient Name</asp:Label> 
+                     <div class="col-8">
+                       <div class="input-group">
+                         <asp:TextBox id="txtName" name="txtName" placeholder="Alice" type="text" class="form-control" runat="server"></asp:TextBox>
+                         <div class="input-group-append">
+                           <div class="input-group-text">
+                             <i class="fa fa-address-book-o"></i>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                </div>
                     <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtName" Display="Dynamic" ErrorMessage="Receipent Name is required"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtName" Display="Dynamic" ErrorMessage="Receipent Name is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="txtName" ErrorMessage="Only characters required" ValidationExpression="^[a-zA-Z]{1,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                     </p>
-                    <p>&nbsp;</p>
                
                 </td>
-                <td class="auto-style3">
+                <td>
+                    <div class="form-group row" >
+                        <asp:Label ID="lblPaymentMethod" class="col-4 col-form-label" runat="server">Payment Method</asp:Label>                     
+                        <div class="form-group row">
+                          <div class="col-8">
+                            <asp:RadioButtonList ValidateRequestMode="Enabled" class="rbl" ID="rblPayment" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatColumns="2">
+                                <asp:ListItem Value="Visa"><img style="width:50px; height:40px;" src="https://blackbullmarkets.com/wp-content/uploads/2020/09/Visa-logo.png"/></asp:ListItem>
+                                <asp:ListItem Value="Master"><img style="width:50px; height:45px; " src="https://brand.mastercard.com/content/dam/mccom/brandcenter/thumbnails/mastercard_vrt_pos_92px_2x.png"/></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div> 
+                        </div>
+                    </div>
                     <p>
-                        <asp:Label ID="lblPaymentMethod" runat="server" Text="Payment Method"></asp:Label>
-                    &nbsp;(Credit Card)</p>
-                    <p>
-                        <asp:RadioButtonList ValidateRequestMode="Enabled" CssClass="rbl" ID="rblPayment" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatColumns="2">
-                            <asp:ListItem Value="Visa" >Visa<img style="width:50px; height:20px" src="https://creditcardsinmalaysia.files.wordpress.com/2015/04/visa-card-malaysia.gif"/></asp:ListItem>
-                            <asp:ListItem Value="Master" >Master<img style="width:50px; height:45px" src="https://brand.mastercard.com/content/dam/mccom/brandcenter/thumbnails/mastercard_vrt_pos_92px_2x.png"/></asp:ListItem>
-                        </asp:RadioButtonList>
-                    </p>
-                    <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="rblPayment" Display="Dynamic" ErrorMessage="Payment Mothod is required"></asp:RequiredFieldValidator>
-                    </p>
-                    <p>
-                        &nbsp;</p>
-                    </td>
-            </tr>
-            <tr>
-                <td class="auto-style11">
-                    <p><asp:Label ID="Label2" runat="server" Text="Email Address"></asp:Label></p>
-                    <p><asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" Width="300px"></asp:TextBox></p>
-                    <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Email is required"></asp:RequiredFieldValidator>
-                    </p>
-                </td>
-                <td class="auto-style11">
-                    <p>
-                        <asp:Label ID="lblNameOnCard" runat="server" Text="Name On Card"></asp:Label>
-                    </p>
-                    <p>
-                        <asp:TextBox ID="txtNameOnCard" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>
-                    </p>
-                    <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNameOnCard" Display="Dynamic" ErrorMessage="Name On Card is required"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="rblPayment" Display="Dynamic" ErrorMessage="Payment Mothod is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </p>
                     </td>
             </tr>
             <tr>
-                <td class="auto-style5">
-                    <p>&nbsp;</p>
-                    <p><asp:Label ID="Label4" runat="server" Text="Contact Number"></asp:Label></p>
-
-                    <p><asp:TextBox ID="txtContactNo" runat="server" CssClass="form-control" Width="300px"></asp:TextBox></p>
+                <td>
+                    <div class="form-group row" style="width:350px">
+                      <asp:Label ID="lblEmail" class="col-4 col-form-label" runat="server">Email Address</asp:Label> 
+                      <div class="col-8">
+                        <div class="input-group">
+                          <asp:TextBox  runat="server" id="txtEmail" name="text" placeholder="abc123@gmail.com" type="text" class="form-control" TextMode="Email" ></asp:TextBox>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa fa-envelope-o"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtContactNo" Display="Dynamic" ErrorMessage="Contact Number is required"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Email is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </p>
-                    <p>
-                        &nbsp;</p>
                 </td>
                 <td>
+                    <div class="form-group row">
+                      <asp:Label id="lblCardholderName" class="col-3 col-form-label" runat="server">Cardholder</asp:Label> 
+                      <div class="col-8">
+                        <div class="input-group">
+                          <asp:TextBox id="txtCardholderName" name="Cardholder Name" type="text" class="form-control" runat="server"></asp:TextBox> 
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa fa-address-card-o"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
                     <p>
-                        <asp:Label ID="lblCardNum" runat="server" Text="Card Number"></asp:Label>
-                    </p>
-                    <p>
-                        <asp:TextBox ID="txtCardNumber" runat="server" CssClass="form-control" Width="300px"></asp:TextBox>
-                    </p>
-                    <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCardNumber" Display="Dynamic" ErrorMessage="Card Number is required"></asp:RequiredFieldValidator>
-                    </p>
-                    <p>
-                        <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtCardNumber" Display="Dynamic" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
-                    </p>
-                    </td>
-            </tr>
-            <tr>
-                <td class="auto-style12">
-                    <p><asp:Label ID="Label5" runat="server" Text="Delivery Address"></asp:Label></p>
-                    <p><asp:TextBox ID="txtDeliveryAddress" runat="server" CssClass="auto-style10" TextMode="MultiLine" Width="300px"></asp:TextBox></p>
-                    <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtDeliveryAddress" Display="Dynamic" ErrorMessage="Deliver Address is required"></asp:RequiredFieldValidator>
-                    </p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    </td>
-                <td class="auto-style13">
-                    <p>
-                        &nbsp;<asp:Label ID="lblExpirationDate" runat="server" Text="Expiration Date"></asp:Label>
-                        
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        
-                        <asp:Label ID="Label1" runat="server" Text="CVV"></asp:Label>
-                    </p>
-                    <p>
-                        <asp:DropDownList CssClass="dropdown" ID="ddlMonth" runat="server" Height="35px" Width="40px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                            <asp:ListItem>1</asp:ListItem>
-                            <asp:ListItem>2</asp:ListItem>
-                            <asp:ListItem>3</asp:ListItem>
-                            <asp:ListItem>4</asp:ListItem>
-                            <asp:ListItem>5</asp:ListItem>
-                            <asp:ListItem>6</asp:ListItem>
-                            <asp:ListItem>7</asp:ListItem>
-                            <asp:ListItem>8</asp:ListItem>
-                            <asp:ListItem>9</asp:ListItem>
-                            <asp:ListItem>12</asp:ListItem>
-                            <asp:ListItem>11</asp:ListItem>
-                            <asp:ListItem>12</asp:ListItem>
-                        </asp:DropDownList>
-                        &nbsp;
-                        <asp:DropDownList CssClass="auto-style2" ID="ddlYear" runat="server" Height="35px" Width="58px">
-                            <asp:ListItem>2020</asp:ListItem>
-                            <asp:ListItem>2021</asp:ListItem>
-                            <asp:ListItem>2022</asp:ListItem>
-                            <asp:ListItem>2023</asp:ListItem>
-                            <asp:ListItem>2024</asp:ListItem>
-                            <asp:ListItem>2025</asp:ListItem>
-                            <asp:ListItem>2026</asp:ListItem>
-                        </asp:DropDownList>
-
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="txtCVV" runat="server" Style="display: inline" CssClass="form-control" Height="30px" Width="51px"></asp:TextBox>
-                    </p>
-                    <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlMonth" Display="Dynamic" ErrorMessage="Expiration Date of Month is required"></asp:RequiredFieldValidator>
-                    </p>
-                    <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlYear" Display="Dynamic" ErrorMessage="Expiration Date of Year is required"></asp:RequiredFieldValidator>
-                    </p>
-                    <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCVV" Display="Dynamic" ErrorMessage="CVV is required"></asp:RequiredFieldValidator>
-                    </p>
-                    <p>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtCVV" Display="Dynamic" ErrorMessage="CVV should be 3 digits" ValidationExpression="^[0-9]{3}$"></asp:RegularExpressionValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCardholderName" Display="Dynamic" ErrorMessage="Name On Card is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtCardholderName" ErrorMessage="Only characters required" ValidationExpression="^[a-zA-Z]{1,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                     </p>
                     </td>
             </tr>
             <tr>
-                <td class="auto-style7">
-                    <p><asp:Label ID="Label6" runat="server" Text="State"></asp:Label></p>
-
-                    <p><asp:DropDownList ID="ddlState" runat="server" CssClass="dropdown" Height="30px">
-                        <asp:ListItem>Johor</asp:ListItem>
-                        <asp:ListItem>Kedah</asp:ListItem>
-                        <asp:ListItem>Kelantan</asp:ListItem>
-                        <asp:ListItem>Malacca</asp:ListItem>
-                        <asp:ListItem>Negeri Sembilan</asp:ListItem>
-                        <asp:ListItem>Pahang</asp:ListItem>
-                        <asp:ListItem>Penang</asp:ListItem>
-                        <asp:ListItem>Perak</asp:ListItem>
-                        <asp:ListItem>Perlis</asp:ListItem>
-                        <asp:ListItem>Sabah</asp:ListItem>
-                        <asp:ListItem>Sarawak</asp:ListItem>
-                        <asp:ListItem>Selangor</asp:ListItem>
-                        <asp:ListItem>Terengganu</asp:ListItem>
-                        <asp:ListItem>Kuala Lumpur</asp:ListItem>
-                        <asp:ListItem>Labuan</asp:ListItem>
-                        <asp:ListItem>Putrajaya</asp:ListItem>
-                    </asp:DropDownList></p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlState" Display="Dynamic" ErrorMessage="State is required"></asp:RequiredFieldValidator>
-                    <br />
-
+                <td>
+                    <div class="form-group row" style="width:350px">
+                      <asp:Label runat="server" id="lblContactNumber" class="col-4 col-form-label">Contact Number</asp:Label> 
+                      <div class="col-8">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">+60</div>
+                          </div> 
+                          <asp:TextBox id="txtContactNumber" name="txtContactNumber" placeholder="123456789" type="text" class="form-control" runat="server"></asp:TextBox>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa fa-mobile-phone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txtContactNumber" Display="Dynamic" ErrorMessage="Contact Number is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </p>
+                    <p>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="txtContactNumber" Display="Dynamic" ErrorMessage="Phone Format: +60 123456789" ValidationExpression="^[0-9]{9,10}$" ForeColor="Red"></asp:RegularExpressionValidator>
+                    </p>
+                </td>
+                <td>
+                    <div class="form-group row">
+                      <asp:Label id="lblCardNumber" class="col-3 col-form-label" runat="server">Card Number</asp:Label> 
+                      <div class="col-8">
+                        <div class="input-group">
+                          <asp:TextBox id="txtCardNumber" name="txtCardNumber" type="text" class="form-control" runat="server"></asp:TextBox>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa fa-credit-card-alt"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                    <p>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCardNumber" Display="Dynamic" ErrorMessage="Card Number is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </p>
+                    <p><asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtCardNumber" Display="Dynamic" OnServerValidate="CustomValidator1_ServerValidate" ForeColor="Red"></asp:CustomValidator>
+                    </p>
                     </td>
-                <td rowspan="2">
-                    <br />
-                    <br />
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group row" style="width:350px">
+                      <asp:Label for="lblDeliveryAddress" class="col-4 col-form-label" runat="server">Delivery Address</asp:Label> 
+                      <div class="col-8">
+                        <div class="input-group">
+                          <asp:TextBox id="txtDeliveryAddress" name="txtDeliveryAddress" placeholder="88, Jalan Malinja 1, Setapak" type="text" class="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa fa-home"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtDeliveryAddress" Display="Dynamic" ErrorMessage="Deliver Address is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </p>
+                    </td>
+                <td>
+                        <div class="form-group row">
+                          <asp:Label id="lblExpirationDate" class="col-3 col-form-label" runat="server">Expiration Date</asp:Label> 
+                          <div class="col-3">
+                            <asp:DropDownList class="form-select" ID="ddlMonth" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                                <asp:ListItem Text="" Selected="True"></asp:ListItem>
+                                <asp:ListItem>1</asp:ListItem>
+                                <asp:ListItem>2</asp:ListItem>
+                                <asp:ListItem>3</asp:ListItem>
+                                <asp:ListItem>4</asp:ListItem>
+                                <asp:ListItem>5</asp:ListItem>
+                                <asp:ListItem>6</asp:ListItem>
+                                <asp:ListItem>7</asp:ListItem>
+                                <asp:ListItem>8</asp:ListItem>
+                                <asp:ListItem>9</asp:ListItem>
+                                <asp:ListItem>12</asp:ListItem>
+                                <asp:ListItem>11</asp:ListItem>
+                                <asp:ListItem>12</asp:ListItem>
+                            </asp:DropDownList>
+                          </div>
+                            <div class="col-3">
+                            <asp:DropDownList class="form-select" ID="ddlYear" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                                <asp:ListItem Text="" Selected="True"></asp:ListItem>
+                                <asp:ListItem>2020</asp:ListItem>
+                                <asp:ListItem>2021</asp:ListItem>
+                                <asp:ListItem>2022</asp:ListItem>
+                                <asp:ListItem>2023</asp:ListItem>
+                                <asp:ListItem>2024</asp:ListItem>
+                                <asp:ListItem>2025</asp:ListItem>
+                                <asp:ListItem>2026</asp:ListItem>
+                            </asp:DropDownList>
+                          </div>
+
+                         </div> 
+                    <p>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlMonth" Display="Dynamic" ErrorMessage="Expiration Date of Month is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </p>
+                    <p>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlYear" Display="Dynamic" ErrorMessage="Expiration Date of Year is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </p>
+                    
+                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group row" style="width:350px">
+                       <asp:Label id="lblState" class="col-4 col-form-label" runat="server">State</asp:Label> 
+                       <div class="col-8">
+                         <asp:DropDownList id="ddlState" name="ddlState" class="form-select" runat="server">
+                            <asp:ListItem Text="" Selected="True"></asp:ListItem>
+                            <asp:ListItem>Johor</asp:ListItem>
+                            <asp:ListItem>Kedah</asp:ListItem>
+                            <asp:ListItem>Kelantan</asp:ListItem>
+                            <asp:ListItem>Malacca</asp:ListItem>
+                            <asp:ListItem>Negeri Sembilan</asp:ListItem>
+                            <asp:ListItem>Pahang</asp:ListItem>
+                            <asp:ListItem>Penang</asp:ListItem>
+                            <asp:ListItem>Perak</asp:ListItem>
+                            <asp:ListItem>Perlis</asp:ListItem>
+                            <asp:ListItem>Sabah</asp:ListItem>
+                            <asp:ListItem>Sarawak</asp:ListItem>
+                            <asp:ListItem>Selangor</asp:ListItem>
+                            <asp:ListItem>Terengganu</asp:ListItem>
+                            <asp:ListItem>Kuala Lumpur</asp:ListItem>
+                            <asp:ListItem>Labuan</asp:ListItem>
+                            <asp:ListItem>Putrajaya</asp:ListItem>
+                         </asp:DropDownList>
+                       </div>
+                     </div>
+                    
+                        <p><asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlState" Display="Dynamic" ErrorMessage="State is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </p>
+                    </td>
+                <td>
+                    <div class="form-group row" >
+                      <asp:Label id="lblCVV" class="col-3 col-form-label" runat="server">CVV</asp:Label> 
+                      <div class="col-4">
+                        <div class="input-group">
+                          <asp:TextBox id="txtCVV" name="txtCVV" type="text" class="form-control" runat="server"></asp:TextBox> 
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa "></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                    <p>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCVV" Display="Dynamic" ErrorMessage="CVV is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </p>
+                    <p>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtCVV" Display="Dynamic" ErrorMessage="CVV should be 3 digits" ValidationExpression="^[0-9]{3}$" ForeColor="Red"></asp:RegularExpressionValidator>
+                    </p>
                 </td>
             </tr>
             <tr>
-                <td class="auto-style7">
-                    <p><asp:Label ID="Label7" runat="server" Text="City"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Label ID="Label8" runat="server" Text="Zip Code"></asp:Label></p>
-
-                    <p><asp:TextBox ID="txtCity" runat="server"  Style="display: inline" Width="170px" Height="35px" CssClass="auto-style10"></asp:TextBox>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtZipCode" runat="server"  Style="display: inline" Width="120px" Height="35px" CssClass="auto-style10"></asp:TextBox></p>
+                <td>
+                     <div class="form-group row" style="width:350px">
+                      <asp:Label id="lblCity" class="col-4 col-form-label" runat="server">City</asp:Label> 
+                      <div class="col-8">
+                        <div class="input-group">
+                          <asp:TextBox id="txtCity" name="txtCity" placeholder="Kuala Lumpur" type="text" class="form-control" runat="server"></asp:TextBox> 
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa "></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>                  
                     <p>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtCity" Display="Dynamic" ErrorMessage="City is required"></asp:RequiredFieldValidator>
-                    </p>
-                    <p>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtZipCode" Display="Dynamic" ErrorMessage="Zip Code is required"></asp:RequiredFieldValidator>
-                    </p>
-
-                    &nbsp;
-
-                    </td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtCity" Display="Dynamic" ErrorMessage="City is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </p>
+                </td>
+            </tr>
+            <tr>
+                 <td>
+                    <div class="form-group row" style="width:350px">
+                      <asp:Label id="lblZipCode" class="col-4 col-form-label" runat="server">Zip Code</asp:Label> 
+                      <div class="col-4">
+                        <div class="input-group">
+                          <asp:TextBox id="txtZipCode" name="txtZipCode" placeholder="52100" type="text" class="form-control" runat="server"></asp:TextBox> 
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa "></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                     
+               
+                    <p><asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtZipCode" Display="Dynamic" ErrorMessage="Zip Code is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txtZipCode" ErrorMessage="Zip Code should be 5 digits" ValidationExpression="^[0-9]{5}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                    </p> 
+                 </td>
             </tr>
         </table></p>
                     </div>
 
            
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <p style="margin-left: 60px">&nbsp;</p>
                     <p style="margin-left: 60px">&nbsp;</p>
                     <p style="margin-left: 60px">&nbsp;</p>
@@ -522,9 +570,10 @@
                                 <table class="table w-75 p3 ms-auto me-auto" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th style="width: 60%" scope="col">Name</th>
+                                            <th style="width: 40%" scope="col">Artwork Name</th>
                                             <th style="width: 10%" scope="col">Quantity</th>
-                                            <th style="width: 30%" scope="col">Total</th>
+                                            <th style="width: 25%" scope="col">Unit Price</th>
+                                            <th style="width: 25%; text-align:right" scope="col">Price</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -532,9 +581,10 @@
                             <ItemTemplate>
                                 <table class="table w-75 p3 ms-auto me-auto">
                                     <tr>
-                                        <td style="width: 60%" class="align-middle"><%# Eval("ArtworkName")%></td>
+                                        <td style="width: 40%" class="align-middle"><%# Eval("ArtworkName")%></td>
                                         <td style="width: 10%" class="align-middle"><%# Eval("Quantity")%></td>
-                                        <td style="width: 30%; text-align: right" class="align-middle"><%# Eval("TotalPrice")%></td>
+                                        <td style="width: 25%; text-align:center" class="align-middle"><%# Eval("Price")%></td>
+                                        <td style="width: 25%; text-align: right" class="align-middle"><%# Eval("TotalPrice", "{0:0.00}") %></td>
                                     </tr>
                                 </table>
                             </ItemTemplate>
@@ -570,9 +620,10 @@
                             </tr>
 
                         </table>
-                            <asp:Button style="margin-left:55px" class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" Width="300px" />
+
+                            <asp:Button style="margin-left:60px" class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" Width="350px" CausesValidation="False" ValidationGroup="First" />
                             <br /><br />
-                            <asp:Button style="margin-left:55px" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Check Out" OnClick="btnCheckout_Click" Width="300px"  />
+                            <asp:Button style="margin-left:60px" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Complete Payment" OnClick="btnCheckout_Click" Width="350px"  />
 
 
                     </div>
