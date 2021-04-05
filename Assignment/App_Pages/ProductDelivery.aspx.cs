@@ -16,7 +16,7 @@ namespace Assignment.App_Pages
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             
-            lblOrderId.Text= Request.QueryString["OrderID"];
+            //lblOrderId.Text= Request.QueryString["OrderID"];
 
             DateTime orderDate = DateTime.Now;
             lblOrderTime.Text = orderDate.ToString("dd-MM-yyyy");

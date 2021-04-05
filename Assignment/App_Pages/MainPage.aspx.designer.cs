@@ -33,30 +33,30 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Repeater carouselRepeater;
 
         /// <summary>
-        /// rptTrending control.
+        /// Header1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptTrending;
+        protected global::Assignment.App_Pages.MainPageRepeater Header1;
 
         /// <summary>
-        /// rptHotSelling control.
+        /// Header2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptHotSelling;
+        protected global::Assignment.App_Pages.MainPageRepeater Header2;
 
         /// <summary>
-        /// rptNewArt control.
+        /// Header3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptNewArt;
+        protected global::Assignment.App_Pages.MainPageRepeater Header3;
     }
 }
