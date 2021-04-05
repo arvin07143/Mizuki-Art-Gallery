@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="PurchaseSummary.aspx.cs" Inherits="Assignment.App_Pages.ProductDelivery" %>
+﻿<%@ Page Title="Product Summary" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="PurchaseSummary.aspx.cs" Inherits="Assignment.App_Pages.ProductDelivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Delivery Detail</title>
+    
     <style>
         .container {
          margin-top: 50px;
@@ -167,7 +167,7 @@
                                 <td style="width: 10%"></td>
                                 <td style="width: 20%"></td>
                                 <td style="width: 20%"></td>
-                                <td style="width: 21%"></td>
+                                <td style="width: 22%"></td>
                                 <td style="width: 10%">
                                     <asp:Label ID="lblSubtotalDis" runat="server" Text="Subtotal"></asp:Label></td>
                                 <td style="width: 15%">
@@ -179,7 +179,7 @@
                                 <td style="width: 10%"></td>
                                 <td style="width: 20%"></td>
                                 <td style="width: 20%"></td>
-                                <td style="width: 21%"></td>
+                                <td style="width: 22%"></td>
                                 <td style="width: 10%">                               
                                     <asp:Label ID="lblTaxDis" runat="server" Text="Tax"></asp:Label>&nbsp;(6%)</td>
                                 <td style="width: 15%">
@@ -191,7 +191,7 @@
                                 <td style="width: 10%"></td>
                                 <td style="width: 20%"></td>
                                 <td style="width: 20%"></td>
-                                <td style="width: 21%"></td>
+                                <td style="width: 22%"></td>
                                 <td style="width: 10%">   
                                     <asp:Label ID="lblTotalDis" runat="server" Text="Total"></asp:Label>&nbsp;(6%)</td>
                                 <td style="width: 15%">
