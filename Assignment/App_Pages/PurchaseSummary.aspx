@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="ProductDelivery.aspx.cs" Inherits="Assignment.App_Pages.ProductDelivery" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="PurchaseSummary.aspx.cs" Inherits="Assignment.App_Pages.ProductDelivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Delivery Detail</title>
     <style>
@@ -31,13 +31,13 @@
      .card-header {
          padding: 0.75rem 1.25rem;
          margin-bottom: 0;
-         background-color: #fff;
+         background-color: #ffffff;
          border-bottom: 1px solid rgba(0, 0, 0, 0.1)
      }
 
       .track {
      position: relative;
-     background-color: #ddd;
+     background-color: #dddddd;
      height: 7px;
      display: -webkit-box;
      display: -ms-flexbox;
@@ -57,7 +57,7 @@
  }
 
  .track .step.active:before {
-     background: #FF5722
+     background: #283747
  }
 
  .track .step::before {
@@ -70,7 +70,7 @@
  }
 
  .track .step.active .icon {
-     background: #ee5435;
+     background: #283747;
      color: #fff
  }
 
@@ -81,12 +81,12 @@
      line-height: 40px;
      position: relative;
      border-radius: 100%;
-     background: #ddd
+     background: #dddddd;
  }
 
  .track .step.active .text {
      font-weight: 400;
-     color: #000
+     color: black;
  }
 
  .track .text {
@@ -103,7 +103,7 @@
     <form id="form1" runat="server">
     <div class="container">
     <article class="card">
-        <header class="card-header"> Order Delivery</header>
+        <header class="card-header"> Purchase Summary</header>
         <div class="card-body">
             <h6>Order ID:
                 <asp:Label ID="lblOrderId" runat="server"></asp:Label>

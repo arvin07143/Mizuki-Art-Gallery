@@ -78,7 +78,7 @@
     <Content Include="App_Pages\Logout.aspx" />
     <Content Include="App_Pages\MainPage.aspx" />
     <Content Include="App_Pages\MainPageRepeater.ascx" />
-    <Content Include="App_Pages\ProductDelivery.aspx" />
+    <Content Include="App_Pages\PurchaseSummary.aspx" />
     <Content Include="App_Pages\Profile.aspx" />
     <Content Include="App_Pages\Login.aspx" />
     <Content Include="App_Pages\Receipt.aspx" />
@@ -155,12 +155,12 @@
     <Compile Include="App_Pages\MainPageRepeater.ascx.designer.cs">
       <DependentUpon>MainPageRepeater.ascx</DependentUpon>
     </Compile>
-    <Compile Include="App_Pages\ProductDelivery.aspx.cs">
-      <DependentUpon>ProductDelivery.aspx</DependentUpon>
+    <Compile Include="App_Pages\PurchaseSummary.aspx.cs">
+      <DependentUpon>PurchaseSummary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="App_Pages\ProductDelivery.aspx.designer.cs">
-      <DependentUpon>ProductDelivery.aspx</DependentUpon>
+    <Compile Include="App_Pages\PurchaseSummary.aspx.designer.cs">
+      <DependentUpon>PurchaseSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Pages\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
