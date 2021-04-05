@@ -81,6 +81,7 @@
     <Content Include="App_Pages\Login.aspx" />
     <Content Include="App_Pages\Receipt.aspx" />
     <Content Include="App_Pages\Register.aspx" />
+    <Content Include="css\checkout.css" />
     <Content Include="css\lightbox.css" />
     <Content Include="css\login_register.css" />
     <Content Include="css\manage_art.css" />

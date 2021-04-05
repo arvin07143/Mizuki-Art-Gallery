@@ -109,7 +109,7 @@ namespace Assignment.App_Pages
                 cmdClearCart.ExecuteNonQuery();
                 con.Close();
 
-                string queryString = "~/App_Pages/Receipt.aspx?OrderID=" + orderID + "&ZipCode=" + txtZipCode.Text + "&City=" + txtCity.Text + "&State=" + ddlState.Text;
+                string queryString = "~/App_Pages/Receipt.aspx?OrderID=" + orderID;
                 Response.Redirect(queryString);
             }
         }
