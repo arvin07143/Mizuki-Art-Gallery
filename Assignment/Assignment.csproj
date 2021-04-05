@@ -82,6 +82,7 @@
     <Content Include="App_Pages\Login.aspx" />
     <Content Include="App_Pages\Receipt.aspx" />
     <Content Include="App_Pages\Register.aspx" />
+    <Content Include="App_Pages\Try.aspx" />
     <Content Include="css\checkout.css" />
     <Content Include="css\lightbox.css" />
     <Content Include="css\login_register.css" />
@@ -189,6 +190,14 @@
     <Compile Include="App_Pages\ManageArt.aspx.designer.cs">
       <DependentUpon>ManageArt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Pages\ScreenCapture.cs" />
+    <Compile Include="App_Pages\Try.aspx.cs">
+      <DependentUpon>Try.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Pages\Try.aspx.designer.cs">
+      <DependentUpon>Try.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,6 +219,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReceiptImage\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

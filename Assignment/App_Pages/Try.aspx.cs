@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Net.Mail;
@@ -12,13 +11,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
 namespace Assignment.App_Pages
 {
-    public partial class Receipt : System.Web.UI.Page
+    public partial class Try : System.Web.UI.Page
     {
-        
-
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
@@ -70,27 +66,26 @@ namespace Assignment.App_Pages
 
         }
 
-        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-
-        }
-
         protected void btnContinue_Click(object sender, EventArgs e)
         {
-
+            string folderPath = Server.MapPath("~/ReceiptImage/");  //Create a Folder in your Root directory on your solution.
+            string fileName = lblOrderID0.Text + ".jpg";
+            string imagePath = folderPath + fileName;
+            var image = ScreenCapture.CaptureActiveWindow();
+            image.Save(imagePath, ImageFormat.Jpeg);
 
             string to = lblEmail.Text;
             string from = "mizuki2629@gmail.com";
             MailMessage message = new MailMessage(from, to);
 
-            string mailbody = "";
+            string mailbody = "<img src='../ReceiptImage/" + lblOrderID0.Text + ".jpg" ;
             message.Subject = "Mizuki Gallery - Receipt(OrderID : )" + lblOrderID0.Text;
             message.Body = mailbody;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
             System.Net.NetworkCredential basicCredential1 = new
-            System.Net.NetworkCredential("mizuki2629@gmail.com", "Password");
+            System.Net.NetworkCredential("mizuki2629@gmail.com", "Mizuku12345");
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.Credentials = basicCredential1;
@@ -104,10 +99,10 @@ namespace Assignment.App_Pages
                 throw ex;
             }
 
-            string queryString = "~/App_Pages/ProductDelivery.aspx?OrderID=" + lblOrderID0.Text;
+
+
+            string queryString = "~/App_Pages/ProductSummary.aspx?OrderID=" + lblOrderID0.Text;
             Response.Redirect(queryString);
         }
-
-
     }
 }

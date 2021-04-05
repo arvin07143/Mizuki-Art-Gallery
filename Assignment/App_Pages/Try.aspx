@@ -1,47 +1,68 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Receipt.aspx.cs" Inherits="Assignment.App_Pages.Receipt" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Try.aspx.cs" Inherits="Assignment.App_Pages.Try" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Digital Receipt</title>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
     <style>
         .container {
          margin-top: 50px;
          margin-bottom: 50px
-     }
+        }
 
-     .card {
-         position: relative;
-         display: -webkit-box;
-         display: -ms-flexbox;
-         display: flex;
-         -webkit-box-orient: vertical;
-         -webkit-box-direction: normal;
-         -ms-flex-direction: column;
-         flex-direction: column;
-         min-width: 0;
-         word-wrap: break-word;
-         background-color: #fff;
-         background-clip: border-box;
-         border: 1px solid rgba(0, 0, 0, 0.1);
-         border-radius: 0.10rem
-     }
+        .card {
+             position: relative;
+             display: -webkit-box;
+             display: -ms-flexbox;
+             display: flex;
+             -webkit-box-orient: vertical;
+             -webkit-box-direction: normal;
+             -ms-flex-direction: column;
+             flex-direction: column;
+             min-width: 0;
+             word-wrap: break-word;
+             background-color: #fff;
+             background-clip: border-box;
+             border: 1px solid rgba(0, 0, 0, 0.1);
+             border-radius: 0.10rem
+        }
 
-     .card-header:first-child {
-         border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
-     }
+        .card-header:first-child {
+            border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
+        }
 
-     .card-header {
-         padding: 0.75rem 1.25rem;
-         margin-bottom: 0;
-         background-color: #fff;
-         border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-     }
+         .card-header {
+             padding: 0.75rem 1.25rem;
+             margin-bottom: 0;
+             background-color: #fff;
+             border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+         }      
 
-      
+         body, html
+        {
+            height: 100%;
+            width: 100%; 
+            overflow: hidden;
+            font-size:10px;
+            margin: 0;
+            padding: 0;
+        }
+    
     </style>
-    </asp:Content>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-    <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
-    <form id="form1" runat="server"  >
+</head>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="MainPage.aspx">Mizuki</a>
+           
+        </div>
+    </nav>
+<body>
+
+    <content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
+    <form id="form1" runat="server" >
     <div class="container">
 
     <article class="card">
@@ -138,6 +159,7 @@
         </div>
  
     </form>
-              </div>
-</asp:Content>
-
+              
+</content>
+</body>
+</html>

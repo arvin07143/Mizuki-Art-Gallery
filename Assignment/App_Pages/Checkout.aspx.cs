@@ -109,7 +109,7 @@ namespace Assignment.App_Pages
                 cmdClearCart.ExecuteNonQuery();
                 con.Close();
 
-                string queryString = "~/App_Pages/Receipt.aspx?OrderID=" + orderID;
+                string queryString = "~/App_Pages/Try.aspx?OrderID=" + orderID;
                 Response.Redirect(queryString);
             }
         }
