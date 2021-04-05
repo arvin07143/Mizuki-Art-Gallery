@@ -16,14 +16,14 @@
 					<span class="text2">
 						Username
 					</span>
+					<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtLUsername" Display="Dynamic" ErrorMessage="Username is required." Font-Size="8px" ForeColor="Red">*Username is required.</asp:RequiredFieldValidator>
 					<div class="wrapInput1">
                         <asp:TextBox ID="TxtLUsername" runat="server" class="input"></asp:TextBox>
                      </div>
 					
 					<span class="text2">
-						Password
-					</span>
-					<div class="wrapInput2">
+						Password<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtLPass" Display="Dynamic" ErrorMessage="Password is required." Font-Size="8px" ForeColor="Red">*Password is required.</asp:RequiredFieldValidator>
+&nbsp;</span><div class="wrapInput2">
 						<asp:TextBox ID="TxtLPass" runat="server" class="input" TextMode="Password"></asp:TextBox>
 						
 					</div>
