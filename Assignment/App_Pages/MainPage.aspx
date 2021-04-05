@@ -65,21 +65,17 @@
 
         <div id="content" class="overlay">
             <div class="container">
-                    <uc1:Header ID="Header1" Name="CodeDigest" runat="server" displayType ="Trending"/>
+                <uc1:Header ID="Header1" Name="CodeDigest" runat="server" displayType ="Trending"/>
                 <hr />
             </div>
 
             <div class="container">
-
-                    <uc1:Header ID="Header2" Name="CodeDigest" runat="server" displayType ="Hot Selling"/>
- 
+                <uc1:Header ID="Header2" Name="CodeDigest" runat="server" displayType ="Hot Selling"/>
                 <hr />
             </div>
 
             <div class="container">
-
-                    <uc1:Header ID="Header3" Name="CodeDigest" runat="server" displayType ="New Artwork"/>
-
+                <uc1:Header ID="Header3" Name="CodeDigest" runat="server" displayType ="New Artwork"/>
                 <hr />
             </div>
         </div>
