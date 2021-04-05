@@ -15,11 +15,8 @@ namespace Assignment.App_Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            con.Open();
-            SqlCommand cmdOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
-            int orderID = Convert.ToInt32(cmdOrderID.ExecuteScalar());
-            con.Close();
-            lblOrderId.Text= orderID.ToString();
+            
+            lblOrderId.Text= Request.QueryString["OrderID"];
 
             DateTime orderDate = DateTime.Now;
             lblOrderTime.Text = orderDate.ToString("dd-MM-yyyy");
@@ -28,15 +25,15 @@ namespace Assignment.App_Pages
             lblEstimatedArriveTime.Text = estimatedArriveTime.ToString("dd-MM-yyyy");
 
             con.Open();
-            SqlCommand cmdDeliveryAddress = new SqlCommand("SELECT DeliveryAddress FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
+            SqlCommand cmdDeliveryAddress = new SqlCommand("SELECT DeliveryAddress FROM [dbo].[Order] WHERE OrderID = @OrderID;", con);
+            cmdDeliveryAddress.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
             lblDeliveryAddress.Text = Convert.ToString(cmdDeliveryAddress.ExecuteScalar());
             con.Close();
 
-            con.Open();
-
-            String strSelectItem = "SELECT OrderDetails.ArtworkID, Art.ArtworkName, Art.Price, Art.URL, OrderDetails.Quantity, OrderDetails.Quantity * Art.Price AS TotalPrice FROM Artwork Art, OrderDetails Cart WHERE Art.ArtworkID = cart.ArtworkID AND Username= @Username;";
+            con.Open();       
+            String strSelectItem = "SELECT OrderDetails.ArtworkID, Artwork.ArtworkName, Artwork.Price, Artwork.URL, OrderDetails.Quantity, OrderDetails.Quantity * Artwork.Price AS TotalPrice FROM OrderDetails INNER JOIN ARTWORK ON(OrderDetails.ArtworkID = Artwork.ArtworkID) WHERE OrderID = @OrderID;";
             SqlCommand cmdSelectItem = new SqlCommand(strSelectItem, con);
-            cmdSelectItem.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+            cmdSelectItem.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = cmdSelectItem;
             DataTable dt = new DataTable();

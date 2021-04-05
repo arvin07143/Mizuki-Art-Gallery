@@ -76,6 +76,7 @@
     <Content Include="App_Pages\Checkout.aspx" />
     <Content Include="App_Pages\Logout.aspx" />
     <Content Include="App_Pages\MainPage.aspx" />
+    <Content Include="App_Pages\OrderStatus.aspx" />
     <Content Include="App_Pages\ProductDelivery.aspx" />
     <Content Include="App_Pages\Profile.aspx" />
     <Content Include="App_Pages\Login.aspx" />
@@ -137,6 +138,13 @@
     </Compile>
     <Compile Include="App_Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Pages\OrderStatus.aspx.cs">
+      <DependentUpon>OrderStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Pages\OrderStatus.aspx.designer.cs">
+      <DependentUpon>OrderStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Pages\ProductDelivery.aspx.cs">
       <DependentUpon>ProductDelivery.aspx</DependentUpon>

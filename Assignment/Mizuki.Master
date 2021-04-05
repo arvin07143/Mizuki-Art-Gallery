@@ -47,6 +47,7 @@
                         <div class="dropdown-menu" style="right: 5px" id="dropDownMenu" runat="server">
                             <a class="dropdown-item" href="Profile.aspx">Profile</a>
                             <a class="dropdown-item" href="ManageArt.aspx">Manage Art</a>
+                            <a class="dropdown-item" href="OrderStatus.aspx">OrderStatus</a>
                             <a id="logoutLink" runat="server" class="dropdown-item" href="~/App_Pages/Logout.aspx">Logout</a>
                         </div>
                     </li>
