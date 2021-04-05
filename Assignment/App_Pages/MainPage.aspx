@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="Assignment.App_Pages.MainPage" %>
+<%@ Register TagPrefix="uc1" TagName="Header" Src="~/App_Pages/MainPageRepeater.ascx" %>
 
 <asp:Content ID="mainPageHeader" ContentPlaceHolderID="head" runat="server">
     <title>Home</title>
@@ -64,59 +65,21 @@
 
         <div id="content" class="overlay">
             <div class="container">
-                <h1 class="text-light mb-4">Trending</h1>
-                <div class="card-group">
-                    <asp:Repeater ID="rptTrending" runat="server">
-                        <ItemTemplate>
-                            <div class="card">
-                                <asp:ImageButton ID="ibtnTrending" runat="server" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" CssClass="card-img-top" />
-                                <div class="card-body">
-                                    <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-
-                </div>
+                    <uc1:Header ID="Header1" Name="CodeDigest" runat="server" displayType ="Trending"/>
                 <hr />
             </div>
 
             <div class="container">
-                <h1 class="mb-4">Hot Selling</h1>
-                <div class="card-group">
-                    <asp:Repeater ID="rptHotSelling" runat="server">
-                        <ItemTemplate>
-                            <div class="card">
-                                <asp:ImageButton ID="ibtnHotSelling" runat="server" class="card-img-top" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
-                                <div class="card-body">
-                                    <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
 
-                </div>
+                    <uc1:Header ID="Header2" Name="CodeDigest" runat="server" displayType ="Hot Selling"/>
+ 
                 <hr />
             </div>
 
             <div class="container">
-                <h1 class="mb-4">New Artwork</h1>
-                <div class="card-group">
-                    <asp:Repeater ID="rptNewArt" runat="server">
-                        <ItemTemplate>
-                            <div class="card">
-                                <asp:ImageButton ID="ibtnNewArt" runat="server" class="card-img-top" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
-                                <div class="card-body">
-                                    <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
 
-                </div>
+                    <uc1:Header ID="Header3" Name="CodeDigest" runat="server" displayType ="New Artwork"/>
+
                 <hr />
             </div>
         </div>
