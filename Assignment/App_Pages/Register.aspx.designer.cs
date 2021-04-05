@@ -141,13 +141,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtREmail;
 
         /// <summary>
-        /// loginFormBtn control.
+        /// registerFormBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button loginFormBtn;
+        protected global::System.Web.UI.WebControls.Button registerFormBtn;
 
         /// <summary>
         /// signUpText control.

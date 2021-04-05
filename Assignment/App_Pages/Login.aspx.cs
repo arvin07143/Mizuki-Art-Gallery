@@ -51,12 +51,12 @@ namespace Assignment
         }
         protected void msg(object sender, EventArgs e)
         {
-
-            string message = "Reset password link is send to your email.";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "')};";
-            ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", script, true);
+            Response.Redirect("ForgetPassword.aspx");
+            //string message = "Reset password link is send to your email.";
+            //string script = "window.onload = function(){ alert('";
+           // script += message;
+            //script += "')};";
+            //ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", script, true);
         }
     }
 }
