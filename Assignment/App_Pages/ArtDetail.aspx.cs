@@ -13,37 +13,37 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
-                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-                    con.Open();
-                    SqlCommand cmdGetURL = new SqlCommand("SELECT [Artwork].*, [User].Name FROM [Artwork] INNER JOIN [USER] ON ([Artwork].Username = [User].Username) WHERE ArtworkID=@artId", con);
-                    cmdGetURL.Parameters.AddWithValue("@artId", Request.QueryString["ArtworkID"].ToString());
-                    SqlDataReader art = cmdGetURL.ExecuteReader();
-                    while (art.Read())
-                    {
-                        artImage.Attributes.Add("src", art["URL"].ToString());
-                        artName.Text = art["ArtworkName"].ToString();
-                        artistName.Text = art["Name"].ToString();
-                        stockQuantity.Text = art["StockQuantity"].ToString();
-                        price.Text = String.Format("{0:0.00}", Convert.ToDouble(art["Price"].ToString()));
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                con.Open();
+                SqlCommand cmdGetURL = new SqlCommand("SELECT [Artwork].*, [User].Name FROM [Artwork] INNER JOIN [USER] ON ([Artwork].Username = [User].Username) WHERE ArtworkID=@artId", con);
+                cmdGetURL.Parameters.AddWithValue("@artId", Request.QueryString["ArtworkID"].ToString());
+                SqlDataReader art = cmdGetURL.ExecuteReader();
+                while (art.Read())
+                {
+                    artImage.Attributes.Add("src", art["URL"].ToString());
+                    artName.Text = art["ArtworkName"].ToString();
+                    artistName.Text = art["Name"].ToString();
+                    stockQuantity.Text = art["StockQuantity"].ToString();
+                    price.Text = String.Format("{0:0.00}", Convert.ToDouble(art["Price"].ToString()));
 
-                    }
-                    art.Close();
-                    if (Session["username"] != null)
+                }
+                art.Close();
+                if (Session["username"] != null)
+                {
+                    SqlCommand cmdWishlist = new SqlCommand("SELECT * FROM [Favourite] WHERE ArtworkID=@artworkId AND Username=@username", con);
+                    cmdWishlist.Parameters.AddWithValue("@artworkId", Request.QueryString["ArtworkID"].ToString());
+                    cmdWishlist.Parameters.AddWithValue("@username", Session["username"].ToString());
+                    SqlDataReader rdrWishlist = cmdWishlist.ExecuteReader();
+                    if (rdrWishlist.HasRows)
                     {
-                        SqlCommand cmdWishlist = new SqlCommand("SELECT * FROM [Favourite] WHERE ArtworkID=@artworkId AND Username=@username", con);
-                        cmdWishlist.Parameters.AddWithValue("@artworkId", Request.QueryString["ArtworkID"].ToString());
-                        cmdWishlist.Parameters.AddWithValue("@username", Session["username"].ToString());
-                        SqlDataReader rdrWishlist = cmdWishlist.ExecuteReader();
-                        if (rdrWishlist.HasRows)
-                        {
-                            btnWishlist.Attributes.Add("style", "display: none");
-                            btnWishlistRemove.Attributes.Add("style", "display: block");
-                        }
-                        rdrWishlist.Close();
+                        btnWishlist.Attributes.Add("style", "display: none");
+                        btnWishlistRemove.Attributes.Add("style", "display: block");
                     }
-                    con.Close();
+                    rdrWishlist.Close();
+                }
+                con.Close();
             }
         }
 
