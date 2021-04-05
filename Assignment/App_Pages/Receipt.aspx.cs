@@ -22,11 +22,6 @@ namespace Assignment.App_Pages
             int orderID = Convert.ToInt32(cmdOrderID.ExecuteScalar());
             con.Close();
 
-            DateTime orderDate = DateTime.Now;
-            lblOrderTime.Text = orderDate.ToString("dd-MM-yyyy");
-
-            DateTime estimatedArriveTime = orderDate.AddDays(7);
-            lblEstimatedArriveTime.Text = estimatedArriveTime.ToString("dd-MM-yyyy");
 
             con.Open();
             SqlCommand cmdDeliveryAddress = new SqlCommand("SELECT DeliveryAddress FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
@@ -65,7 +60,7 @@ namespace Assignment.App_Pages
             orderCon.Close();
 
             lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
-            lblTax.Text = (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString();
+            lblTax.Text = String.Format("{0:0.00}", (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString());
             lblTotal.Text = String.Format("RM {0:0.00}", (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
 
         }
@@ -77,7 +72,8 @@ namespace Assignment.App_Pages
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {
-
+            string queryString = "~/App_Pages/ProductDelivery.aspx?OrderID=" + lblOrderID0.Text;
+            Response.Redirect(queryString);
         }
     }
 }
