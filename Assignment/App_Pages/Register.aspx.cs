@@ -17,7 +17,7 @@ namespace Assignment.App_Pages
             
         }
 
-        protected void loginFormBtn_Click(object sender, EventArgs e)
+        protected void registerFormBtn_Click(object sender, EventArgs e)
         {
             String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString; //get connection string
             SqlConnection loginCon = new SqlConnection(con);        //connect
@@ -63,6 +63,7 @@ namespace Assignment.App_Pages
 
                         cnn.Open();
                         cmd.ExecuteNonQuery();
+                        cnn.Close();
                     }
                 }
                
@@ -81,7 +82,7 @@ namespace Assignment.App_Pages
             {
                 lblRegisterOk.Text = "Password not match.";
             }
-            
+            loginCon.Close();
 
         }
        

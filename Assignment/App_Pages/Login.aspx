@@ -34,10 +34,7 @@
 						
 
 						<div>
-                             <asp:LinkButton  id="forgetPassword"  runat="server" class="forgetPasswordText" OnClick="msg"> Forgot Password?</asp:LinkButton>
-						
-							
-						     
+							<asp:HyperLink id="forgetPassword" NavigateUrl="~/App_Pages/ForgetPassword.aspx" Text="Forgot Password?" runat="server" class="forgetPasswordText"/>
 							
 						</div>
 					

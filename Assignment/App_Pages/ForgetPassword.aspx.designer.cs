@@ -11,62 +11,26 @@ namespace Assignment.App_Pages
 {
 
 
-    public partial class Register
+    public partial class ForgetPassword
     {
 
         /// <summary>
-        /// signInForm control.
+        /// forgetPassForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm signInForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm forgetPassForm;
 
         /// <summary>
-        /// lblRegisterOk control.
+        /// ValidationSummary1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRegisterOk;
-
-        /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-
-        /// <summary>
-        /// TxtRName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtRName;
-
-        /// <summary>
-        /// RadioButtonList1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
-
-        /// <summary>
-        /// TxtRDOB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtRDOB;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
 
         /// <summary>
         /// RequiredFieldValidator3 control.
@@ -114,6 +78,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
 
         /// <summary>
+        /// conPassValidate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator conPassValidate;
+
+        /// <summary>
         /// TxtRConfirmPass control.
         /// </summary>
         /// <remarks>
@@ -123,31 +96,40 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRConfirmPass;
 
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// TxtRValidationCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.TextBox TxtRValidationCode;
 
         /// <summary>
-        /// TxtREmail control.
+        /// getCodeMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtREmail;
+        protected global::System.Web.UI.WebControls.Label getCodeMsg;
 
         /// <summary>
-        /// registerFormBtn control.
+        /// getVerificationCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button registerFormBtn;
+        protected global::System.Web.UI.WebControls.Button getVerificationCode;
+
+        /// <summary>
+        /// forgetPasssFormBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button forgetPasssFormBtn;
 
         /// <summary>
         /// signUpText control.

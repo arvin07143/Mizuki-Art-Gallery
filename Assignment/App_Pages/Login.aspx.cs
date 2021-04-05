@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
 
 namespace Assignment
 {
@@ -35,12 +36,30 @@ namespace Assignment
 
             if (dtrUser.HasRows)
             {
-                String strSelectName = "Select Name from [dbo].[User] where Username=@username";
-                SqlCommand cmdSelectName = new SqlCommand(strSelectName, loginCon);
-                cmdSelectName.Parameters.AddWithValue("@username", TxtLUsername.Text);
-                Session["username"] = TxtLUsername.Text;
-                Session["name"] = cmdSelectName.ExecuteScalar().ToString();
-                Response.Redirect("MainPage.aspx");
+                
+                SqlCommand cmdGetUsername = new SqlCommand("Select Username from [dbo].[User] where Username=@username and UserPassword=@password", loginCon);
+                cmdGetUsername.Parameters.AddWithValue("@username", TxtLUsername.Text);
+                cmdGetUsername.Parameters.AddWithValue("@password", TxtLPass.Text);
+                String username = Convert.ToString(cmdGetUsername.ExecuteScalar());
+
+                SqlCommand cmdGetPass = new SqlCommand("Select Username from [dbo].[User] where Username=@username and UserPassword=@password", loginCon);
+                cmdGetPass.Parameters.AddWithValue("@username", TxtLUsername.Text);
+                cmdGetPass.Parameters.AddWithValue("@password", TxtLPass.Text);
+                String password = Convert.ToString(cmdGetPass.ExecuteScalar());
+
+                if (username.CompareTo(TxtLUsername.Text) == 0 && password.CompareTo(TxtLPass.Text) == 0)
+                {
+                    String strSelectName = "Select Name from [dbo].[User] where Username=@username";
+                    SqlCommand cmdSelectName = new SqlCommand(strSelectName, loginCon);
+                    cmdSelectName.Parameters.AddWithValue("@username", TxtLUsername.Text);
+                    Session["username"] = TxtLUsername.Text;
+                    Session["name"] = cmdSelectName.ExecuteScalar().ToString();
+                    Response.Redirect("MainPage.aspx");
+                }
+                else
+                {
+                    lblLoginFail.Text = "Invalid Usernamd or Password";
+                }
             }
             else
             {
@@ -49,14 +68,6 @@ namespace Assignment
             //Response.Redirect("MainPage.aspx");
             loginCon.Close();
         }
-        protected void msg(object sender, EventArgs e)
-        {
-
-            string message = "Reset password link is send to your email.";
-            string script = "window.onload = function(){ alert('";
-            script += message;
-            script += "')};";
-            ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", script, true);
-        }
+      
     }
 }

@@ -1,30 +1,4 @@
-﻿
-
-/*
-
-a {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #666666;
-    margin: 0px;
-}
-
-    a:focus {
-        outline: none !important;
-    }
-
-    a:hover {
-        text-decoration: none;
-        color: #85929E;
-    }*/
-
-/*---------------------------------------------*/
-
-
-
-
-
-/*---------------------------------------------*/
+﻿/*---------------------------------------------*/
 
 
 body {
@@ -45,12 +19,6 @@ button {
     button:hover {
         cursor: pointer;
     }
-
-
-
-
-
-
 
 /*//////////////////////////////////////////////////////////////////
         [ login ]*/
@@ -92,7 +60,7 @@ button {
 
 
 /*==================================================================
-        [ Form ]*/
+        [ Text ]*/
 
 
 .text1 {
@@ -171,7 +139,7 @@ button {
 
 .formBtn {
     font-size: 16px;
-    color: #fff;
+    color: #ffffff;
     line-height: 1.2;
     display: flex;
     justify-content: center;
