@@ -51,7 +51,7 @@
             <div class="card-body">
             <article class="card">
                 <div class="card-body row">
-                    <div class="col"> <strong>Recipient Name<br /></strong> 
+                    <div class="col"> <strong>Recipient Name <img src='../ReceiptImage/69.jpg'/><br /></strong> 
                         <asp:Label ID="lblName" runat="server"></asp:Label>
                         <br> </div>
                     <div class="col"> <strong>Contact Number</strong><br />

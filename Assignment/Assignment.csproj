@@ -83,7 +83,7 @@
     <Content Include="App_Pages\Login.aspx" />
     <Content Include="App_Pages\Receipt.aspx" />
     <Content Include="App_Pages\Register.aspx" />
-    <Content Include="App_Pages\Try.aspx" />
+    <Content Include="App_Pages\DigitalReceipt.aspx" />
     <Content Include="css\checkout.css" />
     <Content Include="css\lightbox.css" />
     <Content Include="css\login_register.css" />
@@ -199,12 +199,12 @@
       <DependentUpon>ManageArt.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Pages\ScreenCapture.cs" />
-    <Compile Include="App_Pages\Try.aspx.cs">
-      <DependentUpon>Try.aspx</DependentUpon>
+    <Compile Include="App_Pages\DigitalReceipt.aspx.cs">
+      <DependentUpon>DigitalReceipt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="App_Pages\Try.aspx.designer.cs">
-      <DependentUpon>Try.aspx</DependentUpon>
+    <Compile Include="App_Pages\DigitalReceipt.aspx.designer.cs">
+      <DependentUpon>DigitalReceipt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

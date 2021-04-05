@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Try.aspx.cs" Inherits="Assignment.App_Pages.Try" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DigitalReceipt.aspx.cs" Inherits="Assignment.App_Pages.Try" %>
 
 <!DOCTYPE html>
 

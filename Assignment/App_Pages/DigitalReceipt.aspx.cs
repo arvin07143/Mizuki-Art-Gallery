@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -76,32 +77,25 @@ namespace Assignment.App_Pages
 
             string to = lblEmail.Text;
             string from = "mizuki2629@gmail.com";
-            MailMessage message = new MailMessage(from, to);
+            MailMessage mm = new MailMessage(from, to);
+            mm.Subject = "Mizuki Gallery - Receipt(OrderID : " + lblOrderID0.Text + ")";
 
-            string mailbody = "<img src='../ReceiptImage/" + lblOrderID0.Text + ".jpg" ;
-            message.Subject = "Mizuki Gallery - Receipt(OrderID : )" + lblOrderID0.Text;
-            message.Body = mailbody;
-            message.BodyEncoding = Encoding.UTF8;
-            message.IsBodyHtml = true;
+            AlternateView imgview = AlternateView.CreateAlternateViewFromString("Dear " + lblName2.Text + ", Here Is Your Digital Receipt For Order " + lblOrderID0.Text + ". Thank you!<br/><img src=cid:imgpath>",null, MediaTypeNames.Text.Html);
+            LinkedResource lr = new LinkedResource(imagePath);
+            lr.ContentId = "imagpath";
+            imgview.LinkedResources.Add(lr);
+            mm.AlternateViews.Add(imgview);
+            mm.Body = lr.ContentId;
+           
+
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
-            System.Net.NetworkCredential basicCredential1 = new
-            System.Net.NetworkCredential("mizuki2629@gmail.com", "Mizuku12345");
-            client.EnableSsl = true;
             client.UseDefaultCredentials = false;
+            System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("mizuki2629@gmail.com", "Mizuki12345");
+            client.EnableSsl = true;
             client.Credentials = basicCredential1;
-            try
-            {
-                client.Send(message);
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-
-
-            string queryString = "~/App_Pages/ProductSummary.aspx?OrderID=" + lblOrderID0.Text;
+            client.Send(mm);
+    
+            string queryString = "~/App_Pages/PurchaseSummary.aspx?OrderID=" + lblOrderID0.Text;
             Response.Redirect(queryString);
         }
     }
