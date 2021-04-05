@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="ProductDelivery.aspx.cs" Inherits="Assignment.App_Pages.ProductDelivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Delivery Detail</title>
     <style>
         .container {
          margin-top: 50px;

@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="Assignment.App_Pages.MainPage" %>
 
 <asp:Content ID="mainPageHeader" ContentPlaceHolderID="head" runat="server">
+    <title>Home</title>
     <style>
-
         .img-slide {
             height: 300px;
             width: 400px;
@@ -10,9 +10,6 @@
             object-position: center;
             margin: auto;
         }
-        
-
-        
 
         .overlay {
             position: relative;
@@ -20,15 +17,17 @@
             z-index: 2;
         }
 
-        .card{
+        .card {
             min-width: 180px !important;
         }
+
         .card-img-top {
             height: 280px;
             object-fit: cover;
-            object-position:center;
+            object-position: center;
         }
-        #content hr{
+
+        #content hr {
             margin: 50px 0 30px 0;
         }
     </style>

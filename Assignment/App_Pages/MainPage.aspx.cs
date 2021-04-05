@@ -18,17 +18,20 @@ namespace Assignment.App_Pages
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
                 con.Open();
-                //SqlCommand cmdGetURL = new SqlCommand("SELECT TOP 5 [URL], [ArtworkName], [ArtworkID] from [Artwork] WHERE StockQuantity > 0", con);
                 SqlCommand cmdGetURL = new SqlCommand("SELECT Artwork.ArtworkID, Artwork.URL, Artwork. ArtworkName FROM Artwork WHERE ArtworkID IN (SELECT TOP 5 OrderDetails.ArtworkID AS TotalQuantity FROM OrderDetails GROUP BY OrderDetails.ArtworkID ORDER BY SUM(OrderDetails.Quantity) DESC) AND Artwork.StockQuantity > 0", con);
                 carouselRepeater.DataSource = cmdGetURL.ExecuteReader();
                 carouselRepeater.DataBind();
                 HtmlGenericControl div = (HtmlGenericControl)carouselRepeater.Items[0].FindControl("carouselItem");
                 div.Attributes.Add("class", "carousel-item active");
 
-                //cmdGetURL = new SqlCommand("SELECT [User].Name, Artwork.ArtworkID, Artwork.URL, Artwork. ArtworkName FROM Artwork INNER JOIN [User] ON (Artwork.Username = [User].Username) WHERE ArtworkID IN (SELECT TOP 5 OrderDetails.ArtworkID AS TotalQuantity FROM OrderDetails INNER JOIN [Order] on (OrderDetails.OrderID = [Order].OrderID) WHERE (GETDATE() - [Order].Date) BETWEEN 0 AND 7 GROUP BY OrderDetails.ArtworkID ORDER BY SUM(OrderDetails.Quantity) DESC) AND Artwork.StockQuantity > 0", con);
                 cmdGetURL = new SqlCommand("SELECT [User].Name, Artwork.ArtworkID, Artwork.URL, Artwork. ArtworkName FROM Artwork INNER JOIN [User] ON (Artwork.Username = [User].Username) WHERE ArtworkID IN (SELECT TOP 5 OrderDetails.ArtworkID AS TotalQuantity FROM OrderDetails GROUP BY OrderDetails.ArtworkID ORDER BY SUM(OrderDetails.Quantity) DESC) AND Artwork.StockQuantity > 0", con);
-                rptTrending.DataSource = cmdGetURL.ExecuteReader();
-                rptTrending.DataBind();
+                SqlDataReader rdrTrending = cmdGetURL.ExecuteReader();
+                if (rdrTrending.HasRows)
+                {
+                    rptTrending.DataSource = rdrTrending;
+                    rptTrending.DataBind();
+                }
+                rdrTrending.Close();
 
                 cmdGetURL = new SqlCommand("SELECT [User].Name, Artwork.ArtworkID, Artwork.URL, Artwork. ArtworkName FROM Artwork INNER JOIN [User] ON (Artwork.Username = [User].Username) WHERE ArtworkID IN (SELECT TOP 5 OrderDetails.ArtworkID AS TotalQuantity FROM OrderDetails GROUP BY OrderDetails.ArtworkID ORDER BY SUM(OrderDetails.Quantity) DESC) AND Artwork.StockQuantity > 0", con);
                 rptHotSelling.DataSource = cmdGetURL.ExecuteReader();
@@ -48,7 +51,7 @@ namespace Assignment.App_Pages
             ImageButton lnkRowSelection = (ImageButton)sender;
             //Get the id from command argumen tof linkbutton
             string artworkID = lnkRowSelection.CommandArgument.ToString();
-            
+
             Response.Redirect("~/App_Pages/ArtDetail.aspx?ArtworkID=" + artworkID);
         }
     }
