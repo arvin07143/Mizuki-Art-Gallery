@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Mizuki.Master" CodeBehind="ArtDetail.aspx.cs" Inherits="Assignment.App_Pages.ArtDetail" %>
 
 <asp:Content ID="artDetailHeader" ContentPlaceHolderID="head" runat="server">
+    <title>Art Detail</title>
     <style>
         #form1 {
             min-height: 600px;
@@ -40,7 +41,7 @@
                                 <asp:Label ID="artName" runat="server" CssClass="h1"></asp:Label>
                             </div>
                             <div class="mt-4">
-                                <p style="display: inline; color: grey; margin-right: 10px">by: </p>
+                                <p style="display: inline; color: grey; margin-right: 10px">by: </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Label ID="artistName" runat="server" CssClass="h5"></asp:Label>
                             </div>
                             <div>
@@ -48,7 +49,7 @@
                                 <asp:Label ID="stockQuantity" runat="server"></asp:Label>
                             </div>
                             <div>
-                                <p style="display: inline; color: grey; margin-right: 10px">RM </p>
+                                <p style="display: inline; color: grey; margin-right: 10px">RM </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Label ID="price" runat="server"></asp:Label>
                             </div>
                         </div>

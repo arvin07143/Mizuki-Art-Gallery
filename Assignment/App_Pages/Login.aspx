@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="Mizuki Login" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Assignment.Login" %>
 
-
+<asp:Content ID="LoginHeader" ContentPlaceHolderID="head" runat="server">
+    <title>Login</title>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="contentplaceholder1" runat="server">
 <link rel="stylesheet" type="text/css" href="../css/Login_Register.css" />
-
+		
         <div class="whiteboxPosition">
 			<div class="loginWhiteboxSize">
 				<form id="loginform" runat="server" class="form">

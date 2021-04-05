@@ -39,8 +39,6 @@ namespace Assignment.App_Pages
                 rptNewArt.DataSource = cmdGetURL.ExecuteReader();
                 rptNewArt.DataBind();
                 con.Close();
-
-
             }
         }
 
@@ -49,7 +47,7 @@ namespace Assignment.App_Pages
             ImageButton lnkRowSelection = (ImageButton)sender;
             //Get the id from command argumen tof linkbutton
             string artworkID = lnkRowSelection.CommandArgument.ToString();
-            
+
             Response.Redirect("~/App_Pages/ArtDetail.aspx?ArtworkID=" + artworkID);
         }
     }
