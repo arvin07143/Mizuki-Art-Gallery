@@ -32,7 +32,7 @@ namespace Assignment.App_Pages
 
             lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
             lblTax.Text = (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString();
-            lblTotal.Text = String.Format("{0:C2}",(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
+            lblTotal.Text = String.Format("RM {0:0.00}", (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
         }
 
         
@@ -44,73 +44,74 @@ namespace Assignment.App_Pages
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
+            if (Page.IsValid) { 
+                Double total = Convert.ToDouble(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text));
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
-            Double total = Convert.ToDouble(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text));
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                //Insert into Order table
+                con.Open();
+                SqlCommand cmdAddOrder = new SqlCommand("INSERT INTO [dbo].[Order] VALUES (@Username, @Date, @Total, @PaymentType, @CardNumber, @DeliveryAddress, @RecipientName, @EmailAddress, @ContactNumber);", con);
+                cmdAddOrder.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+                cmdAddOrder.Parameters.AddWithValue("@Date", DateTime.Now.ToString("dd-MM-yyyy"));
+                cmdAddOrder.Parameters.AddWithValue("@Total", total);
+                cmdAddOrder.Parameters.AddWithValue("@PaymentType", rblPayment.Text);
+                cmdAddOrder.Parameters.AddWithValue("@CardNumber", txtCardNumber.Text);
+                cmdAddOrder.Parameters.AddWithValue("@DeliveryAddress", txtDeliveryAddress.Text + " " + txtZipCode.Text + " " + txtCity.Text + " " + ddlState.Text);
+                cmdAddOrder.Parameters.AddWithValue("@RecipientName", txtName.Text);
+                cmdAddOrder.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
+                cmdAddOrder.Parameters.AddWithValue("@ContactNumber", txtContactNumber.Text);
+                cmdAddOrder.ExecuteNonQuery();
+                con.Close();
 
-            //Insert into Order table
-            con.Open();
-            SqlCommand cmdAddOrder = new SqlCommand("INSERT INTO [dbo].[Order] VALUES (@Username, @Date, @Total, @PaymentType, @CardNumber, @DeliveryAddress, @RecipientName, @EmailAddress, @ContactNumber);", con);
-            cmdAddOrder.Parameters.AddWithValue("@Username", Session["Username"].ToString());
-            cmdAddOrder.Parameters.AddWithValue("@Date", DateTime.Now.ToString("dd-MM-yyyy"));
-            cmdAddOrder.Parameters.AddWithValue("@Total", total);
-            cmdAddOrder.Parameters.AddWithValue("@PaymentType", rblPayment.Text);
-            cmdAddOrder.Parameters.AddWithValue("@CardNumber", txtCardNumber.Text);
-            cmdAddOrder.Parameters.AddWithValue("@DeliveryAddress", txtDeliveryAddress.Text + " " + txtZipCode.Text + " " + txtCity.Text + " " + ddlState.Text);
-            cmdAddOrder.Parameters.AddWithValue("@RecipientName", txtName.Text);
-            cmdAddOrder.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
-            cmdAddOrder.Parameters.AddWithValue("@ContactNumber", txtContactNo.Text);
-            cmdAddOrder.ExecuteNonQuery();
-            con.Close();
+                //get latest OrderID from Order table
+                con.Open();
+                SqlCommand cmdgetOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
+                int orderID = Convert.ToInt32(cmdgetOrderID.ExecuteScalar());
+                con.Close();
 
-            //get latest OrderID from Order table
-            con.Open();
-            SqlCommand cmdgetOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
-            int orderID = Convert.ToInt32(cmdgetOrderID.ExecuteScalar());
-            con.Close();
+                //Insert into OrderDetails table
+                con.Open();
+                SqlCommand cmdCartDetails = new SqlCommand("SELECT CartDetails.ArtworkID, CartDetails.Quantity FROM CartDetails WHERE CartDetails.Username= @Username;", con);
+                cmdCartDetails.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+                SqlDataReader cart = cmdCartDetails.ExecuteReader();
+                while (cart.Read())
+                {
+                    SqlCommand cmdAddOrderDetails = new SqlCommand("INSERT INTO OrderDetails VALUES (@OrderID, @ArtworkID, @Quantity);", con);
+                    cmdAddOrderDetails.Parameters.AddWithValue("@OrderID", orderID);
+                    cmdAddOrderDetails.Parameters.AddWithValue("@ArtworkID", cart["ArtworkID"].ToString());
+                    cmdAddOrderDetails.Parameters.AddWithValue("@Quantity", cart["Quantity"].ToString());
+                    cmdAddOrderDetails.ExecuteNonQuery();
+                }
+                cart.Close();
+                con.Close();
 
-            //Insert into OrderDetails table
-            con.Open();
-            SqlCommand cmdCartDetails = new SqlCommand("SELECT CartDetails.ArtworkID, CartDetails.Quantity FROM CartDetails WHERE CartDetails.Username= @Username;", con);
-            cmdCartDetails.Parameters.AddWithValue("@Username", Session["Username"].ToString());
-            SqlDataReader cart = cmdCartDetails.ExecuteReader();
-            while (cart.Read())
-            {
-                SqlCommand cmdAddOrderDetails = new SqlCommand("INSERT INTO OrderDetails VALUES (@OrderID, @ArtworkID, @Quantity);", con);
-                cmdAddOrderDetails.Parameters.AddWithValue("@OrderID", orderID);
-                cmdAddOrderDetails.Parameters.AddWithValue("@ArtworkID", cart["ArtworkID"].ToString());
-                cmdAddOrderDetails.Parameters.AddWithValue("@Quantity", cart["Quantity"].ToString());
-                cmdAddOrderDetails.ExecuteNonQuery();
+                //rmb add delete query
+
+                //Reduce Stock
+                con.Open();
+                SqlCommand cmdGetArtworkCount = new SqlCommand("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", con);
+                cmdGetArtworkCount.Parameters.AddWithValue("@OrderID", orderID);
+                SqlDataReader rows = cmdCartDetails.ExecuteReader();
+                while (rows.Read())
+                {
+                    SqlCommand cmdReduceStock = new SqlCommand("UPDATE Artwork SET StockQuantity = StockQuantity - (SELECT Quantity FROM OrderDetails WHERE OrderID = @OrderID AND ArtworkID = @ArtworkID) WHERE ArtworkID = @ArtworkID", con);
+                    cmdReduceStock.Parameters.AddWithValue("@OrderID", orderID);
+                    cmdReduceStock.Parameters.AddWithValue("@ArtworkID", rows["ArtworkID"].ToString());
+                    cmdReduceStock.ExecuteNonQuery();
+                }
+                rows.Close();
+                con.Close();
+
+                //clear cart
+                con.Open();
+                SqlCommand cmdClearCart = new SqlCommand("DELETE FROM CartDetails WHERE Username = @Username", con);
+                cmdClearCart.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+                cmdClearCart.ExecuteNonQuery();
+                con.Close();
+
+                string queryString = "~/App_Pages/Receipt.aspx?OrderID=" + orderID + "&ZipCode=" + txtZipCode.Text + "&City=" + txtCity.Text + "&State=" + ddlState.Text;
+                Response.Redirect(queryString);
             }
-            cart.Close();
-            con.Close();
-
-            //rmb add delete query
-
-            //Reduce Stock
-            con.Open();
-            SqlCommand cmdGetArtworkCount = new SqlCommand("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", con);
-            cmdGetArtworkCount.Parameters.AddWithValue("@OrderID", orderID);
-            SqlDataReader rows = cmdCartDetails.ExecuteReader();
-            while (rows.Read())
-            {
-                SqlCommand cmdReduceStock = new SqlCommand("UPDATE Artwork SET StockQuantity = StockQuantity - (SELECT Quantity FROM OrderDetails WHERE OrderID = @OrderID AND ArtworkID = @ArtworkID) WHERE ArtworkID = @ArtworkID", con);
-                cmdReduceStock.Parameters.AddWithValue("@OrderID", orderID);
-                cmdReduceStock.Parameters.AddWithValue("@ArtworkID", rows["ArtworkID"].ToString());
-                cmdReduceStock.ExecuteNonQuery();
-            }
-            rows.Close();
-            con.Close();
-
-            //clear cart
-            con.Open();
-            SqlCommand cmdClearCart = new SqlCommand("DELETE FROM CartDetails WHERE Username = @Username", con);
-            cmdClearCart.Parameters.AddWithValue("@Username", Session["Username"].ToString());
-            cmdClearCart.ExecuteNonQuery();
-            con.Close();
-
-            string queryString = "~/App_Pages/Receipt.aspx?OrderID=" + orderID + "&ZipCode=" + txtZipCode.Text + "&City=" + txtCity.Text + "&State=" + ddlState.Text;
-            Response.Redirect(queryString);
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
