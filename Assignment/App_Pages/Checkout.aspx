@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="Assignment.App_Pages.Checkout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Checkout</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
@@ -340,7 +341,6 @@
                             <asp:ListItem Value="Visa" >Visa<img style="width:50px; height:20px" src="https://creditcardsinmalaysia.files.wordpress.com/2015/04/visa-card-malaysia.gif"/></asp:ListItem>
                             <asp:ListItem Value="Master" >Master<img style="width:50px; height:45px" src="https://brand.mastercard.com/content/dam/mccom/brandcenter/thumbnails/mastercard_vrt_pos_92px_2x.png"/></asp:ListItem>
                         </asp:RadioButtonList>
-                        <asp:TextBox ID="txtName0" runat="server" CssClass="auto-style10" Width="70px" ReadOnly="True" Visible="False" Wrap="False"></asp:TextBox>
                     </p>
                     <p>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="rblPayment" Display="Dynamic" ErrorMessage="Payment Mothod is required"></asp:RequiredFieldValidator>
@@ -431,7 +431,7 @@
                             <asp:ListItem>12</asp:ListItem>
                         </asp:DropDownList>
                         &nbsp;
-                        <asp:DropDownList CssClass="auto-style2" ID="ddlYear" runat="server" Height="30px" Width="58px">
+                        <asp:DropDownList CssClass="auto-style2" ID="ddlYear" runat="server" Height="35px" Width="58px">
                             <asp:ListItem>2020</asp:ListItem>
                             <asp:ListItem>2021</asp:ListItem>
                             <asp:ListItem>2022</asp:ListItem>
@@ -534,7 +534,7 @@
                                     <tr>
                                         <td style="width: 60%" class="align-middle"><%# Eval("ArtworkName")%></td>
                                         <td style="width: 10%" class="align-middle"><%# Eval("Quantity")%></td>
-                                        <td style="width: 30%; text-align: right"" class="align-middle"><%# Eval("TotalPrice")%></td>
+                                        <td style="width: 30%; text-align: right" class="align-middle"><%# Eval("TotalPrice")%></td>
                                     </tr>
                                 </table>
                             </ItemTemplate>
@@ -572,7 +572,7 @@
                         </table>
                             <asp:Button style="margin-left:55px" class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" Width="300px" />
                             <br /><br />
-                            <asp:Button style="margin-left:55px" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Check Out" OnClick="btnCheckout_Click" Width="300px" PostBackUrl="~/App_Pages/ProductDelivery.aspx"  />
+                            <asp:Button style="margin-left:55px" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Check Out" OnClick="btnCheckout_Click" Width="300px"  />
 
 
                     </div>

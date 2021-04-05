@@ -44,9 +44,11 @@ namespace Assignment.App_Pages
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
+
             Double total = Convert.ToDouble(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text));
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
+            //Insert into Order table
             con.Open();
             SqlCommand cmdAddOrder = new SqlCommand("INSERT INTO [dbo].[Order] VALUES (@Username, @Date, @Total, @PaymentType, @CardNumber, @DeliveryAddress, @RecipientName, @EmailAddress, @ContactNumber);", con);
             cmdAddOrder.Parameters.AddWithValue("@Username", Session["Username"].ToString());
@@ -61,11 +63,13 @@ namespace Assignment.App_Pages
             cmdAddOrder.ExecuteNonQuery();
             con.Close();
 
+            //get latest OrderID from Order table
             con.Open();
-            SqlCommand cmdOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
-            int orderID = Convert.ToInt32(cmdOrderID.ExecuteScalar());
+            SqlCommand cmdgetOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
+            int orderID = Convert.ToInt32(cmdgetOrderID.ExecuteScalar());
             con.Close();
 
+            //Insert into OrderDetails table
             con.Open();
             SqlCommand cmdCartDetails = new SqlCommand("SELECT CartDetails.ArtworkID, CartDetails.Quantity FROM CartDetails WHERE CartDetails.Username= @Username;", con);
             cmdCartDetails.Parameters.AddWithValue("@Username", Session["Username"].ToString());
@@ -78,9 +82,35 @@ namespace Assignment.App_Pages
                 cmdAddOrderDetails.Parameters.AddWithValue("@Quantity", cart["Quantity"].ToString());
                 cmdAddOrderDetails.ExecuteNonQuery();
             }
+            cart.Close();
             con.Close();
 
             //rmb add delete query
+
+            //Reduce Stock
+            con.Open();
+            SqlCommand cmdGetArtworkCount = new SqlCommand("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", con);
+            cmdGetArtworkCount.Parameters.AddWithValue("@OrderID", orderID);
+            SqlDataReader rows = cmdCartDetails.ExecuteReader();
+            while (rows.Read())
+            {
+                SqlCommand cmdReduceStock = new SqlCommand("UPDATE Artwork SET StockQuantity = StockQuantity - (SELECT Quantity FROM OrderDetails WHERE OrderID = @OrderID AND ArtworkID = @ArtworkID) WHERE ArtworkID = @ArtworkID", con);
+                cmdReduceStock.Parameters.AddWithValue("@OrderID", orderID);
+                cmdReduceStock.Parameters.AddWithValue("@ArtworkID", rows["ArtworkID"].ToString());
+                cmdReduceStock.ExecuteNonQuery();
+            }
+            rows.Close();
+            con.Close();
+
+            //clear cart
+            con.Open();
+            SqlCommand cmdClearCart = new SqlCommand("DELETE FROM CartDetails WHERE Username = @Username", con);
+            cmdClearCart.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+            cmdClearCart.ExecuteNonQuery();
+            con.Close();
+
+            string queryString = "~/App_Pages/Receipt.aspx?OrderID=" + orderID + "&ZipCode=" + txtZipCode.Text + "&City=" + txtCity.Text + "&State=" + ddlState.Text;
+            Response.Redirect(queryString);
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,17 +119,28 @@ namespace Assignment.App_Pages
         }
         
         //kyao de function
+     
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
+        }
+
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
             string num = args.Value;
 
-            if (num.Length != 14)
+            if (txtCardNumber.Text.Length != 14)
             {
                 CustomValidator1.ErrorMessage = "Card Number should be 14 digits";
                 args.IsValid = false;
             }
 
-            if (rblPayment.Text == "Visa")
+            else if (rblPayment.Text == "Visa")
             {
                 if (num.First() != '4')
                 {
@@ -109,7 +150,7 @@ namespace Assignment.App_Pages
 
             }
 
-            if (rblPayment.Text == "Master")
+            else if (rblPayment.Text == "Master")
             {
                 if (num.First() != '5')
                 {
@@ -118,16 +159,6 @@ namespace Assignment.App_Pages
 
                 }
             }
-        }
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-
         }
     }
 }

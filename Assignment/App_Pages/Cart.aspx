@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Cart" MaintainScrollPositionOnPostback="true" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="Assignment.App_Pages.Cart" %>
 
 <asp:Content ID="styleContent" ContentPlaceHolderID="head" runat="server">
+    <title>Cart</title>
     <style>
         html{
             scroll-behavior: auto;
@@ -107,12 +108,10 @@
                                         <asp:Button CommandName="plus" CommandArgument='<%# Eval("ArtworkID")%>'
                                             Text="+" runat="server" ID="btnPlus" CssClass="btn-plusminus" />
                                     </div>
-                                    <!--<p class="card-text">Unit Price : RM<%# Eval("Price")%></p>
-                                    <p class="card-text">Sub-total : RM<%# Eval("TotalPrice")%></p>
-                                    -->
-                                    <br />RM &nbsp;
+                                    
+                                    <br />Unit Price&nbsp;: RM &nbsp;
                                     <asp:Label ID="lblUnit" Text='<%# Eval("Price")%>' runat="server" />
-                                    <br />RM &nbsp;
+                                    <br />Sub-total&nbsp;&nbsp;:  RM &nbsp;
                                     <asp:Label ID="lblSubtotal" Text='<%# Eval("TotalPrice")%>' runat="server" />
                                     <br />
                                     <asp:Button CommandName="delete" CommandArgument='<%# Eval("ArtworkID")%>'

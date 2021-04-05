@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="Assignment.App_Pages.MainPage" %>
 
 <asp:Content ID="mainPageHeader" ContentPlaceHolderID="head" runat="server">
+    <title>Home</title>
     <style>
-
         .img-slide {
             height: 300px;
             width: 400px;
@@ -10,9 +10,6 @@
             object-position: center;
             margin: auto;
         }
-        
-
-        
 
         .overlay {
             position: relative;
@@ -20,15 +17,17 @@
             z-index: 2;
         }
 
-        .card{
+        .card {
             min-width: 180px !important;
         }
+
         .card-img-top {
             height: 280px;
             object-fit: cover;
-            object-position:center;
+            object-position: center;
         }
-        #content hr{
+
+        #content hr {
             margin: 50px 0 30px 0;
         }
     </style>
@@ -73,7 +72,7 @@
                                 <asp:ImageButton ID="ibtnTrending" runat="server" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" CssClass="card-img-top" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -92,7 +91,7 @@
                                 <asp:ImageButton ID="ibtnHotSelling" runat="server" class="card-img-top" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -111,7 +110,7 @@
                                 <asp:ImageButton ID="ibtnNewArt" runat="server" class="card-img-top" src='<%# Eval("URL") %>' CommandArgument='<%# Eval("ArtworkID") %>' OnClick="SlideImg_Click" />
                                 <div class="card-body">
                                     <h5 class="card-title" runat="server"><%# Eval("ArtworkName") %></h5>
-                                    <p class="card-text" runat="server"><%# Eval("Username") %></p>
+                                    <p class="card-text" runat="server"><%# Eval("Name") %></p>
                                 </div>
                             </div>
                         </ItemTemplate>

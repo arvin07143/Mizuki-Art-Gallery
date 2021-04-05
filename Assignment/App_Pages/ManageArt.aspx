@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.Price, Artwork.ArtworkID, Artwork.ArtworkName, Artwork.StockQuantity, Artwork.URL, ArtCategory.CategoryName FROM Artwork INNER JOIN ArtCategory ON Artwork.CategoryID = ArtCategory.CategoryID WHERE (Artwork.Username = @currentUsername)">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.Price, Artwork.ArtworkID, Artwork.ArtworkName, Artwork.StockQuantity, Artwork.URL, ArtCategory.CategoryName FROM Artwork INNER JOIN ArtCategory ON Artwork.CategoryID = ArtCategory.CategoryID WHERE (Artwork.Username = @currentUsername) AND Artwork.StockQuantity > -1">
                         <SelectParameters>
                             <asp:SessionParameter Name="currentUsername" SessionField="username" />
                         </SelectParameters>
@@ -131,7 +131,7 @@
                                                 <a href='<%#Eval("URL") %>' id="gallery-img" data-lightbox="img-gallery" data-title="<%# Eval("ArtworkName") %>">
                                                     <img class="img-thumbnail img-fluid" style="max-width: 80%" src='<%#Eval("URL") %>'>
                                                 </a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            </td>
                                             <td style="width: 15%" class="align-middle">
                                                 <asp:TextBox ID="artName" runat="server" Text='<%# Eval("ArtworkName") %>' Enabled="false" BorderStyle="None" BackColor="Transparent" CssClass="form-control"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ValidationGroup="Edit Image" ForeColor="Red" Display="Dynamic" ID="rfvArtName" runat="server" ErrorMessage="Art Name Cannot Be Blank" ControlToValidate="artName"></asp:RequiredFieldValidator>
@@ -213,7 +213,7 @@
                                             <td style="width: 15%" class="align-middle">
                                                 <asp:Label ID="lblPurchasedBy" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
                                             </td>
-                                            <td style="width: 15%" class="align-middle">
+                                            <td style="width: 10%" class="align-middle">
                                                 <asp:TextBox ID="lblSalesQuantity" runat="server" Text='<%# Eval("Quantity") %>' Enabled="false" BorderStyle="None" BackColor="Transparent" CssClass="form-control"></asp:TextBox>
                                             </td>
                                             <td style="width: 15%" class="align-middle">

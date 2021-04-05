@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Art.aspx.cs" Inherits="Assignment.App_Pages.Art" %>
 
 <asp:Content ID="artHead" runat="server" ContentPlaceHolderID="head">
+    <title>Gallery</title>
     <style>
         
         *,
@@ -101,7 +102,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" role="tabpanel" id="watercolorPaintingContent">
                             <div class="gallery">
-                                <asp:SqlDataSource ID="SqlDataSourceDigitalArt" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '2'"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSourceDigitalArt" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '2' AND StockQuantity > 0"></asp:SqlDataSource>
                                 <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSourceDigitalArt">
                                     <ItemTemplate>
                                         <table>
@@ -118,7 +119,7 @@
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="oilPaintingContent">
                             <div class="gallery">
-                                <asp:SqlDataSource ID="SqlDataSource_oil" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '4'"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource_oil" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '4' AND StockQuantity > 0"></asp:SqlDataSource>
                                 <asp:Repeater ID="Repeater2" runat="server" DataSourceID="SqlDataSource_oil">
                                     <ItemTemplate>
                                         <table>
@@ -135,7 +136,7 @@
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="sketchesContent">
                             <div class="gallery">
-                                <asp:SqlDataSource ID="SqlDataSource_sketches" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '5'"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource_sketches" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '5' AND StockQuantity > 0"></asp:SqlDataSource>
                                 <asp:Repeater ID="Repeater3" runat="server" DataSourceID="SqlDataSource_sketches">
                                     <ItemTemplate>
                                         <table>
@@ -152,7 +153,7 @@
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="acrylicPaintingContent">
                             <div class="gallery">
-                                <asp:SqlDataSource ID="SqlDataSource_acrylic" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '3'"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource_acrylic" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '3' AND StockQuantity > 0"></asp:SqlDataSource>
                                 <asp:Repeater ID="Repeater4" runat="server" DataSourceID="SqlDataSource_acrylic">
                                     <ItemTemplate>
                                         <table>
@@ -169,7 +170,7 @@
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="otherContent">
                             <div class="gallery">
-                                <asp:SqlDataSource ID="SqlDataSource_other" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '1'"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource_other" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Artwork] WHERE [CategoryID] = '1' AND StockQuantity > 0"></asp:SqlDataSource>
                                 <asp:Repeater ID="Repeater5" runat="server" DataSourceID="SqlDataSource_other">
                                     <ItemTemplate>
                                         <table>
