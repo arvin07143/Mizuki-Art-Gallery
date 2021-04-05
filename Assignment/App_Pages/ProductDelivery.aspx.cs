@@ -33,7 +33,8 @@ namespace Assignment.App_Pages
             con.Close();
 
             con.Open();
-            String strSelectItem = "SELECT Cart.ArtworkID, Art.ArtworkName, Art.Price, Art.URL, Cart.Quantity, Cart.Quantity * Art.Price AS TotalPrice FROM Artwork Art, CartDetails Cart WHERE Art.ArtworkID = Cart.ArtworkID AND Cart.Username= @Username;";
+
+            String strSelectItem = "SELECT OrderDetails.ArtworkID, Art.ArtworkName, Art.Price, Art.URL, OrderDetails.Quantity, OrderDetails.Quantity * Art.Price AS TotalPrice FROM Artwork Art, OrderDetails Cart WHERE Art.ArtworkID = cart.ArtworkID AND Username= @Username;";
             SqlCommand cmdSelectItem = new SqlCommand(strSelectItem, con);
             cmdSelectItem.Parameters.AddWithValue("@Username", Session["Username"].ToString());
             SqlDataAdapter da = new SqlDataAdapter();

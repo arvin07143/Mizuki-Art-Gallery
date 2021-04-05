@@ -35,6 +35,65 @@
          border-bottom: 1px solid rgba(0, 0, 0, 0.1)
      }
 
+      .track {
+     position: relative;
+     background-color: #ddd;
+     height: 7px;
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     margin-bottom: 60px;
+     margin-top: 50px
+ }
+
+ .track .step {
+     -webkit-box-flex: 1;
+     -ms-flex-positive: 1;
+     flex-grow: 1;
+     width: 25%;
+     margin-top: -18px;
+     text-align: center;
+     position: relative
+ }
+
+ .track .step.active:before {
+     background: #FF5722
+ }
+
+ .track .step::before {
+     height: 7px;
+     position: absolute;
+     content: "";
+     width: 100%;
+     left: 0;
+     top: 18px
+ }
+
+ .track .step.active .icon {
+     background: #ee5435;
+     color: #fff
+ }
+
+ .track .icon {
+     display: inline-block;
+     width: 40px;
+     height: 40px;
+     line-height: 40px;
+     position: relative;
+     border-radius: 100%;
+     background: #ddd
+ }
+
+ .track .step.active .text {
+     font-weight: 400;
+     color: #000
+ }
+
+ .track .text {
+     display: block;
+     margin-top: 7px
+ }
+
      
 
    
@@ -63,6 +122,11 @@
                         <br> </div>
                 </div>
             </article>
+            <div class="track">
+                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
+               
+                <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Item delivered</span> </div>
+            </div>
            <asp:Repeater ID="Repeater1" runat="server">
                             <HeaderTemplate>
                                 <table>
