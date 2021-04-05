@@ -10,10 +10,10 @@
 					<span class="text1" style="margin-bottom:-20px;">
 						Forget Password
 					</span>
-					<br />
+					<asp:ValidationSummary  class="text2" ID="ValidationSummary1" runat="server"  ForeColor="#FF3300" />
 					<span class="text2">
 						Username
-					<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TxtRUsername" Display="Dynamic" ErrorMessage="Username is required." ForeColor="Red" font-size = "8px">*Username is required.</asp:RequiredFieldValidator>
+					<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TxtRUsername" Display="Dynamic" ErrorMessage="Username is required." ForeColor="Red" >*</asp:RequiredFieldValidator>
 					</span>
 					<div class="wrapInput1">
                         <asp:TextBox ID="TxtRUsername" runat="server" class="input"></asp:TextBox>
@@ -21,15 +21,18 @@
 
                     <span class="text2">
 						New Password
-						<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtRPass" ErrorMessage="Password is required." ForeColor="Red" font-size = "8px">*Password is required.</asp:RequiredFieldValidator>
+						<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtRPass" ErrorMessage="Password is required." ForeColor="Red" >*</asp:RequiredFieldValidator>
 					</span>
 					<div class="wrapInput1">
                         <asp:TextBox ID="TxtRPass" runat="server" class="input"></asp:TextBox>
                      </div>
 					
 					<span class="text2">
-						Confirm Password<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtRConfirmPass" Display="Dynamic" ErrorMessage="Comfirm password is required." ForeColor="Red" font-size = "8px">*Comfirm password is required.</asp:RequiredFieldValidator>
-&nbsp;</span><div class="wrapInput1">
+						Confirm Password
+						<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtRConfirmPass" Display="Dynamic" ErrorMessage="Comfirm password is required." ForeColor="Red" >*</asp:RequiredFieldValidator>
+						<asp:CustomValidator ID="conPassValidate" runat="server" ErrorMessage="Confirm password does not match." ForeColor="Red" font-size = "8px" ControlToValidate="TxtRConfirmPass" OnServerValidate="conPassValidate_ServerValidate">*</asp:CustomValidator>
+					</span>
+                    <div class="wrapInput1">
 						<asp:TextBox ID="TxtRConfirmPass" runat="server" class="input" ></asp:TextBox>
 						
 					</div>
@@ -43,7 +46,13 @@
 					</div>
 					
 
-					<asp:Label ID="TEST" runat="server" Text="Label"></asp:Label>
+					<span class="text2">
+					
+
+					<asp:Label ID="getCodeMsg" runat="server" Text="" class="text2"></asp:Label>
+					
+
+					</span>
 					
 
 					<asp:Button ID="getVerificationCode" runat="server" class="formBtn"  Text="Get Code" OnClick="getVerificationCode_Click" />

@@ -49,14 +49,6 @@ namespace Assignment
             //Response.Redirect("MainPage.aspx");
             loginCon.Close();
         }
-        protected void msg(object sender, EventArgs e)
-        {
-            Response.Redirect("ForgetPassword.aspx");
-            //string message = "Reset password link is send to your email.";
-            //string script = "window.onload = function(){ alert('";
-           // script += message;
-            //script += "')};";
-            //ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", script, true);
-        }
+      
     }
 }
