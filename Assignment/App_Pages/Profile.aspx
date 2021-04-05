@@ -102,7 +102,7 @@
                                         <th style="width: 40%">Gender</th>
                                         <td>
                                             <asp:TextBox ID="txtGender" BorderStyle="None" BackColor="Transparent" runat="server" Text='' Enabled="false"></asp:TextBox>
-                                            <asp:DropDownList ID="DropDownList1" runat="server" Visible="false">
+                                            <asp:DropDownList ID="DropDownList1" runat="server" Visible="false" CssClass="form-select">
                                                 <asp:ListItem Value="M">Male</asp:ListItem>
                                                 <asp:ListItem Value="F">Female</asp:ListItem>
                                             </asp:DropDownList>
