@@ -33,6 +33,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Label lblRegisterOk;
 
         /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+
+        /// <summary>
         /// TxtRName control.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRDOB;
 
         /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+
+        /// <summary>
         /// TxtRUsername control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace Assignment.App_Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtRUsername;
+
+        /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
         /// TxtRPass control.
@@ -78,6 +105,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRPass;
 
         /// <summary>
+        /// RequiredFieldValidator7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+
+        /// <summary>
         /// TxtRConfirmPass control.
         /// </summary>
         /// <remarks>
@@ -85,6 +121,15 @@ namespace Assignment.App_Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtRConfirmPass;
+
+        /// <summary>
+        /// RequiredFieldValidator6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
 
         /// <summary>
         /// TxtREmail control.
