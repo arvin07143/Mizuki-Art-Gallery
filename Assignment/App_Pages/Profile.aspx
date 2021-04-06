@@ -128,7 +128,8 @@
                                     <tr>
                                         <th style="width: 40%">Date of Birth</th>
                                         <td>
-                                            <asp:TextBox ID="txtDOB" BorderStyle="None" BackColor="Transparent" runat="server" Text="" Enabled="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                                            <asp:Label ID="lblDOB" runat="server" Visible="true"></asp:Label>
+                                            <asp:TextBox ID="txtDOB" BorderStyle="None" BackColor="Transparent" runat="server" Text="" Enabled="false" TextMode="Date" CssClass="form-control" Visible="false"></asp:TextBox>
                                             <asp:RangeValidator ID="DateRangeValidator" runat="server" ControlToValidate="txtDOB" ForeColor="red" ErrorMessage="Date of birth cannot be larger than current date" Type="Date" Display="Dynamic"></asp:RangeValidator>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtDOB" ForeColor="red" runat="server" ErrorMessage="This field is required" Display="Dynamic"></asp:RequiredFieldValidator>
                                             </td>
@@ -147,17 +148,17 @@
                                         <th style="width: 40%">Email</th>
                                         <td>
                                             <asp:TextBox ID="txtEmail" BorderStyle="None" BackColor="Transparent" runat="server" Text='' Enabled="false"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ForeColor="Red" ID="rfvEmail" ControlToValidate="txtEmail" runat="server" ErrorMessage="Email must not be blank"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ForeColor="Red" ID="rfvEmail" ControlToValidate="txtEmail" runat="server" ErrorMessage="Email must not be blank" Display="Dynamic"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="emailRegex" runat="server" ControlToValidate="txtEmail"
                                                 ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
-                                                ErrorMessage="Invalid email address" />
+                                                ErrorMessage="Invalid email address" Display="Dynamic" />
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="row">
                                 <div class="col-sm-12 text-center">
-                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-outline-danger pr-2" Visible="false" />
+                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-outline-danger pr-2" Visible="false" CausesValidation="false" />
                                     <asp:Button ID="btnSave" runat="server" Text="Save Changes" OnClick="btnSave_Click" CssClass="btn btn-outline-success pl-2" Visible="false" />
                                 </div>
                             </div>

@@ -143,7 +143,7 @@
                                             <td style="width: 15%" class="align-middle">
                                                 <div class="input-group">
                                                     <div class="input-group-text" style="background-color: transparent; border: none">RM</div>
-                                                    <asp:TextBox ID="artPrice" Display="Dynamic" runat="server" Text='<%# String.Format("RM {0:0.00}", Eval("Price")) %>' Enabled="false" BorderStyle="None" BackColor="Transparent" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="artPrice" runat="server" Text='<%# String.Format("{0:0.00}", Eval("Price")) %>' Enabled="false" BorderStyle="None" BackColor="Transparent" CssClass="form-control"></asp:TextBox>
                                                 </div>
                                                 <asp:RequiredFieldValidator ValidationGroup="Edit Image" ID="rfvPrice" ForeColor="Red" Display="Dynamic" ControlToValidate="artPrice" runat="server" ErrorMessage="Price Cannot Be Blank"></asp:RequiredFieldValidator>
                                                 <asp:CompareValidator ValidationGroup="Edit Image" ID="priceValidator" ForeColor="Red" Display="Dynamic" ControlToValidate="artPrice" Type="Double" ValueToCompare="0.01" Operator="GreaterThan" runat="server" ErrorMessage="Price Must Be Larger Than 1"></asp:CompareValidator>
