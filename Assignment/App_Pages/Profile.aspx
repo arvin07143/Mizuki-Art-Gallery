@@ -148,17 +148,17 @@
                                         <th style="width: 40%">Email</th>
                                         <td>
                                             <asp:TextBox ID="txtEmail" BorderStyle="None" BackColor="Transparent" runat="server" Text='' Enabled="false"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ForeColor="Red" ID="rfvEmail" ControlToValidate="txtEmail" runat="server" ErrorMessage="Email must not be blank"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ForeColor="Red" ID="rfvEmail" ControlToValidate="txtEmail" runat="server" ErrorMessage="Email must not be blank" Display="Dynamic"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="emailRegex" runat="server" ControlToValidate="txtEmail"
                                                 ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
-                                                ErrorMessage="Invalid email address" />
+                                                ErrorMessage="Invalid email address" Display="Dynamic" />
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="row">
                                 <div class="col-sm-12 text-center">
-                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-outline-danger pr-2" Visible="false" />
+                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-outline-danger pr-2" Visible="false" CausesValidation="false" />
                                     <asp:Button ID="btnSave" runat="server" Text="Save Changes" OnClick="btnSave_Click" CssClass="btn btn-outline-success pl-2" Visible="false" />
                                 </div>
                             </div>
