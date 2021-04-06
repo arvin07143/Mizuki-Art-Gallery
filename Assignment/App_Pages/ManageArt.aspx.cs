@@ -53,7 +53,7 @@ namespace Assignment
                     // Get the extension of the uploaded file.
                     string extension = System.IO.Path.GetExtension(fileName);
 
-                    if((extension == ".jpg") || (extension == ".png"))
+                    if((extension == ".jpg") || (extension == ".png") || (extension == ".jpeg") || (extension == ".gif"))
                     {
                         string imagepath = Server.MapPath("~/ArtImage/") + imgFile.FileName;
                         imgFile.PostedFile.SaveAs(imagepath);
