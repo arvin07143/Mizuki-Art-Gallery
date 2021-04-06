@@ -73,6 +73,7 @@ namespace Assignment.App_Pages
             reader.Read();
             DateTime sourceDate = (DateTime)reader["DOB"];
             txtName.Text = reader["Name"].ToString();
+            lblDOB.Text = sourceDate.ToString("dd MMMM yyyy");
             txtDOB.Text = sourceDate.ToString("yyyy-MM-dd");
             txtGender.Text = reader["Gender"].ToString();
             txtEmail.Text = reader["Email"].ToString();
@@ -136,6 +137,8 @@ namespace Assignment.App_Pages
             txtDsc.BorderStyle = BorderStyle.Inset;
             txtDsc.BackColor = Color.White;
 
+            lblDOB.Visible = false;
+            txtDOB.Visible = true;
             txtDOB.Enabled = true;
             txtDOB.BorderStyle = BorderStyle.Inset;
             txtDOB.BackColor = Color.White;
@@ -189,8 +192,8 @@ namespace Assignment.App_Pages
             txtDsc.BackColor = Color.Transparent;
 
             txtDOB.Enabled = false;
-            txtDOB.BorderStyle = BorderStyle.None;
-            txtDOB.BackColor = Color.Transparent;
+            txtDOB.Visible = false;
+            lblDOB.Visible = true;
 
             DropDownList1.Visible = false;
             txtGender.Visible = true;
