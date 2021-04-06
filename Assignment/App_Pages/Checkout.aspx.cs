@@ -55,22 +55,20 @@ namespace Assignment.App_Pages
         {
             string num = args.Value;
 
-            if (txtCardNumber.Text.Length != 14)
-            {
-                CustomValidator1.ErrorMessage = "Card Number should be 14 digits";
-                args.IsValid = false;
-            }
+            //if (txtCardNumber.Text.Length != 16)
+            //{
+            //   CustomValidator1.ErrorMessage = "Card Number should be 16 digits";
+            //    args.IsValid = false;
+            //}
 
-            else if (rblPayment.Text == "Visa")
+            if (rblPayment.Text == "Visa")
             {
                 if (num.First() != '4')
                 {
                     CustomValidator1.ErrorMessage = "Visa Card start with '4'";
                     args.IsValid = false;
                 }
-
             }
-
             else if (rblPayment.Text == "Master")
             {
                 if (num.First() != '5')
@@ -79,6 +77,25 @@ namespace Assignment.App_Pages
                     args.IsValid = false;
 
                 }
+            }
+        }
+
+        protected void CustomValidator3_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int month = Convert.ToInt32(args.Value);
+
+            if (Convert.ToInt32(ddlYear.Text) == DateTime.Now.Year)
+            {
+                if (month < DateTime.Now.Month)
+                {
+                    args.IsValid = false;
+                    CustomValidator3.ErrorMessage = "Expiration Date has passed";
+                }
+            }
+            else if (Convert.ToInt32(ddlYear.Text) < DateTime.Now.Year)
+            {
+                args.IsValid = false;
+                CustomValidator3.ErrorMessage = "Expiration Date has passed";
             }
         }
 
