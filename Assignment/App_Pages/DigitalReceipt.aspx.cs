@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Net.Mime;
@@ -18,6 +19,8 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            btnContinue.Visible = true;
+
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             con.Open();
             SqlCommand cmdOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
@@ -69,9 +72,23 @@ namespace Assignment.App_Pages
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {
+            btnContinue.Visible = false;
             string folderPath = Server.MapPath("~/ReceiptImage/");  //Create a Folder in your Root directory on your solution.
             string fileName = lblOrderID0.Text + ".jpg";
             string imagePath = folderPath + fileName;
+
+            if ((File.GetAttributes(imagePath) & FileAttributes.Hidden) == FileAttributes.ReadOnly)
+            {
+
+                File.SetAttributes(imagePath, FileAttributes.Normal);
+
+                if (File.Exists(imagePath))
+
+                { File.Delete(imagePath); }
+
+
+            }
+
             var image = ScreenCapture.CaptureActiveWindow();
             image.Save(imagePath, ImageFormat.Jpeg);
 

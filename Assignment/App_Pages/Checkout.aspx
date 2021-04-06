@@ -293,7 +293,7 @@
                 </div>
                     <p>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtName" Display="Dynamic" ErrorMessage="Recipent Name is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                    &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="txtName" ErrorMessage="Must be in characters" ValidationExpression="^[a-zA-Z]{1,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                    &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="txtName" ErrorMessage="Must be in characters" ValidationExpression="^[a-zA-Z ]{1,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                     </p>
                
                 </td>
@@ -349,7 +349,7 @@
                     </div> 
                     <p>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCardholderName" Display="Dynamic" ErrorMessage="Name On Card is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtCardholderName" ErrorMessage="Must be in characters" ValidationExpression="^[a-zA-Z]{1,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtCardholderName" ErrorMessage="Must be in characters" ValidationExpression="^[a-zA-Z ]{1,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                     </p>
                     </td>
             </tr>
