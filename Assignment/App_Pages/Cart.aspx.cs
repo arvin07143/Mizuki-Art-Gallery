@@ -75,7 +75,7 @@ namespace Assignment.App_Pages
                 cmdCheckQtyNve.Parameters.AddWithValue("@artworkId", artworkId);
                 cmdCheckQtyNve.Parameters.AddWithValue("@username", Session["username"].ToString());
                 int cartItemQty = Convert.ToInt32(cmdCheckQtyNve.ExecuteScalar());
-                if(cartItemQty > 0)
+                if(cartItemQty > 1)
                 {
                     String strDecreaseCartItem = "UPDATE CartDetails SET Quantity = Quantity-1 WHERE ArtworkID=@artworkId AND Username=@username";
                     SqlCommand cmdDecreaseCartItem = new SqlCommand(strDecreaseCartItem, cartItemCon);
@@ -95,7 +95,7 @@ namespace Assignment.App_Pages
                 }
                 else
                 {
-                    lblQuantity.Text = "0";
+                    lblQuantity.Text = "1";
                 }
                 
             }
