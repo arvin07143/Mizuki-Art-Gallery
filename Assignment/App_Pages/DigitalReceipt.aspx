@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title></title>
+    <title>Digital Receipt</title>
     <style>
         .container {
          margin-top: 50px;
@@ -155,7 +155,7 @@
 
                         </table>
                         <br />
-              <div><asp:Button style="  margin:auto; display:block;" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue With Transaction" OnClick="btnContinue_Click" Width="350px" ValidationGroup="First" /></div>
+              <div><asp:Button style="  margin:auto; display:block;" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Email Receipt" OnClick="btnContinue_Click" Width="350px" ValidationGroup="First" /></div>
         </div>
  
     </form>

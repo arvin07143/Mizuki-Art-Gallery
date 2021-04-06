@@ -19,7 +19,6 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            btnContinue.Visible = true;
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             con.Open();
@@ -73,24 +72,32 @@ namespace Assignment.App_Pages
         protected void btnContinue_Click(object sender, EventArgs e)
         {
             btnContinue.Visible = false;
+
             string folderPath = Server.MapPath("~/ReceiptImage/");  //Create a Folder in your Root directory on your solution.
             string fileName = lblOrderID0.Text + ".jpg";
             string imagePath = folderPath + fileName;
 
-            if ((File.GetAttributes(imagePath) & FileAttributes.Hidden) == FileAttributes.ReadOnly)
+            try
             {
-
-                File.SetAttributes(imagePath, FileAttributes.Normal);
-
-                if (File.Exists(imagePath))
-
-                { File.Delete(imagePath); }
-
-
+                var image = ScreenCapture.CaptureActiveWindow();
+                image.Save(imagePath, ImageFormat.Jpeg);
             }
+            catch (Exception ex)
+            {
+                // Log the exception                      
+                if ((File.GetAttributes(imagePath) & FileAttributes.Hidden) == FileAttributes.ReadOnly)
+                {
 
-            var image = ScreenCapture.CaptureActiveWindow();
-            image.Save(imagePath, ImageFormat.Jpeg);
+                    File.SetAttributes(imagePath, FileAttributes.Normal);
+
+                    if (File.Exists(imagePath))
+
+                    { File.Delete(imagePath); }
+
+                    var image = ScreenCapture.CaptureActiveWindow();
+                    image.Save(imagePath, ImageFormat.Jpeg);
+                }
+            }            
 
             string to = lblEmail.Text;
             string from = "mizuki2629@gmail.com";
