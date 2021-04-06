@@ -81,7 +81,6 @@
     <Content Include="App_Pages\PurchaseSummary.aspx" />
     <Content Include="App_Pages\Profile.aspx" />
     <Content Include="App_Pages\Login.aspx" />
-    <Content Include="App_Pages\Receipt.aspx" />
     <Content Include="App_Pages\Register.aspx" />
     <Content Include="App_Pages\DigitalReceipt.aspx" />
     <Content Include="css\checkout.css" />
@@ -176,13 +175,6 @@
     </Compile>
     <Compile Include="App_Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Pages\Receipt.aspx.cs">
-      <DependentUpon>Receipt.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Pages\Receipt.aspx.designer.cs">
-      <DependentUpon>Receipt.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
