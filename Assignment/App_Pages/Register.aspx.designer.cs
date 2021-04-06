@@ -51,6 +51,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRName;
 
         /// <summary>
+        /// RequiredFieldValidator9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
+
+        /// <summary>
         /// RadioButtonList1 control.
         /// </summary>
         /// <remarks>
