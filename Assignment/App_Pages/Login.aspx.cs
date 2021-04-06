@@ -37,12 +37,12 @@ namespace Assignment
             if (dtrUser.HasRows)
             {
                 
-                SqlCommand cmdGetUsername = new SqlCommand("Select Username from [dbo].[User] where Username=@username and UserPassword=@password", loginCon);
+                SqlCommand cmdGetUsername = new SqlCommand("Select Username,UserPassword from [dbo].[User] where Username=@username and UserPassword=@password", loginCon);
                 cmdGetUsername.Parameters.AddWithValue("@username", TxtLUsername.Text);
                 cmdGetUsername.Parameters.AddWithValue("@password", TxtLPass.Text);
                 String username = Convert.ToString(cmdGetUsername.ExecuteScalar());
 
-                SqlCommand cmdGetPass = new SqlCommand("Select Username from [dbo].[User] where Username=@username and UserPassword=@password", loginCon);
+                SqlCommand cmdGetPass = new SqlCommand("Select UserPassword from [dbo].[User] where Username=@username and UserPassword=@password", loginCon);
                 cmdGetPass.Parameters.AddWithValue("@username", TxtLUsername.Text);
                 cmdGetPass.Parameters.AddWithValue("@password", TxtLPass.Text);
                 String password = Convert.ToString(cmdGetPass.ExecuteScalar());
@@ -58,12 +58,12 @@ namespace Assignment
                 }
                 else
                 {
-                    lblLoginFail.Text = "Invalid Usernamd or Password";
+                    lblLoginFail.Text = "Invalid Username or Password";
                 }
             }
             else
             {
-                lblLoginFail.Text = "Invalid Usernamd or Password";
+                lblLoginFail.Text = "Invalid Username or Password";
             }
             //Response.Redirect("MainPage.aspx");
             loginCon.Close();
