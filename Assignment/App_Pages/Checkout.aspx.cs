@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Linq;
 
 namespace Assignment.App_Pages
 {
-    public partial class Checkout : System.Web.UI.Page
+    public partial class Checkout2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,7 +41,46 @@ namespace Assignment.App_Pages
             }
         }
 
-        
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string num = args.Value;
+
+            if (txtCardNumber.Text.Length != 14)
+            {
+                CustomValidator1.ErrorMessage = "Card Number should be 14 digits";
+                args.IsValid = false;
+            }
+
+            else if (rblPayment.Text == "Visa")
+            {
+                if (num.First() != '4')
+                {
+                    CustomValidator1.ErrorMessage = "Visa Card start with '4'";
+                    args.IsValid = false;
+                }
+
+            }
+
+            else if (rblPayment.Text == "Master")
+            {
+                if (num.First() != '5')
+                {
+                    CustomValidator1.ErrorMessage = "Master Card start with '5'";
+                    args.IsValid = false;
+
+                }
+            }
+        }
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {
@@ -51,7 +89,8 @@ namespace Assignment.App_Pages
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid) { 
+            if (Page.IsValid)
+            {
                 Double total = Convert.ToDouble(Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text));
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
@@ -121,52 +160,9 @@ namespace Assignment.App_Pages
             }
         }
 
-        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        
-        //kyao de function
-     
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
-        }
-
-        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            string num = args.Value;
-
-            if (txtCardNumber.Text.Length != 14)
-            {
-                CustomValidator1.ErrorMessage = "Card Number should be 14 digits";
-                args.IsValid = false;
-            }
-
-            else if (rblPayment.Text == "Visa")
-            {
-                if (num.First() != '4')
-                {
-                    CustomValidator1.ErrorMessage = "Visa Card start with '4'";
-                    args.IsValid = false;
-                }
-
-            }
-
-            else if (rblPayment.Text == "Master")
-            {
-                if (num.First() != '5')
-                {
-                    CustomValidator1.ErrorMessage = "Master Card start with '5'";
-                    args.IsValid = false;
-
-                }
-            }
         }
     }
 }

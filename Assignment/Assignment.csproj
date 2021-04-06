@@ -74,7 +74,6 @@
     <Content Include="App_Pages\ArtDetail.aspx" />
     <Content Include="App_Pages\Cart.aspx" />
     <Content Include="App_Pages\Checkout.aspx" />
-    <Content Include="App_Pages\Checkout2.aspx" />
     <Content Include="App_Pages\ForgetPassword.aspx" />
     <Content Include="App_Pages\Logout.aspx" />
     <Content Include="App_Pages\MainPage.aspx" />
@@ -127,13 +126,6 @@
     </Compile>
     <Compile Include="App_Pages\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Pages\Checkout2.aspx.cs">
-      <DependentUpon>Checkout2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Pages\Checkout2.aspx.designer.cs">
-      <DependentUpon>Checkout2.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Pages\ForgetPassword.aspx.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>
