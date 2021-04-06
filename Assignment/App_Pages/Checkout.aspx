@@ -1,8 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="Assignment.App_Pages.Checkout2" %>
 
+    
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Checkout</title>
+    <script type="text/javascript">
+        function CustomValidator1_ClientValidate(source, args) {
+            var num = args.Value;
+            var pattern = /^[4|5]/;
+            if (!pattern.test(num)) {
+                args.IsValid = false;
+            }
+        }
+        function CustomValidator2_ClientValidate(source, args) {
+            var num = args.Value;
+            var pattern1 = /^[4|5]/;
+            var pattern2 = /^[4|5]\d{15}$/;
+            if (!pattern1.test(num)) {
 
+            }
+            else {
+                if (!pattern2.test(num)) {
+                    args.IsValid = false;
+                }
+            }
+        }
+    </script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/checkout.css" type="text/css" class="css" />
@@ -32,7 +55,7 @@
     <form id="form1" runat="server">
 
 
-        <h1>Checkout</h1>
+        <h1>&nbsp;Checkout</h1>
 
         <div class="row">
 
@@ -233,7 +256,8 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCardNumber" Display="Dynamic" ErrorMessage="Card Number is required" ForeColor="Red"></asp:RequiredFieldValidator>
                 </p>
                 <p>
-                    <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtCardNumber" Display="Dynamic" OnServerValidate="CustomValidator1_ServerValidate" ForeColor="Red"></asp:CustomValidator>
+                    <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtCardNumber" Display="Dynamic" OnServerValidate="CustomValidator1_ServerValidate" ForeColor="Red" ErrorMessage="Card Number should start with 4 for Visa or 5 for Master" ClientValidationFunction="CustomValidator1_ClientValidate"></asp:CustomValidator>
+                    <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="txtCardNumber" Display="Dynamic" ForeColor="Red" ErrorMessage="Card Number should be 16 digits" ClientValidationFunction="CustomValidator2_ClientValidate"></asp:CustomValidator>
                 </p>
 
                 <div class="form-group row">
@@ -271,6 +295,7 @@
                 </div>
                 <p>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlMonth" Display="Dynamic" ErrorMessage="Expiration Date of Month is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="CustomValidator3" runat="server" ControlToValidate="ddlMonth" Display="Dynamic" OnServerValidate="CustomValidator3_ServerValidate" ForeColor="Red"></asp:CustomValidator>
                 </p>
                 <p>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlYear" Display="Dynamic" ErrorMessage="Expiration Date of Year is required" ForeColor="Red"></asp:RequiredFieldValidator>
