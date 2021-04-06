@@ -19,8 +19,38 @@ namespace Assignment.App_Pages
             {
                 if (!Page.IsPostBack)
                 {
-                    lblName.Text = Session["name"].ToString();
                     loadOriginal();
+
+                    String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                    SqlConnection cnn = new SqlConnection(con);
+                    cnn.Open();
+                    try
+                    {
+                        String getProfilePic = "SELECT Name,ProfileImage,ProfileDesc FROM [User] WHERE [User].Username = @currUsername";
+                        SqlCommand cmdGetProfPic = new SqlCommand(getProfilePic, cnn);
+                        cmdGetProfPic.Parameters.AddWithValue("@currUsername", Session["username"].ToString());
+                        SqlDataReader reader = cmdGetProfPic.ExecuteReader();
+                        reader.Read();
+                        String profile_pic_path = reader["ProfileImage"].ToString();
+                        lblName.Text = reader["Name"].ToString();
+                        if (profile_pic_path == "")
+                        {
+                            profilePic.ImageUrl = "../ProfileImage/empty_avatar.png";
+                        }
+                        else
+                        {
+                            profilePic.ImageUrl = profile_pic_path;
+                        }
+                        
+                        txtDsc.Text = reader["ProfileDesc"].ToString();
+                    }
+                    catch (Exception)
+                    {
+                        Response.Redirect("~/App_Pages/MainPage.aspx");
+                        Response.Write("<script>alert('Page Load Error')</script>");
+
+                    }
+
                 }
             }
             else
@@ -67,10 +97,11 @@ namespace Assignment.App_Pages
             {
                 int updated = cmdAddToCart.ExecuteNonQuery();
                 cnn.Close();
-            } catch (Exception)
+            }
+            catch (Exception)
             {
 
-            }      
+            }
         }
 
         protected void btnDeleteFav(object sender, EventArgs e)
@@ -101,6 +132,10 @@ namespace Assignment.App_Pages
             txtName.BorderStyle = BorderStyle.Inset;
             txtName.BackColor = Color.White;
 
+            txtDsc.Enabled = true;
+            txtDsc.BorderStyle = BorderStyle.Inset;
+            txtDsc.BackColor = Color.White;
+
             Calendar1.Visible = true;
             txtDOB.Visible = false;
             DropDownList1.Visible = true;
@@ -121,7 +156,7 @@ namespace Assignment.App_Pages
             String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection cnn = new SqlConnection(con);
             cnn.Open();
-            String editProfile = "UPDATE [dbo].[User] SET [User].[Name] = @newName, [User].[DOB] = @newDOB, [User].[Gender] = @newGender, [User].[Email] = @newEmail WHERE [User].[Username] = @Username";
+            String editProfile = "UPDATE [dbo].[User] SET [User].[Name] = @newName, [User].[DOB] = @newDOB, [User].[Gender] = @newGender, [User].[Email] = @newEmail, [User].[ProfileDesc] = @newDesc WHERE [User].[Username] = @Username";
             SqlCommand cmdEditProfile = new SqlCommand(editProfile, cnn);
 
             if (Page.IsValid)
@@ -131,11 +166,12 @@ namespace Assignment.App_Pages
                 cmdEditProfile.Parameters.AddWithValue("@newDOB", Calendar1.SelectedDate.ToString());
                 cmdEditProfile.Parameters.AddWithValue("@newGender", DropDownList1.SelectedValue);
                 cmdEditProfile.Parameters.AddWithValue("@newEmail", txtEmail.Text);
+                cmdEditProfile.Parameters.AddWithValue("@newDesc", txtDsc.Text);
 
                 int updated = cmdEditProfile.ExecuteNonQuery();
                 cnn.Close();
                 viewMode();
-
+                Response.Redirect("~/App_Pages/Profile.aspx");
             }
         }
 
@@ -145,6 +181,10 @@ namespace Assignment.App_Pages
             txtName.CssClass = "";
             txtName.BorderStyle = BorderStyle.None;
             txtName.BackColor = Color.Transparent;
+
+            txtDsc.Enabled = false;
+            txtDsc.BorderStyle = BorderStyle.None;
+            txtDsc.BackColor = Color.Transparent;
 
             Calendar1.Visible = false;
             txtDOB.Visible = true;
@@ -165,6 +205,50 @@ namespace Assignment.App_Pages
         {
             loadOriginal();
             viewMode();
+        }
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            e.Day.IsSelectable = e.Day.Date <= DateTime.Now;
+        }
+
+        protected void saveNewProfileImage(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                string filepath = "../ProfileImage/" + imgFile.FileName;
+
+                if (imgFile.HasFile && imgFile.PostedFile != null)
+                {
+                    // Get the name of the file to upload.
+                    string fileName = Server.HtmlEncode(imgFile.FileName);
+
+                    // Get the extension of the uploaded file.
+                    string extension = System.IO.Path.GetExtension(fileName);
+
+                    if ((extension == ".jpg") || (extension == ".png") || (extension == ".jpeg") || (extension == ".gif"))
+                    {
+                        string imagepath = Server.MapPath("~/ProfileImage/" + imgFile.FileName);
+                        imgFile.PostedFile.SaveAs(imagepath);
+
+                        String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                        SqlConnection cnn = new SqlConnection(con);
+                        cnn.Open();
+                        String updateProfilePic = "UPDATE [dbo].[User] SET [User].[ProfileImage] = @newProfileImage WHERE [User].[Username] = @Username;";
+                        SqlCommand cmdUpdateProfilePic = new SqlCommand(updateProfilePic, cnn);
+                        cmdUpdateProfilePic.Parameters.AddWithValue("@newProfileImage", filepath);
+                        cmdUpdateProfilePic.Parameters.AddWithValue("@Username", Session["username"].ToString());
+                        cmdUpdateProfilePic.ExecuteNonQuery();
+
+                        cnn.Close();
+                        profilePic.ImageUrl = filepath;
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Invalid File Type')</script>");
+                    }
+                }
+            }
         }
     }
 }
