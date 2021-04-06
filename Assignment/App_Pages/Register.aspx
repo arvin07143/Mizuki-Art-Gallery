@@ -23,7 +23,7 @@
                      </div>
 
 					<span class="text2" >
-						Gender<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" Display="Dynamic" ErrorMessage="Gender is required." Font-Size="8px" ForeColor="Red">*Gender is required.</asp:RequiredFieldValidator>
+						Gender<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" Display="Dynamic" ErrorMessage="Gender is required." Font-Size="8px" ForeColor="Red" ControlToValidate="RadioButtonList1">*Gender is required.</asp:RequiredFieldValidator>
 &nbsp;</span><div class="text2">
 					<asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal"  RepeatLayout="Flow" CssClass="radiobtn">
                             <asp:ListItem>Male</asp:ListItem>
