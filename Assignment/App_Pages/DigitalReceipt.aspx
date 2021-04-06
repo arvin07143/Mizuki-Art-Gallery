@@ -4,61 +4,58 @@
 
 <html>
 <head runat="server">
-    <title></title>
+    <title>Digital Receipt</title>
     <style>
         .container {
-         margin-top: 50px;
-         margin-bottom: 50px
+            margin-top: 50px;
+            margin-bottom: 50px
         }
 
         .card {
-             position: relative;
-             display: -webkit-box;
-             display: -ms-flexbox;
-             display: flex;
-             -webkit-box-orient: vertical;
-             -webkit-box-direction: normal;
-             -ms-flex-direction: column;
-             flex-direction: column;
-             min-width: 0;
-             word-wrap: break-word;
-             background-color: #fff;
-             background-clip: border-box;
-             border: 1px solid rgba(0, 0, 0, 0.1);
-             border-radius: 0.10rem
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.10rem
         }
 
         .card-header:first-child {
             border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
         }
 
-         .card-header {
-             padding: 0.75rem 1.25rem;
-             margin-bottom: 0;
-             background-color: #fff;
-             border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-         }      
+        .card-header {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 0;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+        }
 
-         body, html
-        {
+        body, html {
             height: 100%;
-            width: 100%; 
+            width: 100%;
             overflow: hidden;
-            font-size:10px;
+            font-size: 10px;
             margin: 0;
             padding: 0;
         }
-    
     </style>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="MainPage.aspx">Mizuki</a>
-           
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="MainPage.aspx">Mizuki</a>
+
+    </div>
+</nav>
 <body>
 
     <content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
@@ -101,8 +98,10 @@
             
             <br /><br />
            <asp:Repeater ID="Repeater1" runat="server">
+
                <HeaderTemplate>
-                   <table class="table w-100 p3 ms-auto me-auto" >
+                        <table class="table w-100 p3 ms-auto me-auto" >
+
                            <thead>
                                <tr>
                                    <th style="width: 10%; text-align:center" scope="col">No.</th>
@@ -112,21 +111,21 @@
                                    <th style="width: 10%; text-align:right" scope="col">Total Price</th>
                                </tr>
                            </thead>
-                       
+                         </table>
+
                    </HeaderTemplate>
                    <ItemTemplate>
-                       
+                       <table  class="table w-100 p3 ms-auto me-auto" >
                            <tr>
                                <td style="width: 10%; text-align:center" class="align-middle"><%# Container.ItemIndex + 1 %></td>
                                <td style="width: 40%; text-align:center" class="align-middle"><%# Eval("ArtworkName")%></td>
                                <td style="width: 10%; text-align:center" class="align-middle"><%# Eval("Quantity")%></td>
                                <td style="width: 10%; text-align:center" class="align-middle"><%# Eval("Price")%></td>
                                <td style="width: 10%; text-align:right" class="align-middle"><%# Eval("TotalPrice", "{0:0.00}") %></td>
-                              
                            </tr>
                        </table>
                    </ItemTemplate>
-                        </asp:Repeater>
+                 </asp:Repeater>
                         <br />
                         <table  class="table w-100 p3 ms-auto me-auto"  >
                             <tr>
@@ -155,7 +154,7 @@
 
                         </table>
                         <br />
-              <div><asp:Button style="  margin:auto; display:block;" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue With Transaction" OnClick="btnContinue_Click" Width="350px" ValidationGroup="First" /></div>
+              <div><asp:Button style="  margin:auto; display:block;" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Email Receipt" OnClick="btnContinue_Click" Width="350px" ValidationGroup="First" /></div>
         </div>
  
     </form>
