@@ -29,6 +29,8 @@ namespace Assignment.App_Pages
             cmdSelectUser.Parameters.AddWithValue("@username", TxtRUsername.Text);
             
             SqlDataReader dtrUser = cmdSelectUser.ExecuteReader();
+            
+            
             if (DateTime.Parse(TxtRDOB.Text) > DateTime.Now)
             {
                 lblRegisterOk.Text = "Invalid date.";
@@ -39,15 +41,20 @@ namespace Assignment.App_Pages
 
             }else if (TxtRPass.Text == TxtRConfirmPass.Text)
             {
+               
                 lblRegisterOk.Text = "";
                 char gender = ' ';
-                if ((RadioButtonList1.SelectedItem.Text) == ("Male"))
+                if ((RadioButtonList1.SelectedItem != null) && (RadioButtonList1.SelectedItem.Text) == ("Male"))
                 {
                     gender = 'M';
                 }
-                else if ((RadioButtonList1.SelectedItem.Text) == ("Female"))
+                else if ((RadioButtonList1.SelectedItem != null) && (RadioButtonList1.SelectedItem.Text) == ("Female"))
                 {
                     gender = 'F';
+                }
+                else
+                {
+                    gender = '\0';
                 }
                 
                 using (SqlConnection cnn = new SqlConnection(con))

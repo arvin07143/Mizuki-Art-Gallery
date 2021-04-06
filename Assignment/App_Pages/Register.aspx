@@ -32,7 +32,8 @@
                     </asp:RadioButtonList>
 
 					<div class="text2">
-                        <label>Date of Birth</label>&nbsp;<div class="text2">
+                        <label>Date of Birth<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtRDOB" Display="Dynamic" ErrorMessage="*Date  of birth is required" Font-Size="8px" ForeColor="Red">*Date  of birth is required</asp:RequiredFieldValidator>
+                        </label>&nbsp;<div class="text2">
                            <asp:TextBox CssClass="form-control" ID="TxtRDOB" runat="server"  TextMode="Date"></asp:TextBox>
                         </div>
                      </div>
