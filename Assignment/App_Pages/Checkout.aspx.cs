@@ -55,11 +55,11 @@ namespace Assignment.App_Pages
         {
             string num = args.Value;
 
-            //if (txtCardNumber.Text.Length != 16)
-            //{
-            //   CustomValidator1.ErrorMessage = "Card Number should be 16 digits";
-            //    args.IsValid = false;
-            //}
+            if (txtCardNumber.Text.Length != 16)
+            {
+               CustomValidator1.ErrorMessage = "Card Number should be 16 digits";
+                args.IsValid = false;
+            }
 
             if (rblPayment.Text == "Visa")
             {
