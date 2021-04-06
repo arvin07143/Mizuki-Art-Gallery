@@ -22,6 +22,7 @@
          background-clip: border-box;
          border: 1px solid rgba(0, 0, 0, 0.1);
          border-radius: 0.10rem
+         
      }
 
      .card-header:first-child {
@@ -34,69 +35,7 @@
          background-color: #ffffff;
          border-bottom: 1px solid rgba(0, 0, 0, 0.1)
      }
-
-      .track {
-     position: relative;
-     background-color: #dddddd;
-     height: 7px;
-     display: -webkit-box;
-     display: -ms-flexbox;
-     display: flex;
-     margin-bottom: 60px;
-     margin-top: 50px
- }
-
- .track .step {
-     -webkit-box-flex: 1;
-     -ms-flex-positive: 1;
-     flex-grow: 1;
-     width: 25%;
-     margin-top: -18px;
-     text-align: center;
-     position: relative
- }
-
- .track .step.active:before {
-     background: #283747
- }
-
- .track .step::before {
-     height: 7px;
-     position: absolute;
-     content: "";
-     width: 100%;
-     left: 0;
-     top: 18px
- }
-
- .track .step.active .icon {
-     background: #283747;
-     color: #fff
- }
-
- .track .icon {
-     display: inline-block;
-     width: 40px;
-     height: 40px;
-     line-height: 40px;
-     position: relative;
-     border-radius: 100%;
-     background: #dddddd;
- }
-
- .track .step.active .text {
-     font-weight: 400;
-     color: black;
- }
-
- .track .text {
-     display: block;
-     margin-top: 7px
- }
-
-     
-
-   
+ 
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -108,6 +47,7 @@
             <h6>Order ID:
                 <asp:Label ID="lblOrderId" runat="server"></asp:Label>
             </h6>
+            <div style="margin-bottom:50px;">
             <article class="card">
                 <div class="card-body row">
                     <div class="col"> <strong>Order time:<br />
@@ -122,14 +62,10 @@
                         <br> </div>
                 </div>
             </article>
-            <div class="track">
-                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
-               
-                <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Item delivered</span> </div>
             </div>
            <asp:Repeater ID="Repeater1" runat="server">
                             <HeaderTemplate>
-                                <table class="table w-75 p3 ms-auto me-auto">
+                                <table class="table w-100 p3 ms-auto me-auto">
                                     <thead>
                                         <tr>
                                             <th style="width: 10%" scope="col">No.</th>
@@ -144,7 +80,7 @@
                                 </table>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <table class="table w-75 p3 ms-auto me-auto">
+                                <table class="table w-100 p3 ms-auto me-auto">
                                     <tr>
                                         <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
                                         <td style="width: 10%" class="align-middle"><%# Eval("ArtworkID") %></td>
@@ -161,7 +97,7 @@
                         </asp:Repeater>
                         <br />
 
-                        <table style="border: 0px solid transparent;" class="table w-75 p3 ms-auto me-auto">
+                        <table style="border: 0px solid transparent;" class="table w-100 p3 ms-auto me-auto">
                             <tr>
                                 <td style="width: 15%" class="align-middle"></td>
                                 <td style="width: 15%" class="align-middle"></td>
