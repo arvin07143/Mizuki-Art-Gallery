@@ -330,6 +330,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
 
         /// <summary>
+        /// CustomValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator2;
+
+        /// <summary>
         /// lblExpirationDate control.
         /// </summary>
         /// <remarks>
@@ -364,6 +373,15 @@ namespace Assignment.App_Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+
+        /// <summary>
+        /// CustomValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator3;
 
         /// <summary>
         /// RequiredFieldValidator6 control.
