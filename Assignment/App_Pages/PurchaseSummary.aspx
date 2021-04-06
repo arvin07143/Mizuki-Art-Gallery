@@ -129,13 +129,13 @@
             </div>
            <asp:Repeater ID="Repeater1" runat="server">
                             <HeaderTemplate>
-                                <table>
+                                <table class="table w-75 p3 ms-auto me-auto">
                                     <thead>
                                         <tr>
                                             <th style="width: 10%" scope="col">No.</th>
-                                            <th style="width: 20%" scope="col">Art ID</th>
-                                            <th style="width: 12.5%" scope="col">Product</th>
-                                            <th style="width: 24%" scope="col">Name</th>
+                                            <th style="width: 10%" scope="col">Art ID</th>
+                                            <th style="width: 20%" scope="col">Product</th>
+                                            <th style="width: 20%" scope="col">Name</th>
                                             <th style="width: 15%" scope="col">Unit Price</th>
                                             <th style="width: 10%" scope="col">Quantity</th>
                                             <th style="width: 15%" scope="col">Total Price</th>
@@ -144,60 +144,58 @@
                                 </table>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <table >
+                                <table class="table w-75 p3 ms-auto me-auto">
                                     <tr>
-                                        <td style="width: 10%"><%# Container.ItemIndex + 1 %></td>
-                                        <td style="width: 10%"><%# Eval("ArtworkID") %></td>
-                                        <td style="width: 20%">
+                                        <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                        <td style="width: 10%" class="align-middle"><%# Eval("ArtworkID") %></td>
+                                        <td style="width: 20%" class="align-middle">
                                             <img style="width: 80%; height: 100px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
                                         </td>
-                                        <td style="width: 20%" ><%# Eval("ArtworkName")%></td>
-                                        <td style="width: 15%" ><%# Eval("Price")%></td>
-                                        <td style="width: 10%" ><%# Eval("Quantity")%></td>
-                                        <td style="width: 15%" ><%# Eval("TotalPrice")%></td>
+                                        <td style="width: 20%" class="align-middle"><%# Eval("ArtworkName")%></td>
+                                        <td style="width: 15%" class="align-middle"><%# Eval("Price")%></td>
+                                        <td style="width: 10%" class="align-middle"><%# Eval("Quantity")%></td>
+                                        <td style="width: 15%" class="align-middle"><%# Eval("TotalPrice")%></td>
                                     </tr>
                                 </table>
                             </ItemTemplate>
                         </asp:Repeater>
                         <br />
 
-                        <table style="border: 0px solid transparent;">
-                            <tr> 
+                        <table style="border: 0px solid transparent;" class="table w-75 p3 ms-auto me-auto">
+                            <tr>
+                                <td style="width: 15%" class="align-middle"></td>
+                                <td style="width: 15%" class="align-middle"></td>
+                                <td style="width: 30%"></td>
                                 <td style="width: 10%"></td>
-                                <td style="width: 10%"></td>
-                                <td style="width: 20%"></td>
-                                <td style="width: 20%"></td>
-                                <td style="width: 22%"></td>
-                                <td style="width: 10%">
+                                <td style="width: 10%" class="align-middle">
                                     <asp:Label ID="lblSubtotalDis" runat="server" Text="Subtotal"></asp:Label></td>
                                 <td style="width: 15%">
                                     <asp:Label Style="display: block; text-align: right" ID="lblSubtotal" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                             <tr>
-                                <td style="width: 10%"></td>
-                                <td style="width: 10%"></td>
-                                <td style="width: 20%"></td>
-                                <td style="width: 20%"></td>
-                                <td style="width: 22%"></td>
-                                <td style="width: 10%">                               
+                                <td style="width: 15%" class="align-middle"></td>
+                                <td style="width: 15%" class="align-middle"></td>
+                                <td style="width: 30%"></td>
+                                <td></td>
+                                <td style="width: 15%" class="align-middle">
                                     <asp:Label ID="lblTaxDis" runat="server" Text="Tax"></asp:Label>&nbsp;(6%)</td>
                                 <td style="width: 15%">
                                     <asp:Label Style="display: block; text-align: right" ID="lblTax" runat="server" Text="RM???"></asp:Label></td>
                             </tr>
 
                             <tr>
-                                <td style="width: 10%"></td>
-                                <td style="width: 10%"></td>
-                                <td style="width: 20%"></td>
-                                <td style="width: 20%"></td>
-                                <td style="width: 22%"></td>
-                                <td style="width: 10%">   
-                                    <asp:Label ID="lblTotalDis" runat="server" Text="Total"></asp:Label>&nbsp;(6%)</td>
-                                <td style="width: 15%">
+                               <td style="width: 15%" class="align-middle"></td>
+                                <td style="width: 15%" class="align-middle"></td>
+                                <td style="width: 30%"></td>
+                                <td></td>
+                                <td style="width: 15%" class="align-middle">
+                                    <asp:Label ID="lblTotalDis" runat="server" Text="Total"></asp:Label></td>
+                                <td class="align-middle" style="width: 15%">
                                     <asp:Label Style="display: block; text-align: right" ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
+
+                                
                             </tr>
-                            
 
                         </table>
 
