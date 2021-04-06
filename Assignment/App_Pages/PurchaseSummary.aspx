@@ -201,7 +201,7 @@
 
 
 
-            &nbsp;<asp:Button ID="btnMainPage" runat="server" PostBackUrl="~/App_Pages/MainPage.aspx" Text="Back to main page" />
+            <asp:Button ID="btnMainPage" Style="margin-left: 20px" class="btn btn-danger btn-lg btn-brand btn-full-width" PostBackUrl="~/App_Pages/MainPage.aspx" runat="server" Text="Back to main page" Width="300px" />
         </div>
     </article>
 </div>
