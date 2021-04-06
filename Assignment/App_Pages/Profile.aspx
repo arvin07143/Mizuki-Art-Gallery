@@ -129,8 +129,9 @@
                                         <th style="width: 40%">Date of Birth</th>
                                         <td>
                                             <asp:TextBox ID="txtDOB" BorderStyle="None" BackColor="Transparent" runat="server" Text="" Enabled="false" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                                            <asp:RangeValidator ID="DateRangeValidator" runat="server" ControlToValidate="txtDOB" ForeColor="red" ErrorMessage="Date of birth cannot be larger than current date" Type="Date"></asp:RangeValidator>
+                                            <asp:RangeValidator ID="DateRangeValidator" runat="server" ControlToValidate="txtDOB" ForeColor="red" ErrorMessage="Date of birth cannot be larger than current date" Type="Date" Display="Dynamic"></asp:RangeValidator>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtDOB" ForeColor="red" runat="server" ErrorMessage="This field is required" Display="Dynamic"></asp:RequiredFieldValidator>
+                                            </td>
                                     </tr>
                                     <tr>
                                         <th style="width: 40%">Gender</th>
