@@ -31,7 +31,7 @@
                 <div class="d-flex justify-content-around">
                     <!--art image column-->
                     <div class="">
-                        <img src="#" class="img-art" id="artImage" runat="server" />
+                        <img src="#" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.7);" class="img-art" id="artImage" runat="server" />
                     </div>
                     <!--art detail column-->
                     <div style="width: 400px; margin: 20px" class="d-flex flex-column justify-content-between">
