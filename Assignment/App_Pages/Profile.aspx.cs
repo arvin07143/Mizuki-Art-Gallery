@@ -20,6 +20,8 @@ namespace Assignment.App_Pages
                 if (!Page.IsPostBack)
                 {
                     loadOriginal();
+                    DateRangeValidator.MinimumValue = DateTime.Now.AddYears(-100).ToShortDateString();
+                    DateRangeValidator.MaximumValue = DateTime.Now.Date.ToShortDateString();
 
                     String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                     SqlConnection cnn = new SqlConnection(con);
@@ -70,10 +72,8 @@ namespace Assignment.App_Pages
             SqlDataReader reader = cmdGetProfileData.ExecuteReader();
             reader.Read();
             DateTime sourceDate = (DateTime)reader["DOB"];
-            Calendar1.SelectedDate = sourceDate;
-            Calendar1.VisibleDate = sourceDate;
             txtName.Text = reader["Name"].ToString();
-            txtDOB.Text = String.Format("{0:dd/MMMM/yyyy}", sourceDate);
+            txtDOB.Text = sourceDate.ToString("yyyy-MM-dd");
             txtGender.Text = reader["Gender"].ToString();
             txtEmail.Text = reader["Email"].ToString();
         }
@@ -136,8 +136,10 @@ namespace Assignment.App_Pages
             txtDsc.BorderStyle = BorderStyle.Inset;
             txtDsc.BackColor = Color.White;
 
-            Calendar1.Visible = true;
-            txtDOB.Visible = false;
+            txtDOB.Enabled = true;
+            txtDOB.BorderStyle = BorderStyle.Inset;
+            txtDOB.BackColor = Color.White;
+
             DropDownList1.Visible = true;
             txtGender.Visible = false;
 
@@ -163,7 +165,7 @@ namespace Assignment.App_Pages
             {
                 cmdEditProfile.Parameters.AddWithValue("@Username", Session["username"]);
                 cmdEditProfile.Parameters.AddWithValue("@newName", txtName.Text);
-                cmdEditProfile.Parameters.AddWithValue("@newDOB", Calendar1.SelectedDate.ToString());
+                cmdEditProfile.Parameters.AddWithValue("@newDOB", txtDOB.Text);
                 cmdEditProfile.Parameters.AddWithValue("@newGender", DropDownList1.SelectedValue);
                 cmdEditProfile.Parameters.AddWithValue("@newEmail", txtEmail.Text);
                 cmdEditProfile.Parameters.AddWithValue("@newDesc", txtDsc.Text);
@@ -186,8 +188,10 @@ namespace Assignment.App_Pages
             txtDsc.BorderStyle = BorderStyle.None;
             txtDsc.BackColor = Color.Transparent;
 
-            Calendar1.Visible = false;
-            txtDOB.Visible = true;
+            txtDOB.Enabled = false;
+            txtDOB.BorderStyle = BorderStyle.None;
+            txtDOB.BackColor = Color.Transparent;
+
             DropDownList1.Visible = false;
             txtGender.Visible = true;
 
