@@ -24,9 +24,9 @@
                         <table style="margin-left: 40px; width: 100%">
                             <thead>
                                 <tr>
-                                    <th class="col" style="width:50%" scope="col"><strong>Delivery Address</strong></th>
-                                    <th class="col" style="width:50%" scope="col"><strong>Payment Info&nbsp;<asp:Label ID="lblDatetime" runat="server"></asp:Label>
-                                    </strong></th>
+                                    <th class="col" style="width:37.5%" scope="col"><strong>Delivery Address</strong></th>
+                                    <th class="col" style="width:37.5%" scope="col"><strong>Payment Info&nbsp;</strong><asp:Label ID="lblDatetime" runat="server"></asp:Label></th>
+                                    <th class="col" style="width:37.5%" scope="col"><strong>Order Summary</strong></th>
                                 </tr>
                             </thead>
                             <tr>
@@ -66,13 +66,14 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="rblPayment" Display="Dynamic" ErrorMessage="Payment Mothod is required" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </p>
                                 </td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="form-group row" style="font-size:13px">
-                                        <asp:Label ID="lblEmail" class="col-4 col-form-label" Width="35%" runat="server">Email Address</asp:Label>
+                                        <asp:Label ID="lblEmail" class="col-4 col-form-label" runat="server">Email Address</asp:Label>
                                         <div class="col-8">
-                                            <div class="input-group" style="width:65%">
+                                            <div class="input-group">
                                                 <asp:TextBox runat="server" ID="txtEmail" name="text" placeholder="abc123@gmail.com" type="text" class="form-control" TextMode="Email"></asp:TextBox>
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -105,6 +106,7 @@
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtCardholderName" ErrorMessage="Must be in characters" ValidationExpression="^[a-zA-Z ]{1,50}$" ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                                     </p>
                                 </td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>

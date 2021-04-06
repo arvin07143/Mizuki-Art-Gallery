@@ -149,7 +149,7 @@ namespace Assignment.App_Pages
                 SqlCommand cmd = new SqlCommand("DELETE FROM CartDetails WHERE Quantity=0 AND Username=@username", con);
                 cmd.Parameters.AddWithValue("@username", Session["username"].ToString());
                 cmd.ExecuteNonQuery();
-                Response.Redirect("~/App_Pages/Checkout.aspx");
+                Response.Redirect("~/App_Pages/Checkout2.aspx");
             }
             else
             {
