@@ -11,7 +11,7 @@
     <link href="../css/lightbox.css" rel="stylesheet" />
     <script src="../js/lightbox.js"></script>
     <script>
-        function UploadFileCheck(source, arguments) {
+        function UploadFileCheck(source, arguments) { //client validation
             var sFile = arguments.Value;
             arguments.IsValid =
                 ((sFile.endsWith('.jpg')) ||
@@ -68,7 +68,7 @@
                             <asp:FileUpload ID="imgFile" runat="server" CssClass="form-control" />
                             <asp:CustomValidator ValidationGroup="Add Form" ForeColor="Red" ID="CustomValidator1" ControlToValidate="imgFile" runat="server" SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid: File Type (allowed types: jpg, jpeg, gif, png)" ClientValidationFunction="UploadFileCheck"></asp:CustomValidator>
                             <div id="uploadHelp" class="form-text">
-                                Supported file extensions : .JPG
+                                Supported file extensions : .JPG,.PNG,.JPEG,.GIF
                             </div>
                         </div>
                         <div class="row mb-3">

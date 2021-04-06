@@ -6,9 +6,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+
+    <script>
+        function UploadFileCheck(source, arguments) { //client validation
+            var sFile = arguments.Value;
+            arguments.IsValid =
+                ((sFile.endsWith('.jpg')) ||
+                    (sFile.endsWith('.jpeg')) ||
+                    (sFile.endsWith('.gif')) ||
+                    (sFile.endsWith('.png')));
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
+            <div class="modal fade bd-example-modal-lg" id="modalForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Upload New Profile Picture</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <label for="imgFile" class="form-label">Upload your image here</label>
+                            <asp:FileUpload ID="imgFile" runat="server" CssClass="form-control" />
+                            <asp:CustomValidator ValidationGroup="Add Form" ForeColor="Red" ID="CustomValidator1" ControlToValidate="imgFile" runat="server" SetFocusOnError="true" Display="Dynamic" ErrorMessage="Invalid: File Type (allowed types: jpg, jpeg, gif, png)" ClientValidationFunction="UploadFileCheck"></asp:CustomValidator>
+                            <div id="uploadHelp" class="form-text">
+                                Supported file extensions : .JPG,.PNG,.JPEG,.GIF
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <asp:Button CssClass="btn btn-success" runat="server" OnClick="saveNewProfileImage" ValidationGroup="Add Form" Text="Save" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="main main-raised">
             <div class="profile-content" style="margin-top: 100px">
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Artwork.ArtworkID, Artwork.ArtworkName, Artwork.URL FROM Artwork INNER JOIN Favourite ON Artwork.ArtworkID = Favourite.ArtworkID AND Favourite.Username = @currentUser AND Artwork.StockQuantity>-1">
@@ -31,7 +67,7 @@
                         <div class="col-md-6 ms-auto me-auto">
                             <div class="profile">
                                 <div class="avatar">
-                                    <img src="../images/beauty_20210117164458.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                    <asp:ImageButton ID="profilePic" runat="server" CssClass="img-raised profileimg" ImageUrl="" data-toggle="modal" data-target="#modalForm" OnClientClick="return false;"/>
                                 </div>
                                 <div class="name">
                                     <h3 class="title">
@@ -46,7 +82,9 @@
                         </div>
                     </div>
                     <div class="description text-center">
-                        <p>Professional Artist with Ambition</p>
+                        <p class="col-6 justify-content-center mx-auto me-auto">
+                            <asp:TextBox ID="txtDsc" runat="server" BorderStyle="None" BackColor="Transparent" Text="Professional Artist with Ambition" CssClass="form-control text-center text-wrap text-break" Enabled="false"></asp:TextBox>
+                        </p>
                     </div>
                     <div class="row">
                         <div class="col-md-6 ms-auto me-auto">
@@ -94,7 +132,7 @@
                                             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                 <ContentTemplate>
-                                                    <asp:Calendar ID="Calendar1" runat="server" Visible="false"></asp:Calendar>
+                                                    <asp:Calendar ID="Calendar1" runat="server" Visible="false" OnDayRender="Calendar1_DayRender"></asp:Calendar>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                     </tr>
@@ -203,21 +241,21 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <table class="table w-75 p3 ms-auto me-auto">
-                                            <tr>
-                                                <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
-                                                <td style="width: 10%" class="align-middle">
-                                                    <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'></asp:Label>
-                                                </td>
-                                                <td>
-                                                    <img class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
-                                                </td>
-                                                <td class="align-middle"><%# Eval("ArtworkName")%></td>
-                                                <td class="align-middle">
-                                                    <asp:LinkButton ID="btnBuy" runat="server" OnClick="btnAddToCart"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
-                                                <td class="align-middle">
-                                                    <asp:LinkButton ID="btnDeleteFav" runat="server" OnClick="btnDeleteFav"><i class="material-icons">clear</i></asp:LinkButton>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td style="width: 10%" class="align-middle"><%# Container.ItemIndex + 1 %></td>
+                                            <td style="width: 10%" class="align-middle">
+                                                <asp:Label ID="lblArtworkID" runat="server" Text='<%# Eval("ArtworkID") %>'></asp:Label>
+                                            </td>
+                                            <td>
+                                                <img class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
+                                            </td>
+                                            <td class="align-middle"><%# Eval("ArtworkName")%></td>
+                                            <td class="align-middle">
+                                                <asp:LinkButton ID="btnBuy" runat="server" OnClick="btnAddToCart"><i class="material-icons">shopping_cart</i></asp:LinkButton></td>
+                                            <td class="align-middle">
+                                                <asp:LinkButton ID="btnDeleteFav" runat="server" OnClick="btnDeleteFav"><i class="material-icons">clear</i></asp:LinkButton>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </ItemTemplate>
                             </asp:Repeater>
