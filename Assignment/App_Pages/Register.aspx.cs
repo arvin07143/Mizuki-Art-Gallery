@@ -44,18 +44,15 @@ namespace Assignment.App_Pages
                
                 lblRegisterOk.Text = "";
                 char gender = ' ';
-                if ((RadioButtonList1.SelectedItem != null) && (RadioButtonList1.SelectedItem.Text) == ("Male"))
+                if ((RadioButtonList1.SelectedItem.Text) == ("Male"))
                 {
                     gender = 'M';
                 }
-                else if ((RadioButtonList1.SelectedItem != null) && (RadioButtonList1.SelectedItem.Text) == ("Female"))
+                else if ((RadioButtonList1.SelectedItem.Text) == ("Female"))
                 {
                     gender = 'F';
                 }
-                else
-                {
-                    gender = '\0';
-                }
+                
                 
                 using (SqlConnection cnn = new SqlConnection(con))
                 {

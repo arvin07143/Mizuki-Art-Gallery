@@ -23,16 +23,15 @@
                      </div>
 
 					<span class="text2" >
-						Gender
-                    </span>
-					<div class="text2">
+						Gender<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" Display="Dynamic" ErrorMessage="Gender is required." Font-Size="8px" ForeColor="Red" ControlToValidate="RadioButtonList1">*Gender is required.</asp:RequiredFieldValidator>
+&nbsp;</span><div class="text2">
 					<asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal"  RepeatLayout="Flow" CssClass="radiobtn">
                             <asp:ListItem>Male</asp:ListItem>
                             <asp:ListItem>Female</asp:ListItem>
                     </asp:RadioButtonList>
 
 					<div class="text2">
-                        <label>Date of Birth<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtRDOB" Display="Dynamic" ErrorMessage="*Date  of birth is required" Font-Size="8px" ForeColor="Red">*Date  of birth is required</asp:RequiredFieldValidator>
+                        <label>Date of Birth<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtRDOB" Display="Dynamic" ErrorMessage="*Date  of birth is required." Font-Size="8px" ForeColor="Red">*Date  of birth is required.</asp:RequiredFieldValidator>
                         </label>&nbsp;<div class="text2">
                            <asp:TextBox CssClass="form-control" ID="TxtRDOB" runat="server"  TextMode="Date"></asp:TextBox>
                         </div>
