@@ -148,8 +148,6 @@ namespace Assignment.App_Pages
                 cart.Close();
                 con.Close();
 
-                //rmb add delete query
-
                 //Reduce Stock
                 con.Open();
                 SqlCommand cmdGetArtworkCount = new SqlCommand("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", con);
@@ -170,6 +168,38 @@ namespace Assignment.App_Pages
                 SqlCommand cmdClearCart = new SqlCommand("DELETE FROM CartDetails WHERE Username = @Username", con);
                 cmdClearCart.Parameters.AddWithValue("@Username", Session["Username"].ToString());
                 cmdClearCart.ExecuteNonQuery();
+                con.Close();
+
+                //update all artwork quantity in the cart if exceed maximum amount
+                con.Open();
+                SqlCommand cmdgetArtworkInOrder = new SqlCommand("SELECT ArtworkID FROM OrderDetails WHERE OrderID = @OrderID", con);
+                cmdgetArtworkInOrder.Parameters.AddWithValue("@OrderID", orderID);
+                SqlDataReader artworkInOrder = cmdgetArtworkInOrder.ExecuteReader();
+                int stockQuantity;
+                while (artworkInOrder.Read())
+                {
+                    //get the stock quantity for a specific artwork
+                    SqlCommand cmdgetStockQuantity = new SqlCommand("SELECT StockQuantity FROM Artwork WHERE ArtworkID = @ArtworkID", con);
+                    cmdgetStockQuantity.Parameters.AddWithValue("@ArtworkID", artworkInOrder["ArtworkID"].ToString());
+                    stockQuantity = Convert.ToInt32(cmdgetStockQuantity.ExecuteScalar());
+
+                    if (stockQuantity == 0)
+                    {
+                        //remove the specific artwork from all carts where stock quantity = 0
+                        SqlCommand cmdRemoveFromAllCart = new SqlCommand("DELETE FROM CartDetails WHERE ArtworkID=@ArtworkID", con);
+                        cmdRemoveFromAllCart.Parameters.AddWithValue("@ArtworkID", artworkInOrder["ArtworkID"].ToString());
+                        cmdRemoveFromAllCart.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        //update the cart quantity of the specific artwork if > stock quantity
+                        SqlCommand cmdUpdateAllCart = new SqlCommand("UPDATE CartDetails SET Quantity = @StockQuantity WHERE ArtworkID=@ArtworkID AND Quantity > @StockQuantity", con);
+                        cmdUpdateAllCart.Parameters.AddWithValue("@StockQuantity", stockQuantity);
+                        cmdUpdateAllCart.Parameters.AddWithValue("@ArtworkID", artworkInOrder["ArtworkID"].ToString());
+                        cmdUpdateAllCart.ExecuteNonQuery();
+                    }
+                }
+                artworkInOrder.Close();
                 con.Close();
 
                 string queryString = "~/App_Pages/DigitalReceipt.aspx?OrderID=" + orderID;
