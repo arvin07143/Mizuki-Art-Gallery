@@ -189,6 +189,11 @@ namespace Assignment.App_Pages
                         SqlCommand cmdRemoveFromAllCart = new SqlCommand("DELETE FROM CartDetails WHERE ArtworkID=@ArtworkID", con);
                         cmdRemoveFromAllCart.Parameters.AddWithValue("@ArtworkID", artworkInOrder["ArtworkID"].ToString());
                         cmdRemoveFromAllCart.ExecuteNonQuery();
+
+                        //remove from wishlist
+                        SqlCommand cmdRemoveFromAllWishlist = new SqlCommand("DELETE FROM Favourite WHERE ArtworkID=@ArtworkID", con);
+                        cmdRemoveFromAllWishlist.Parameters.AddWithValue("@ArtworkID", artworkInOrder["ArtworkID"].ToString());
+                        cmdRemoveFromAllWishlist.ExecuteNonQuery();
                     }
                     else
                     {
