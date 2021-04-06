@@ -19,7 +19,32 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmdOrderID = new SqlCommand("SELECT OrderID FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
+            int orderID = Convert.ToInt32(cmdOrderID.ExecuteScalar());
+            con.Close();
+
+
+            con.Open();
+            SqlCommand cmdDeliveryAddress = new SqlCommand("SELECT DeliveryAddress FROM [dbo].[Order] ORDER BY OrderID DESC;", con);
+            lblDeliveryAddress.Text = Convert.ToString(cmdDeliveryAddress.ExecuteScalar());
+            con.Close();
+
+
+            String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection orderCon = new SqlConnection(strOrderCon);
+
+            orderCon.Open();
+            SqlCommand cmdOrder = new SqlCommand("SELECT *, FORMAT([Order].Date, 'dd/MM/yyyy') AS FormattedDate, [User].Name FROM [Order] INNER JOIN [User] ON ([Order].Username = [User].Username) WHERE OrderID = @OrderID;", orderCon);
+            cmdOrder.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
+            SqlDataReader orderDR = cmdOrder.ExecuteReader();
+            while (orderDR.Read())
+=======
             if (Request.QueryString["OrderID"] != null)
+>>>>>>> 88880a6e7bff4cfe3f19ef1267a892fc00378653
             {
                 btnContinue.Visible = true;
 
@@ -79,24 +104,32 @@ namespace Assignment.App_Pages
         protected void btnContinue_Click(object sender, EventArgs e)
         {
             btnContinue.Visible = false;
+
             string folderPath = Server.MapPath("~/ReceiptImage/");  //Create a Folder in your Root directory on your solution.
             string fileName = lblOrderID0.Text + ".jpg";
             string imagePath = folderPath + fileName;
 
-            if ((File.GetAttributes(imagePath) & FileAttributes.Hidden) == FileAttributes.ReadOnly)
+            try
             {
-
-                File.SetAttributes(imagePath, FileAttributes.Normal);
-
-                if (File.Exists(imagePath))
-
-                { File.Delete(imagePath); }
-
-
+                var image = ScreenCapture.CaptureActiveWindow();
+                image.Save(imagePath, ImageFormat.Jpeg);
             }
+            catch (Exception ex)
+            {
+                // Log the exception                      
+                if ((File.GetAttributes(imagePath) & FileAttributes.Hidden) == FileAttributes.ReadOnly)
+                {
 
-            var image = ScreenCapture.CaptureActiveWindow();
-            image.Save(imagePath, ImageFormat.Jpeg);
+                    File.SetAttributes(imagePath, FileAttributes.Normal);
+
+                    if (File.Exists(imagePath))
+
+                    { File.Delete(imagePath); }
+
+                    var image = ScreenCapture.CaptureActiveWindow();
+                    image.Save(imagePath, ImageFormat.Jpeg);
+                }
+            }            
 
             string to = lblEmail.Text;
             string from = "mizuki2629@gmail.com";
