@@ -15,24 +15,31 @@ namespace Assignment.App_Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            SqlConnection orderCon = new SqlConnection(strOrderCon);
+            if (Session["username"] != null)
+            {
+                String strOrderCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                SqlConnection orderCon = new SqlConnection(strOrderCon);
 
-            orderCon.Open();
-            String strSelectItem = "SELECT Cart.ArtworkID, Art.ArtworkName, Art.Price, Art.URL, Cart.Quantity, Cart.Quantity * Art.Price AS TotalPrice FROM Artwork Art, CartDetails Cart WHERE Art.ArtworkID = Cart.ArtworkID AND Cart.Username= @Username;";
-            SqlCommand cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
-            cmdSelectItem.Parameters.AddWithValue("@Username", Session["Username"].ToString());
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = cmdSelectItem;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            Repeater1.DataSource = cmdSelectItem.ExecuteReader();
-            Repeater1.DataBind();
-            orderCon.Close();
+                orderCon.Open();
+                String strSelectItem = "SELECT Cart.ArtworkID, Art.ArtworkName, Art.Price, Art.URL, Cart.Quantity, Cart.Quantity * Art.Price AS TotalPrice FROM Artwork Art, CartDetails Cart WHERE Art.ArtworkID = Cart.ArtworkID AND Cart.Username= @Username;";
+                SqlCommand cmdSelectItem = new SqlCommand(strSelectItem, orderCon);
+                cmdSelectItem.Parameters.AddWithValue("@Username", Session["Username"].ToString());
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmdSelectItem;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                Repeater1.DataSource = cmdSelectItem.ExecuteReader();
+                Repeater1.DataBind();
+                orderCon.Close();
 
-            lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
-            lblTax.Text = (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString();
-            lblTotal.Text = String.Format("RM {0:0.00}", (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
+                lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
+                lblTax.Text = (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString();
+                lblTotal.Text = String.Format("RM {0:0.00}", (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
+            }
+            else
+            {
+                Response.Redirect("~/App_Pages/Login.aspx");
+            }
         }
 
         
