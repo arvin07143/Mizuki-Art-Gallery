@@ -88,6 +88,7 @@
     <Content Include="css\login_register.css" />
     <Content Include="css\manage_art.css" />
     <Content Include="css\profile.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images\beauty_20210117164458.jpg" />
     <Content Include="App_Pages\ManageArt.aspx" />
