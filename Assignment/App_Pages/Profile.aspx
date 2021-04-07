@@ -19,7 +19,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" style="min-height: 800px">
             <div class="modal fade bd-example-modal-lg" id="modalForm">
             <div class="modal-dialog">
                 <div class="modal-content">
