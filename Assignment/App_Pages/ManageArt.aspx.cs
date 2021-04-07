@@ -131,10 +131,16 @@ namespace Assignment
             String deleteArt = "UPDATE [dbo].[Artwork] SET [Artwork].[StockQuantity] = -1 WHERE [ArtworkID] = @artID";
             SqlCommand cmdUpdateStock = new SqlCommand(deleteArt, cnn);
             cmdUpdateStock.Parameters.AddWithValue("@artID", artID);
+            cmdUpdateStock.ExecuteNonQuery();
+
             SqlCommand cmdDeleteCartItem = new SqlCommand("DELETE from CartDetails where ArtworkID=@artid", cnn);
             cmdDeleteCartItem.Parameters.AddWithValue("@artid", artID);
             cmdDeleteCartItem.ExecuteNonQuery();
-            cmdUpdateStock.ExecuteNonQuery();
+
+            SqlCommand cmdRemoveFav = new SqlCommand("DELETE from Favourite where ArtworkID=@artid", cnn);
+            cmdRemoveFav.Parameters.AddWithValue("@artid", artID);
+            cmdRemoveFav.ExecuteNonQuery();
+            
 
             cnn.Close();
             Repeater1.DataBind();

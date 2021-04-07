@@ -89,20 +89,32 @@ namespace Assignment.App_Pages
             String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection cnn = new SqlConnection(con);
             cnn.Open();
-            String addToCart = "INSERT INTO [dbo].[CartDetails] VALUES(@Username,@ArtworkID,@Quantity);";
-            SqlCommand cmdAddToCart = new SqlCommand(addToCart, cnn);
-            cmdAddToCart.Parameters.AddWithValue("@Username", Session["username"]);
-            cmdAddToCart.Parameters.AddWithValue("@ArtworkID", artID);
-            cmdAddToCart.Parameters.AddWithValue("@Quantity", 1);
-            try
+            String checkQty = "SELECT StockQuantity FROM [dbo].[Artwork] WHERE ArtworkID = @ArtworkID";
+            SqlCommand cmdCheckQty = new SqlCommand(checkQty, cnn);
+            cmdCheckQty.Parameters.AddWithValue("@ArtworkID", artID);
+            int currentStock = Int32.Parse(cmdCheckQty.ExecuteScalar().ToString());
+            if(currentStock >= 1)
             {
-                int updated = cmdAddToCart.ExecuteNonQuery();
-                cnn.Close();
-            }
-            catch (Exception)
-            {
+                String addToCart = "INSERT INTO [dbo].[CartDetails] VALUES(@Username,@ArtworkID,@Quantity);";
+                SqlCommand cmdAddToCart = new SqlCommand(addToCart, cnn);
+                cmdAddToCart.Parameters.AddWithValue("@Username", Session["username"]);
+                cmdAddToCart.Parameters.AddWithValue("@ArtworkID", artID);
+                cmdAddToCart.Parameters.AddWithValue("@Quantity", 1);
+                try
+                {
+                    int updated = cmdAddToCart.ExecuteNonQuery();
+                    cnn.Close();
+                }
+                catch (Exception)
+                {
 
+                }
             }
+            else
+            {
+                Response.Write("<script>alert('Item Currently Out of Stock')</script>");
+            }
+
         }
 
         protected void btnDeleteFav(object sender, EventArgs e)
