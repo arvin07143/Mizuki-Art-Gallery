@@ -29,7 +29,7 @@
 					
 					<span class="text2">
 						Confirm Password
-						<asp:RequiredFieldValidator ID="rsfFPConfirmPass" runat="server" ControlToValidate="TxtRConfirmPass" Display="Dynamic" ErrorMessage="Comfirm password is required." ForeColor="Red" >*</asp:RequiredFieldValidator>
+						<asp:RequiredFieldValidator ID="rsfFPConfirmPass" runat="server" ControlToValidate="TxtRConfirmPass" Display="Dynamic" ErrorMessage="Confirm password is required." ForeColor="Red" >*</asp:RequiredFieldValidator>
 						<asp:CustomValidator ID="cvFPConfirmPass" runat="server" ErrorMessage="Confirm password does not match." ForeColor="Red" ControlToValidate="TxtRConfirmPass" OnServerValidate="conPassValidate_ServerValidate">*</asp:CustomValidator>
 					</span>
                     <div class="wrapInput1">
