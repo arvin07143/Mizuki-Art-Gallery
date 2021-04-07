@@ -40,7 +40,6 @@ namespace Assignment.App_Pages
                         Total = Total + Convert.ToDecimal(dr["TotalPrice"].ToString());
                     }
                     lblTotalPrice.Text = Convert.ToString(Total);
-                    Session["TotalPrice"] = lblTotalPrice.Text;
                     cartCon.Close();
                 }
                 else
