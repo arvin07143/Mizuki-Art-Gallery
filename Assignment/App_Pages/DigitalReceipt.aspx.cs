@@ -42,7 +42,7 @@ namespace Assignment.App_Pages
                 SqlConnection orderCon = new SqlConnection(strOrderCon);
 
                 orderCon.Open();
-                SqlCommand cmdOrder = new SqlCommand("SELECT *, FORMAT([Order].Date, 'dd/MM/yyyy') AS FormattedDate, [User].Name FROM [Order] INNER JOIN [User] ON ([Order].Username = [User].Username) WHERE OrderID = @OrderID;", orderCon);
+                SqlCommand cmdOrder = new SqlCommand("SELECT RecipientName, PaymentType, ContactNumber, CardNumber, OrderID, [User].Email, FORMAT([Order].Date, 'dd/MM/yyyy') AS FormattedDate, [User].Name FROM [Order] INNER JOIN [User] ON ([Order].Username = [User].Username) WHERE OrderID = @OrderID;", orderCon);
                 cmdOrder.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
                 SqlDataReader orderDR = cmdOrder.ExecuteReader();
                 while (orderDR.Read())
