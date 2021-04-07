@@ -83,13 +83,17 @@ namespace Assignment.App_Pages
                 ClientScript.RegisterStartupScript(this.GetType(), scriptKey, javaScript.ToString(), true);
 
             }
-            else
-            {
-                lblRegisterOk.Text = "Password not match.";
-            }
+            
             loginCon.Close();
 
         }
-       
+
+        protected void cvRConfirmPass_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (TxtRPass.Text != TxtRConfirmPass.Text)
+            {
+                args.IsValid = false;
+            }
+        }
     }
 }

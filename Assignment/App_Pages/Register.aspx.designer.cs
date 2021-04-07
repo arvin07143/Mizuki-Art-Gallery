@@ -132,6 +132,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rsvRConfirmPass;
 
         /// <summary>
+        /// cvRConfirmPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvRConfirmPass;
+
+        /// <summary>
         /// TxtRConfirmPass control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace Assignment.App_Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfREmail;
+
+        /// <summary>
+        /// revREmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revREmail;
 
         /// <summary>
         /// TxtREmail control.
