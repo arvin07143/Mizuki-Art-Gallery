@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Checkout" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="Assignment.App_Pages.Checkout2" %>
 
-    
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -42,7 +42,7 @@
             width: 30%;
             padding: 10px;
             height: auto; /* Should be removed. Only for demonstration */
-            font-size:13px;
+            font-size: 13px;
         }
 
         /* Clear floats after the columns */
@@ -222,7 +222,7 @@
 
                 <br />
                 <div class="form-group row">
-                    <asp:Label ID="lblCardholderName" class="col-4 col-form-label" runat="server">Cardholder</asp:Label>
+                    <asp:Label ID="lblCardholderName" class="col-4 col-form-label" runat="server">Cardholder Name</asp:Label>
                     <div class="col-8">
                         <div class="input-group">
                             <asp:TextBox ID="txtCardholderName" name="Cardholder Name" type="text" class="form-control" runat="server"></asp:TextBox>
@@ -324,73 +324,74 @@
             </div>
 
 
-            <div class="column" style="font-size:12px" >
-                    <div style="margin-left: 70px" class="tab-pane" id="checkout">
-                        <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
-                            <HeaderTemplate>
-                                <table class="table w-100 p3 ms-auto me-auto">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 40%; text-align: center" scope="col">Artwork</th>
-                                            <th style="width: 5%;  text-align: center" scope="col">Quantity</th>
-                                            <th style="width: 30%; text-align: center" scope="col">Unit Price</th>
-                                            <th style="width: 25%; text-align: right" scope="col">Price</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <table class="table w-100 p3 ms-auto me-auto">
+            <div class="column" style="font-size: 12px">
+                <div style="margin-left: 70px" class="tab-pane" id="checkout">
+                    <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
+                        <HeaderTemplate>
+                            <table class="table w-100 p3 ms-auto me-auto">
+                                <thead>
                                     <tr>
-                                        <td style="width: 40%; text-align: center" class="align-middle"><%# Eval("ArtworkName")%></td>
-                                        <td style="width: 5%;  text-align: center" class="align-middle"><%# Eval("Quantity")%></td>
-                                        <td style="width: 30%; text-align: center" class="align-middle"><%# Eval("Price")%></td>
-                                        <td style="width: 25%; text-align: right"  class="align-middle"><%# Eval("TotalPrice", "{0:0.00}") %></td>
+                                        <th style="width: 40%; text-align: center" scope="col">Artwork</th>
+                                        <th style="width: 5%; text-align: center" scope="col">Quantity</th>
+                                        <th style="width: 30%; text-align: center" scope="col">Unit Price</th>
+                                        <th style="width: 25%; text-align: right" scope="col">Price</th>
                                     </tr>
-                                </table>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                        <br />
-
-                        <table style="border: 0px solid transparent;" class="table w-100 p3 ms-auto me-auto">
-                            <tr>
-                                <td style="width: 60%">
-                                    <asp:Label ID="lblSubtotalDis" runat="server" Text="Subtotal"></asp:Label></td>
-
-                                <td style="width: 10%" class="align-middle"></td>
-
-                                <td style="width: 30%">
-                                    <asp:Label Style="display: block; text-align: right" ID="lblSubtotal" runat="server" Text="RM???"></asp:Label></td>
-                            </tr>
-
-                            <tr>
-                                <td style="width: 60%">
-                                    <asp:Label ID="lblTaxDis" runat="server" Text="Tax"></asp:Label>&nbsp;(6%)</td>
-
-                                <td style="width: 10%" class="align-middle"></td>
-
-                                <td style="width: 30%">
-                                    <asp:Label Style="display: block; text-align: right" ID="lblTax" runat="server" Text="RM???"></asp:Label></td>
-                            </tr>
-
-                            <tr>
-                                <td style="width: 60%">
-                                    <asp:Label ID="lblTotalDis" runat="server" Text="Total"></asp:Label></td>
-
-                                <td style="width: 10%" class="align-middle"></td>
-
-                                <td class="align-middle" style="width: 30%">
-                                    <asp:Label Style="display: block; text-align: right" ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
-                            </tr>
-
-                        </table>
-                    </div>
-                    <asp:Button Style="margin-left: 60px" class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" Width="350px" CausesValidation="False" ValidationGroup="First" />
+                                </thead>
+                            </table>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <table class="table w-100 p3 ms-auto me-auto">
+                                <tr>
+                                    <td style="width: 40%; text-align: center" class="align-middle"><%# Eval("ArtworkName")%></td>
+                                    <td style="width: 5%; text-align: center" class="align-middle"><%# Eval("Quantity")%></td>
+                                    <td style="width: 30%; text-align: center" class="align-middle"><%# Eval("Price")%></td>
+                                    <td style="width: 25%; text-align: right" class="align-middle"><%# Eval("TotalPrice", "{0:0.00}") %></td>
+                                </tr>
+                            </table>
+                        </ItemTemplate>
+                    </asp:Repeater>
                     <br />
-                    <br />
-                    <asp:Button Style="margin-left: 60px" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Complete Payment" OnClick="btnCheckout_Click" Width="350px" />
 
+                    <table style="border: 0px solid transparent;" class="table w-100 p3 ms-auto me-auto">
+                        <tr>
+                            <td style="width: 60%">
+                                <asp:Label ID="lblSubtotalDis" runat="server" Text="Subtotal"></asp:Label></td>
+
+                            <td style="width: 10%" class="align-middle"></td>
+
+                            <td style="width: 30%">
+                                <asp:Label Style="display: block; text-align: right" ID="lblSubtotal" runat="server" Text="RM???"></asp:Label></td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 60%">
+                                <asp:Label ID="lblTaxDis" runat="server" Text="Tax"></asp:Label>&nbsp;(6%)</td>
+
+                            <td style="width: 10%" class="align-middle"></td>
+
+                            <td style="width: 30%">
+                                <asp:Label Style="display: block; text-align: right" ID="lblTax" runat="server" Text="RM???"></asp:Label></td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 60%">
+                                <asp:Label ID="lblTotalDis" runat="server" Text="Total"></asp:Label></td>
+
+                            <td style="width: 10%" class="align-middle"></td>
+
+                            <td class="align-middle" style="width: 30%">
+                                <asp:Label Style="display: block; text-align: right" ID="lblTotal" runat="server" Text="RM???"></asp:Label></td>
+                        </tr>
+
+                    </table>
                 </div>
+                <asp:Button Style="margin-left: 60px" class="btn btn-primary btn-lg btn-brand btn-full-width" ID="btnCheckout" runat="server" Text="Complete Payment" OnClick="btnCheckout_Click" Width="350px" />
+                <br />
+                <br />
+                <asp:Button Style="margin-left: 60px" class="btn btn-danger btn-lg btn-brand btn-full-width" ID="btnContinue" runat="server" Text="Continue Shopping" OnClick="btnContinue_Click" Width="350px" CausesValidation="False" ValidationGroup="First" />
+
+
+            </div>
         </div>
     </form>
 </asp:Content>
