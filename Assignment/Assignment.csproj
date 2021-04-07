@@ -191,7 +191,6 @@
     <Compile Include="App_Pages\ManageArt.aspx.designer.cs">
       <DependentUpon>ManageArt.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Pages\ScreenCapture.cs" />
     <Compile Include="App_Pages\DigitalReceipt.aspx.cs">
       <DependentUpon>DigitalReceipt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
