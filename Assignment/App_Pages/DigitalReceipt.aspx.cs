@@ -83,31 +83,34 @@ namespace Assignment.App_Pages
         {
             btnContinue.Visible = false;
 
-            string folderPath = Server.MapPath("~/ReceiptImage/");  //Create a Folder in your Root directory on your solution.
-            string fileName = lblOrderID0.Text + ".jpg";
-            string imagePath = folderPath + fileName;
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+
+            HtmlTextWriter hWriter = new HtmlTextWriter(sw);
+            base.Render(hWriter);
+            string output = sb.ToString();
+            String filename = HttpContext.Current.Server.MapPath("~/Receipts/") + "Order" + Request.QueryString["OrderID"] + ".html";
 
             try
             {
-                var image = ScreenCapture.CaptureActiveWindow();
-                image.Save(imagePath, ImageFormat.Jpeg);
+                System.IO.File.WriteAllText(@filename, output);
             }
             catch (Exception ex)
             {
                 // Log the exception                      
-                if ((File.GetAttributes(imagePath) & FileAttributes.Hidden) == FileAttributes.ReadOnly)
+                if ((File.GetAttributes(filename) & FileAttributes.Hidden) == FileAttributes.ReadOnly)
                 {
+            
+                    File.SetAttributes(filename, FileAttributes.Normal);
+            
+                    if (File.Exists(filename))
+            
+                    { File.Delete(filename); }
 
-                    File.SetAttributes(imagePath, FileAttributes.Normal);
-
-                    if (File.Exists(imagePath))
-
-                    { File.Delete(imagePath); }
-
-                    var image = ScreenCapture.CaptureActiveWindow();
-                    image.Save(imagePath, ImageFormat.Jpeg);
+                    System.IO.File.WriteAllText(@filename, output);
                 }
             }
+            
 
             string to = lblEmail.Text;
             string from = "mizuki2629@gmail.com";
@@ -115,7 +118,7 @@ namespace Assignment.App_Pages
             mm.Subject = "Mizuki Gallery - Receipt(OrderID : " + lblOrderID0.Text + ")";
 
             mm.Body = "Dear " + lblName2.Text + ", Here Is Your Digital Receipt For Order " + lblOrderID0.Text + ". Thank you!<br/>";
-            Attachment at = new Attachment(imagePath);
+            Attachment at = new Attachment(filename);
             mm.Attachments.Add(at);
             mm.IsBodyHtml = true;
 
@@ -126,25 +129,50 @@ namespace Assignment.App_Pages
             client.EnableSsl = true;
             client.Credentials = basicCredential1;
             client.Send(mm);
+            //string folderPath = Server.MapPath("~/ReceiptImage/");  //Create a Folder in your Root directory on your solution.
+            //string fileName = lblOrderID0.Text + ".jpg";
+            //string imagePath = folderPath + fileName;
 
+            //try
+            //{
+            //    var image = ScreenCapture.CaptureActiveWindow();
+            //    image.Save(imagePath, ImageFormat.Jpeg);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Log the exception                      
+            //    if ((File.GetAttributes(imagePath) & FileAttributes.Hidden) == FileAttributes.ReadOnly)
+            //    {
 
-            //// Create the mail message
-            //MailMessage objMailMsg = new MailMessage(from, to);
+            //        File.SetAttributes(imagePath, FileAttributes.Normal);
 
-            //objMailMsg.BodyEncoding = Encoding.UTF8;
-            //objMailMsg.Subject = "Mizuki Gallery - Receipt(OrderID : " + lblOrderID0.Text + ")";
-            //objMailMsg.Body = "Dear " + lblName2.Text + ", Here Is Your Digital Receipt For Order " + lblOrderID0.Text + ". Thank you!<br/>";
+            //        if (File.Exists(imagePath))
+
+            //        { File.Delete(imagePath); }
+
+            //        var image = ScreenCapture.CaptureActiveWindow();
+            //        image.Save(imagePath, ImageFormat.Jpeg);
+            //    }
+            //}
+
+            //string to = lblEmail.Text;
+            //string from = "mizuki2629@gmail.com";
+            //MailMessage mm = new MailMessage(from, to);
+            //mm.Subject = "Mizuki Gallery - Receipt(OrderID : " + lblOrderID0.Text + ")";
+
+            //mm.Body = "Dear " + lblName2.Text + ", Here Is Your Digital Receipt For Order " + lblOrderID0.Text + ". Thank you!<br/>";
             //Attachment at = new Attachment(imagePath);
-            //objMailMsg.Attachments.Add(at);
-            //objMailMsg.IsBodyHtml = true;
+            //mm.Attachments.Add(at);
+            //mm.IsBodyHtml = true;
 
-            ////prepare to send mail via SMTP transport
+
             //SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
             //client.UseDefaultCredentials = false;
             //System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("mizuki2629@gmail.com", "Mizuki12345");
             //client.EnableSsl = true;
             //client.Credentials = basicCredential1;
-            //client.Send(objMailMsg);
+            //client.Send(mm);
+
 
             string queryString = "~/App_Pages/PurchaseSummary.aspx?OrderID=" + lblOrderID0.Text;
             Response.Redirect(queryString);
