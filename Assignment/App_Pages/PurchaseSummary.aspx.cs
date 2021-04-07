@@ -47,7 +47,7 @@ namespace Assignment.App_Pages
                 con.Open();
                 String strGetTotal = "SELECT OrderDetails.Quantity * Artwork.Price AS TotalPrice FROM OrderDetails INNER JOIN ARTWORK ON(OrderDetails.ArtworkID = Artwork.ArtworkID) WHERE OrderID = @OrderID;";
                 SqlCommand cmdGetTotal = new SqlCommand(strGetTotal, con);
-                cmdSelectItem.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
+                cmdGetTotal.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
                 double Total = 0.0;
                 SqlDataReader reader = cmdGetTotal.ExecuteReader();
                 while (reader.Read())
