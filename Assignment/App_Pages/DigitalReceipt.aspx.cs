@@ -53,7 +53,8 @@ namespace Assignment.App_Pages
                     lblCardNumber.Text = orderDR["CardNumber"].ToString();
                     lblOrderID0.Text = orderDR["OrderID"].ToString();
                     lblName2.Text = orderDR["Name"].ToString();
-                    lblEmail.Text = orderDR["EmailAddress"].ToString();
+                    lblEmail.Text = orderDR["Email"].ToString();
+
                 }
                 orderCon.Close();
 
@@ -106,20 +107,18 @@ namespace Assignment.App_Pages
                     var image = ScreenCapture.CaptureActiveWindow();
                     image.Save(imagePath, ImageFormat.Jpeg);
                 }
-            }            
+            }
 
             string to = lblEmail.Text;
             string from = "mizuki2629@gmail.com";
             MailMessage mm = new MailMessage(from, to);
             mm.Subject = "Mizuki Gallery - Receipt(OrderID : " + lblOrderID0.Text + ")";
 
-            AlternateView imgview = AlternateView.CreateAlternateViewFromString("Dear " + lblName2.Text + ", Here Is Your Digital Receipt For Order " + lblOrderID0.Text + ". Thank you!<br/><img src=cid:imgpath>",null, MediaTypeNames.Text.Html);
-            LinkedResource lr = new LinkedResource(imagePath);
-            lr.ContentId = "imagpath";
-            imgview.LinkedResources.Add(lr);
-            mm.AlternateViews.Add(imgview);
-            mm.Body = lr.ContentId;
-           
+            mm.Body = "Dear " + lblName2.Text + ", Here Is Your Digital Receipt For Order " + lblOrderID0.Text + ". Thank you!<br/>";
+            Attachment at = new Attachment(imagePath);
+            mm.Attachments.Add(at);
+            mm.IsBodyHtml = true;
+
 
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
             client.UseDefaultCredentials = false;
@@ -127,7 +126,26 @@ namespace Assignment.App_Pages
             client.EnableSsl = true;
             client.Credentials = basicCredential1;
             client.Send(mm);
-    
+
+
+            //// Create the mail message
+            //MailMessage objMailMsg = new MailMessage(from, to);
+
+            //objMailMsg.BodyEncoding = Encoding.UTF8;
+            //objMailMsg.Subject = "Mizuki Gallery - Receipt(OrderID : " + lblOrderID0.Text + ")";
+            //objMailMsg.Body = "Dear " + lblName2.Text + ", Here Is Your Digital Receipt For Order " + lblOrderID0.Text + ". Thank you!<br/>";
+            //Attachment at = new Attachment(imagePath);
+            //objMailMsg.Attachments.Add(at);
+            //objMailMsg.IsBodyHtml = true;
+
+            ////prepare to send mail via SMTP transport
+            //SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
+            //client.UseDefaultCredentials = false;
+            //System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("mizuki2629@gmail.com", "Mizuki12345");
+            //client.EnableSsl = true;
+            //client.Credentials = basicCredential1;
+            //client.Send(objMailMsg);
+
             string queryString = "~/App_Pages/PurchaseSummary.aspx?OrderID=" + lblOrderID0.Text;
             Response.Redirect(queryString);
         }
