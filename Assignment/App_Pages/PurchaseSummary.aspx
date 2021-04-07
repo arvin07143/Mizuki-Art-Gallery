@@ -38,8 +38,8 @@
  
 </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
+<asp:Content ID="purchaseSummaryContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <form id="purchaseSummaryForm" runat="server">
     <div class="container">
     <article class="card">
         <header class="card-header"> Purchase Summary</header>
@@ -63,7 +63,7 @@
                 </div>
             </article>
             </div>
-           <asp:Repeater ID="Repeater1" runat="server">
+           <asp:Repeater ID="purchaseSummaryRepeater" runat="server">
                             <HeaderTemplate>
                                 <table class="table w-100 p3 ms-auto me-auto">
                                     <thead>

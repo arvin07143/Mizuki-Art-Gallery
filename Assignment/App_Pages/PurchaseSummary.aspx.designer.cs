@@ -15,13 +15,13 @@ namespace Assignment.App_Pages
     {
 
         /// <summary>
-        /// form1 control.
+        /// purchaseSummaryForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm purchaseSummaryForm;
 
         /// <summary>
         /// lblOrderId control.
@@ -60,13 +60,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Label lblDeliveryAddress;
 
         /// <summary>
-        /// Repeater1 control.
+        /// purchaseSummaryRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.Repeater purchaseSummaryRepeater;
 
         /// <summary>
         /// lblSubtotalDis control.
