@@ -33,13 +33,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.Label lblRegisterOk;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// rsfRName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfRName;
 
         /// <summary>
         /// TxtRName control.
@@ -51,13 +51,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRName;
 
         /// <summary>
-        /// RequiredFieldValidator9 control.
+        /// rsfRGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfRGender;
 
         /// <summary>
         /// RadioButtonList1 control.
@@ -69,13 +69,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
 
         /// <summary>
-        /// RequiredFieldValidator8 control.
+        /// rsfRDOB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfRDOB;
 
         /// <summary>
         /// TxtRDOB control.
@@ -87,13 +87,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRDOB;
 
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// rsfRUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfRUsername;
 
         /// <summary>
         /// TxtRUsername control.
@@ -105,13 +105,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRUsername;
 
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// rsfRPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfRPassword;
 
         /// <summary>
         /// TxtRPass control.
@@ -123,13 +123,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRPass;
 
         /// <summary>
-        /// RequiredFieldValidator7 control.
+        /// rsvRConfirmPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsvRConfirmPass;
 
         /// <summary>
         /// TxtRConfirmPass control.
@@ -141,13 +141,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRConfirmPass;
 
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// rsfREmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfREmail;
 
         /// <summary>
         /// TxtREmail control.

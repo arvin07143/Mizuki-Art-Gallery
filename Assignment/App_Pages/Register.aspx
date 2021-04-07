@@ -16,14 +16,14 @@
 					</span>
 					<asp:Label ID="lblRegisterOk" class="text2" style="color: red;" runat="server"></asp:Label><br />
 					<span class="text2">
-						Name<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtRName" Display="Dynamic" ErrorMessage="Name is required." ForeColor="Red" font-size = "8px">*Name is required.</asp:RequiredFieldValidator>
+						Name<asp:RequiredFieldValidator ID="rsfRName" runat="server" ControlToValidate="TxtRName" Display="Dynamic" ErrorMessage="Name is required." ForeColor="Red" font-size = "8px">*Name is required.</asp:RequiredFieldValidator>
 					</span>
 					<div class="wrapInput1"style="margin-bottom:5px;">
                         <asp:TextBox ID="TxtRName" runat="server" class="input" ></asp:TextBox>
                      </div>
 
 					<span class="text2" >
-						Gender<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" Display="Dynamic" ErrorMessage="Gender is required." Font-Size="8px" ForeColor="Red" ControlToValidate="RadioButtonList1">*Gender is required.</asp:RequiredFieldValidator>
+						Gender<asp:RequiredFieldValidator ID="rsfRGender" runat="server" Display="Dynamic" ErrorMessage="Gender is required." Font-Size="8px" ForeColor="Red" ControlToValidate="RadioButtonList1">*Gender is required.</asp:RequiredFieldValidator>
 &nbsp;</span><div class="text2">
 					<asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal"  RepeatLayout="Flow" CssClass="radiobtn">
                             <asp:ListItem>Male</asp:ListItem>
@@ -31,7 +31,7 @@
                     </asp:RadioButtonList>
 
 					<div class="text2">
-                        <label>Date of Birth<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtRDOB" Display="Dynamic" ErrorMessage="*Date  of birth is required." Font-Size="8px" ForeColor="Red">*Date  of birth is required.</asp:RequiredFieldValidator>
+                        <label>Date of Birth<asp:RequiredFieldValidator ID="rsfRDOB" runat="server" ControlToValidate="TxtRDOB" Display="Dynamic" ErrorMessage="*Date  of birth is required." Font-Size="8px" ForeColor="Red">*Date  of birth is required.</asp:RequiredFieldValidator>
                         </label>&nbsp;<div class="text2">
                            <asp:TextBox CssClass="form-control" ID="TxtRDOB" runat="server"  TextMode="Date"></asp:TextBox>
                         </div>
@@ -43,7 +43,7 @@
 
                     <span class="text2">
 						Username
-					<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TxtRUsername" Display="Dynamic" ErrorMessage="Username is required." ForeColor="Red" font-size = "8px">*Username is required.</asp:RequiredFieldValidator>
+					<asp:RequiredFieldValidator ID="rsfRUsername" runat="server" ControlToValidate="TxtRUsername" Display="Dynamic" ErrorMessage="Username is required." ForeColor="Red" font-size = "8px">*Username is required.</asp:RequiredFieldValidator>
 					</span>
 					<div class="wrapInput1">
                         <asp:TextBox ID="TxtRUsername" runat="server" class="input"></asp:TextBox>
@@ -51,14 +51,14 @@
 
                     <span class="text2">
 						Password
-						<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtRPass" ErrorMessage="Password is required." ForeColor="Red" font-size = "8px">*Password is required.</asp:RequiredFieldValidator>
+						<asp:RequiredFieldValidator ID="rsfRPassword" runat="server" ControlToValidate="TxtRPass" ErrorMessage="Password is required." ForeColor="Red" font-size = "8px">*Password is required.</asp:RequiredFieldValidator>
 					</span>
 					<div class="wrapInput1">
                         <asp:TextBox ID="TxtRPass" runat="server" class="input"></asp:TextBox>
                      </div>
 					
 					<span class="text2">
-						Confirm Password<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtRConfirmPass" Display="Dynamic" ErrorMessage="Comfirm password is required." ForeColor="Red" font-size = "8px">*Comfirm password is required.</asp:RequiredFieldValidator>
+						Confirm Password<asp:RequiredFieldValidator ID="rsvRConfirmPass" runat="server" ControlToValidate="TxtRConfirmPass" Display="Dynamic" ErrorMessage="Comfirm password is required." ForeColor="Red" font-size = "8px">*Comfirm password is required.</asp:RequiredFieldValidator>
 &nbsp;</span><div class="wrapInput1">
 						<asp:TextBox ID="TxtRConfirmPass" runat="server" class="input" ></asp:TextBox>
 						
@@ -66,7 +66,7 @@
 					
 					<span class="text2">
 						Email
-					<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TxtREmail" Display="Dynamic" ErrorMessage="Email is required." ForeColor="Red" font-size = "8px">*Email is required.</asp:RequiredFieldValidator>
+					<asp:RequiredFieldValidator ID="rsfREmail" runat="server" ControlToValidate="TxtREmail" Display="Dynamic" ErrorMessage="Email is required." ForeColor="Red" font-size = "8px">*Email is required.</asp:RequiredFieldValidator>
 					</span>
 					<div class="wrapInput1">
 						<asp:TextBox ID="TxtREmail" runat="server" class="input" TextMode="Email" ></asp:TextBox>

@@ -24,22 +24,22 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.HtmlControls.HtmlForm forgetPassForm;
 
         /// <summary>
-        /// ValidationSummary1 control.
+        /// vsForgetPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        protected global::System.Web.UI.WebControls.ValidationSummary vsForgetPassword;
 
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// rsvFPUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsvFPUsername;
 
         /// <summary>
         /// TxtRUsername control.
@@ -51,13 +51,13 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRUsername;
 
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// rsvFPNewPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsvFPNewPass;
 
         /// <summary>
         /// TxtRPass control.
@@ -69,22 +69,22 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.TextBox TxtRPass;
 
         /// <summary>
-        /// RequiredFieldValidator7 control.
+        /// rsfFPConfirmPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfFPConfirmPass;
 
         /// <summary>
-        /// conPassValidate control.
+        /// cvFPConfirmPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator conPassValidate;
+        protected global::System.Web.UI.WebControls.CustomValidator cvFPConfirmPass;
 
         /// <summary>
         /// TxtRConfirmPass control.

@@ -33,13 +33,13 @@ namespace Assignment
         protected global::System.Web.UI.WebControls.Label lblLoginFail;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rsfLUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfLUsername;
 
         /// <summary>
         /// TxtLUsername control.
@@ -51,13 +51,13 @@ namespace Assignment
         protected global::System.Web.UI.WebControls.TextBox TxtLUsername;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// rsfLPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rsfLPassword;
 
         /// <summary>
         /// TxtLPass control.
