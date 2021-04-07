@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Art.aspx.cs" Inherits="Assignment.App_Pages.Art" %>
+﻿<%@ Page Title="Gallery" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Art.aspx.cs" Inherits="Assignment.App_Pages.Art" %>
 
 <asp:Content ID="artHead" runat="server" ContentPlaceHolderID="head">
-    <title>Gallery</title>
     <style>
         
         *,

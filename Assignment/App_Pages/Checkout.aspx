@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="Assignment.App_Pages.Checkout2" %>
+﻿<%@ Page Title="Checkout" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="Assignment.App_Pages.Checkout2" %>
 
     
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Checkout</title>
+
     <script type="text/javascript">
         function CustomValidator1_ClientValidate(source, args) {
             var num = args.Value;

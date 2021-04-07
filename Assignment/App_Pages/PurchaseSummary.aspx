@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Product Summary" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="PurchaseSummary.aspx.cs" Inherits="Assignment.App_Pages.ProductDelivery" %>
+﻿<%@ Page Title="Purchase Summary" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="PurchaseSummary.aspx.cs" Inherits="Assignment.App_Pages.ProductDelivery" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
     <style>

@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DigitalReceipt.aspx.cs" Inherits="Assignment.App_Pages.Try" %>
+﻿<%@ Page Title="Digital Receipt" Language="C#" AutoEventWireup="true" CodeBehind="DigitalReceipt.aspx.cs" Inherits="Assignment.App_Pages.Try" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>Digital Receipt</title>
+  
     <style>
         .container {
             margin-top: 50px;

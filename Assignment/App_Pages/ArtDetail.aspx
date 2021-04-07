@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Mizuki.Master" CodeBehind="ArtDetail.aspx.cs" Inherits="Assignment.App_Pages.ArtDetail" %>
+﻿<%@ Page Title="Art Detail" Language="C#" AutoEventWireup="true" MasterPageFile="~/Mizuki.Master" CodeBehind="ArtDetail.aspx.cs" Inherits="Assignment.App_Pages.ArtDetail" %>
 
 <asp:Content ID="artDetailHeader" ContentPlaceHolderID="head" runat="server">
-    <title>Art Detail</title>
+
     <style>
         #form1 {
             min-height: 600px;

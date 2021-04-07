@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="Assignment.App_Pages.MainPage" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Mizuki.Master" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="Assignment.App_Pages.MainPage" %>
 <%@ Register TagPrefix="uc1" TagName="Header" Src="~/App_Pages/MainPageRepeater.ascx" %>
 
 <asp:Content ID="mainPageHeader" ContentPlaceHolderID="head" runat="server">
-    <title>Home</title>
     <style>
         .img-slide {
             height: 300px;
