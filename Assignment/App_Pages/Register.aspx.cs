@@ -56,17 +56,18 @@ namespace Assignment.App_Pages
                 
                 using (SqlConnection cnn = new SqlConnection(con))
                 {
-                    using (SqlCommand cmd = new SqlCommand("insert into [dbo].[User] values(@Username, @UserPassword, @Name, @DOB, @Gender,@Email)", cnn))
+                   
+                    using (SqlCommand cmdInsertUser = new SqlCommand("insert into [dbo].[User] (Username, UserPassword, Name, DOB, Gender, Email) VALUES(@Username, @UserPassword, @Name, @DOB, @Gender, @Email);", cnn))
                     {
-                        cmd.Parameters.AddWithValue("@Name", TxtRName.Text);
-                        cmd.Parameters.AddWithValue("@Gender", gender);
-                        cmd.Parameters.AddWithValue("@DOB", DateTime.Parse(TxtRDOB.Text));
-                        cmd.Parameters.AddWithValue("@Username", TxtRUsername.Text);
-                        cmd.Parameters.AddWithValue("@UserPassword", TxtRPass.Text);
-                        cmd.Parameters.AddWithValue("@Email", TxtREmail.Text);
+                        cmdInsertUser.Parameters.AddWithValue("@Username", TxtRUsername.Text);
+                        cmdInsertUser.Parameters.AddWithValue("@UserPassword", TxtRPass.Text);
+                        cmdInsertUser.Parameters.AddWithValue("@Name", TxtRName.Text);
+                        cmdInsertUser.Parameters.AddWithValue("@DOB", DateTime.Parse(TxtRDOB.Text));
+                        cmdInsertUser.Parameters.AddWithValue("@Gender", gender);
+                        cmdInsertUser.Parameters.AddWithValue("@Email", TxtREmail.Text);
 
                         cnn.Open();
-                        cmd.ExecuteNonQuery();
+                        cmdInsertUser.ExecuteNonQuery();
                         cnn.Close();
                     }
                 }
