@@ -66,9 +66,13 @@ namespace Assignment.App_Pages
                 da1.Fill(dt1);
                 Repeater1.DataSource = cmdGetOrderDetails.ExecuteReader();
                 Repeater1.DataBind();
+                orderCon.Close();
 
+                orderCon.Open();
+                SqlCommand cmdGetTotal = new SqlCommand("SELECT (Artwork.Price * OrderDetails.Quantity) AS TotalPrice FROM OrderDetails INNER JOIN ARTWORK ON (OrderDetails.ArtworkID = Artwork.ArtworkID) WHERE OrderID = @OrderID", orderCon);
+                cmdGetTotal.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
                 double Total = 0.0;
-                SqlDataReader dr = cmdGetOrderDetails.ExecuteReader();
+                SqlDataReader dr = cmdGetTotal.ExecuteReader();
                 while (dr.Read())
                 {
                     Total = Total + Convert.ToDouble(dr["TotalPrice"].ToString());
@@ -95,7 +99,7 @@ namespace Assignment.App_Pages
             HtmlTextWriter hWriter = new HtmlTextWriter(sw);
             base.Render(hWriter);
             string output = sb.ToString();
-            String filename = HttpContext.Current.Server.MapPath("~/Receipts/") + "Order" + Request.QueryString["OrderID"] + ".html";
+            String filename = HttpContext.Current.Server.MapPath("~/App_Data/Receipts/") + "Order" + Request.QueryString["OrderID"] + ".html";
 
             try
             {

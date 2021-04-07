@@ -42,9 +42,14 @@ namespace Assignment.App_Pages
                 da.Fill(dt);
                 Repeater1.DataSource = cmdSelectItem.ExecuteReader();
                 Repeater1.DataBind();
+                con.Close();
 
+                con.Open();
+                String strGetTotal = "SELECT OrderDetails.Quantity * Artwork.Price AS TotalPrice FROM OrderDetails INNER JOIN ARTWORK ON(OrderDetails.ArtworkID = Artwork.ArtworkID) WHERE OrderID = @OrderID;";
+                SqlCommand cmdGetTotal = new SqlCommand(strGetTotal, con);
+                cmdSelectItem.Parameters.AddWithValue("@OrderID", Request.QueryString["OrderID"]);
                 double Total = 0.0;
-                SqlDataReader reader = cmdSelectItem.ExecuteReader();
+                SqlDataReader reader = cmdGetTotal.ExecuteReader();
                 while (reader.Read())
                 {
                     Total = Total + Convert.ToDouble(reader["TotalPrice"].ToString());
