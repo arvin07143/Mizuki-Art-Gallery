@@ -33,8 +33,20 @@ namespace Assignment.App_Pages
                 Repeater1.DataBind();
                 orderCon.Close();
 
-                lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
-                lblTax.Text = (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString();
+                orderCon.Open();
+                String strCartTotal = "Select Cart.Quantity * Art.Price AS TotalPrice from Artwork Art, CartDetails Cart, [User] u Where Cart.Username = u.Username and Cart.Username = @username and Art.ArtworkID = Cart.ArtworkID; ";
+                SqlCommand cmdCartTotal = new SqlCommand(strCartTotal, orderCon);
+                cmdCartTotal.Parameters.AddWithValue("@username", Session["username"].ToString());
+                SqlDataReader dr = cmdCartTotal.ExecuteReader();
+                decimal Total = Convert.ToDecimal(0.0);
+                while (dr.Read())
+                {
+                    Total = Total + Convert.ToDecimal(dr["TotalPrice"].ToString());
+                }
+                orderCon.Close();
+
+                lblSubtotal.Text = String.Format("{0:0.00}", Total);
+                lblTax.Text = String.Format("{0:0.00}", (Convert.ToDouble(lblSubtotal.Text) * 0.06));
                 lblTotal.Text = String.Format("RM {0:0.00}", (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
             }
             else

@@ -54,7 +54,6 @@ namespace Assignment.App_Pages
                     lblOrderID0.Text = orderDR["OrderID"].ToString();
                     lblName2.Text = orderDR["Name"].ToString();
                     lblEmail.Text = orderDR["Email"].ToString();
-
                 }
                 orderCon.Close();
 
@@ -67,9 +66,16 @@ namespace Assignment.App_Pages
                 da1.Fill(dt1);
                 Repeater1.DataSource = cmdGetOrderDetails.ExecuteReader();
                 Repeater1.DataBind();
+
+                double Total = 0.0;
+                SqlDataReader dr = cmdGetOrderDetails.ExecuteReader();
+                while (dr.Read())
+                {
+                    Total = Total + Convert.ToDouble(dr["TotalPrice"].ToString());
+                }
                 orderCon.Close();
 
-                lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
+                lblSubtotal.Text = String.Format("{0:0.00}", Total);
                 lblTax.Text = String.Format("{0:0.00}", (Convert.ToDouble(lblSubtotal.Text) * 0.06).ToString());
                 lblTotal.Text = String.Format("RM {0:0.00}", (Convert.ToDouble(lblTax.Text) + Convert.ToDouble(lblSubtotal.Text)));
             }
