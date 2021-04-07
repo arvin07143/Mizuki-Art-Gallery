@@ -131,7 +131,9 @@ namespace Assignment
             String deleteArt = "UPDATE [dbo].[Artwork] SET [Artwork].[StockQuantity] = -1 WHERE [ArtworkID] = @artID";
             SqlCommand cmdUpdateStock = new SqlCommand(deleteArt, cnn);
             cmdUpdateStock.Parameters.AddWithValue("@artID", artID);
-
+            SqlCommand cmdDeleteCartItem = new SqlCommand("DELETE from CartDetails where ArtworkID=@artid", cnn);
+            cmdDeleteCartItem.Parameters.AddWithValue("@artid", artID);
+            cmdDeleteCartItem.ExecuteNonQuery();
             cmdUpdateStock.ExecuteNonQuery();
 
             cnn.Close();
@@ -236,6 +238,10 @@ namespace Assignment
                 cmdEditArt.Parameters.AddWithValue("@newCategory", ddlCategory.SelectedValue);
                 cmdEditArt.Parameters.AddWithValue("@artID", Int32.Parse(artID));
                 int updated = cmdEditArt.ExecuteNonQuery();
+                SqlCommand cmdDeleteCartItem = new SqlCommand("DELETE from CartDetails where ArtworkID=@artid AND Quantity > @qty", cnn);
+                cmdDeleteCartItem.Parameters.AddWithValue("@artid", Int32.Parse(artID));
+                cmdDeleteCartItem.Parameters.AddWithValue("@qty", Int32.Parse(artQty.Text));
+                cmdDeleteCartItem.ExecuteNonQuery();
                 cnn.Close();
                 Response.Redirect("~/App_Pages/ManageArt.aspx");
             }
