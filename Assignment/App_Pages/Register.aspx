@@ -58,7 +58,7 @@
                      </div>
 					
 					<span class="text2">
-						Confirm Password<asp:RequiredFieldValidator ID="rsvRConfirmPass" runat="server" ControlToValidate="TxtRConfirmPass" Display="Dynamic" ErrorMessage="Comfirm password is required." ForeColor="Red" font-size = "8px">*Comfirm password is required.</asp:RequiredFieldValidator>
+						Confirm Password<asp:RequiredFieldValidator ID="rsvRConfirmPass" runat="server" ControlToValidate="TxtRConfirmPass" Display="Dynamic" ErrorMessage="Confirm password is required." ForeColor="Red" font-size = "8px">*Confirm password is required.</asp:RequiredFieldValidator>
 &nbsp;</span><div class="wrapInput1">
 						<asp:TextBox ID="TxtRConfirmPass" runat="server" class="input" ></asp:TextBox>
 						

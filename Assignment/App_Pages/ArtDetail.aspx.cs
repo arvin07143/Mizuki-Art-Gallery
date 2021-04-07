@@ -140,9 +140,10 @@ namespace Assignment.App_Pages
                     cmdAddNewToCart.Parameters.AddWithValue("@artworkId", Request.QueryString["ArtworkID"].ToString());
                     cmdAddNewToCart.Parameters.AddWithValue("@quantity", txtQuantity.Text);
                     cmdAddNewToCart.ExecuteNonQuery();
-
+                    
 
                 }
+                else { lblCartMsg.Text = "Item already in cart."; }
                 rdrCart.Close();
                 con.Close();
             }
