@@ -40,8 +40,8 @@ namespace Assignment.App_Pages
                 da.SelectCommand = cmdSelectItem;
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                purchaseSummaryRepeater.DataSource = cmdSelectItem.ExecuteReader();
-                purchaseSummaryRepeater.DataBind();
+                Repeater1.DataSource = cmdSelectItem.ExecuteReader();
+                Repeater1.DataBind();
                 con.Close();
 
                 lblSubtotal.Text = String.Format("{0:0.00}", Convert.ToDouble(Session["TotalPrice"].ToString()));
