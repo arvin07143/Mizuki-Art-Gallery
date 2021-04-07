@@ -85,7 +85,7 @@
                                         <td style="width: 10%; text-align:center" class="align-middle"><%# Container.ItemIndex + 1 %></td>
                                         <td style="width: 10%; text-align:center" class="align-middle"><%# Eval("ArtworkID") %></td>
                                         <td style="width: 20%; text-align:center" class="align-middle">
-                                            <img style="width: 80%; height: 100px; object-fit:contain; object-position: center" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
+                                            <img style="width: 80%; height: 100px; object-fit:contain; object-position: center; border:0px" class="img-thumbnail img-fluid" src='<%#Eval("URL") %>'>
                                         </td>
                                         <td style="width: 20%; text-align:center" class="align-middle"><%# Eval("ArtworkName")%></td>
                                         <td style="width: 15%; text-align:center" class="align-middle"><%# Eval("Price")%></td>
