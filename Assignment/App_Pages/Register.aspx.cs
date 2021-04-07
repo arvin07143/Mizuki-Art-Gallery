@@ -31,7 +31,7 @@ namespace Assignment.App_Pages
             SqlDataReader dtrUser = cmdSelectUser.ExecuteReader();
             
             
-            if (DateTime.Parse(TxtRDOB.Text) > DateTime.Now)
+            if (DateTime.Parse(TxtRDOB.Text) > DateTime.Now || DateTime.Parse(TxtRDOB.Text) < DateTime.Now.AddYears(-100))
             {
                 lblRegisterOk.Text = "Invalid date.";
             }
