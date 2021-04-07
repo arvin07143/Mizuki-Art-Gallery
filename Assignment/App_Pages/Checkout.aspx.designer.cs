@@ -87,6 +87,15 @@ namespace Assignment.App_Pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
 
         /// <summary>
+        /// emailRegex control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator emailRegex;
+
+        /// <summary>
         /// lblContactNumber control.
         /// </summary>
         /// <remarks>

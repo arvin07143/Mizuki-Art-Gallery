@@ -95,6 +95,10 @@
                 </div>
                 <p>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="Email is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <br />
+                    <asp:RegularExpressionValidator ID="emailRegex" runat="server" ControlToValidate="txtEmail"
+                        ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                        ErrorMessage="Invalid email address" Display="Dynamic" />
                 </p>
 
                 <div class="form-group row">
